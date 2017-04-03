@@ -3,7 +3,7 @@
 
 <body>
 <script src="https://d3js.org/d3.v3.min.js"></script>
-<link rel="stylesheet" href="./_css/style.css"></link>
+<link rel="stylesheet" href="./css/style.css"></link>
 <h2>Steve and Monicah's Parallel Coordinate Chart</h2>
 <h3>Times Higher Education World University Rankings (2011-2016 - top 200 only)</h3>
 <script>
@@ -92,7 +92,7 @@ var group = { "Australia": "Oceania",
             };
 
 //reading in the data for the school rankings
-d3.csv("./_data/timesData3.csv", function(error, data) {
+d3.csv("./data/timesData3.csv", function(error, data) {
   //if (error) throw error;
   // Extract the list of dimensions and create a scale for each.
   x.domain(dimensions = d3.keys(data[0]).filter(function(d) {
