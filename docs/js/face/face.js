@@ -126,27 +126,6 @@ function run_persona() {
     var circle = vis.selectAll('.nope').data(circles)
       .enter().append('circle');
 
-     circle = circle;
-    /*if (init) {
-      // Setup the initial state of the initial circle
-      circle = circle
-        .attr('cx',   function(d) { return d.x; })
-        .attr('cy',   function(d) { return d.y; })
-        .attr('r', 4)
-        .attr('fill', '#ffffff')
-          .transition()
-          .duration(300);
-    } else {
-      // Setup the initial state of the opened circles
-      circle = circle
-        .attr('cx',   function(d) { return d.parent.x; })
-        .attr('cy',   function(d) { return d.parent.y; })
-        .attr('r',    function(d) { return d.parent.size / 2; })
-        .attr('fill', function(d) { return String(d.parent.rgb); })
-        .attr('fill-opacity', 0.68)
-          .transition()
-          .duration(300);
-    }*/
     circle
       .attr('cx',   function(d) { return d.x; })
       .attr('cy',   function(d) { return d.y; })
@@ -291,43 +270,6 @@ function run_persona() {
       while (circle && !circle.isSplitable()) circle = circle.parent;
       return circle || null;
     }
-
-    function intervalLength(startPoint, endPoint) {
-      var dx = endPoint[0] - startPoint[0],
-          dy = endPoint[1] - startPoint[1];
-
-      return Math.sqrt(dx * dx + dy * dy);
-    }
-
-    function breakInterval(startPoint, endPoint, maxLength) {
-      var breaks = [],
-          length = intervalLength(startPoint, endPoint),
-          numSplits = Math.max(Math.ceil(length / maxLength), 1),
-          dx = (endPoint[0] - startPoint[0]) / numSplits,
-          dy = (endPoint[1] - startPoint[1]) / numSplits,
-          startX = startPoint[0],
-          startY = startPoint[1];
-
-      for (var i = 0; i <= numSplits; i++) {
-        breaks.push([startX + dx * i, startY + dy * i]);
-      }
-      return breaks;
-    }
-
-    function findAndSplit(startPoint, endPoint) {
-      var breaks = breakInterval(startPoint, endPoint, 4);
-      var circleToSplit = []
-
-      for (var i = 0; i < breaks.length - 1; i++) {
-        var sp = breaks[i],
-            ep = breaks[i+1];
-
-        var circle = splitableCircleAt(ep);
-        if (circle && circle.isSplitable() && circle.checkIntersection(sp, ep)) {
-          circle.split();
-        }
-      }
-    }
  
     d3.select("#SMULevel").on("input", function() {
         console.log("Social Media changed 1");
@@ -460,7 +402,119 @@ function run_persona() {
                 }
             }            
         }
+        re_label();
+      }
+    
+    
+      
+    function generate_titles(x,y, text, fill, class_id){
+        if(fill != "black"){
+            vis.append("text")
+            .style("fill", fill)
+            .style("font-weight",900)
+            .attr("class", class_id)
+            .attr("x", x)
+            .attr("y", y)
+            .attr("dy", ".35em")
+            .text(function(d) { return text; });
+        }else{
+            vis.append("text")
+            .style("stroke", fill)
+            .style("stroke-width", "2.5px")
+            //.style("opacity", 0.9)
+            .style("font-weight",900)
+            .attr("class", class_id)
+            .attr("x", x)
+            .attr("y", y)
+            .attr("dy", ".35em")
+            .text(function(d) { return text; });
+        }
+    }
+      
+    function re_label(){
+        d3.selectAll(".normal-text").each(function(){
+            this.parentNode.appendChild(this);
+        });
+    }
+      
+    function generate_reports(x,y,text,tx,ty){
+        vis.append("svg:rect")
+        .style("fill", "black")
+        .attr("opacity", 0.7)
+        .attr("class", "shitstain")
+        .attr("transform", function(d) { 
+          return "translate(" + x + "," + y + ")"; })
+        .attr("height", maxSize / 2)
+        .attr("width", maxSize / 2);
+
+        generate_titles(tx,ty,text,"white", "shitstain-text");
+    }  
+      
+    function onMouseMove() {
+      var mousePosition = d3.mouse(vis.node());
+      if (isNaN(mousePosition[0])) {
+        return;
+      }else {
+        if(mousePosition[0] < maxSize / 2 && mousePosition[1] < maxSize / 2){
+            console.log("Who You Know! "+mousePosition);
+            d3.selectAll(".shitstain").remove();
+            d3.selectAll(".shitstain-text").remove();
+            generate_reports(0,0,"WHO YOU KNOW",20,20);
+ 
+        }
+        else if(mousePosition[0] >= maxSize / 2 && mousePosition[1] < maxSize / 2){
+            console.log("What You Do! "+mousePosition);
+            d3.selectAll(".shitstain").remove();
+            d3.selectAll(".shitstain-text").remove();
+            generate_reports((maxSize / 2),0,"WHAT YOU DO", maxSize - 150, 20);
+        }
+        else if(mousePosition[0] < maxSize / 2 && mousePosition[1] >= maxSize / 2){
+            console.log("Where You Go! "+mousePosition);
+            d3.selectAll(".shitstain").remove();
+            d3.selectAll(".shitstain-text").remove();
+            generate_reports(0,(maxSize / 2),"WHERE YOU GO",20, maxSize - 30);
+        }
+        else if(mousePosition[0] >= maxSize / 2 && mousePosition[1] >= maxSize / 2){
+            console.log("What You Say! "+mousePosition);
+            d3.selectAll(".shitstain").remove();
+            d3.selectAll(".shitstain-text").remove();
+            generate_reports((maxSize / 2),(maxSize / 2),"WHAT YOU SAY",maxSize - 150,maxSize - 30);
+
+        }
+      }
+      //d3.event.preventDefault();
+    }
+      
+    function onMouseLeave() {
+      var mousePosition = d3.mouse(vis.node());
+      // Do nothing if the mouse point is not valid
+      if (isNaN(mousePosition[0])) {
+        return;
       } 
+      if(mousePosition[0] < 0 || mousePosition[1] < 0 || mousePosition[0] > maxSize || mousePosition[1] > maxSize){
+        console.log(mousePosition);
+        d3.selectAll(".shitstain").remove();
+        d3.selectAll(".shitstain-text").remove();
+        re_label();
+        return;
+      }  
+    }
+    
+      
+    generate_titles(20,20,"WHO YOU KNOW","black", "normal-text");
+    generate_titles(maxSize - 150,20,"WHAT YOU DO","black", "normal-text");
+    generate_titles(20,maxSize - 30,"WHERE YOU GO","black", "normal-text");
+    generate_titles(maxSize - 150,maxSize - 30,"WHAT YOU SAY","black", "normal-text");  
+    generate_titles(19,19,"WHO YOU KNOW","white", "normal-text");
+    generate_titles(maxSize - 151,19,"WHAT YOU DO","white", "normal-text");
+    generate_titles(19,maxSize - 31,"WHERE YOU GO","white", "normal-text");
+    generate_titles(maxSize - 151,maxSize - 31,"WHAT YOU SAY","white", "normal-text");
+
+  
+    d3.select("#dots")
+      .on('mousemove.face', onMouseMove);
+    d3.select(document.body).on('mouseout.face', onMouseLeave);
+
   };
     
   return face;
