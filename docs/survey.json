@@ -1,0 +1,171 @@
+{
+"scores": {
+  "survey": {
+    "cell": {
+        "yes": { 
+            "stingray" : 1
+        },
+        "no": { 
+            "stingray" : 0
+        }        
+    },
+    "car": {
+        "yes": { 
+            "alpr" : 3
+        },
+        "maybe": { 
+            "alpr" : 2
+        },
+        "no": { 
+            "alpr" : 1
+        }        
+    },
+    "public-transit": {
+        "yes": { 
+            "cctv" : 3
+        },
+        "maybe": { 
+            "cctv" : 2
+        },
+        "no": { 
+            "cctv" : 1
+        }        
+    },
+    "public-events": {
+        "weekly": { 
+            "cctv" : 4,
+            "smm" : 4,
+            "stingray" : 4
+        },
+        "monthly": { 
+            "cctv" : 3,
+            "smm" : 3,
+            "stingray" : 3
+        },
+        "sometimes": { 
+            "cctv" : 2,
+            "smm" : 2,
+            "stingray" : 2
+        },
+        "never": { 
+            "cctv" : 1,
+            "smm" : 1,
+            "stingray" : 1
+        }        
+    },
+    "income": {
+        "low": { 
+            "cctv" : 5,
+            "shotspotter" : 5
+        },
+        "low-med": { 
+            "cctv" : 4,
+            "shotspotter" : 4
+        },
+        "medium": { 
+            "cctv" : 3,
+            "shotspotter" : 3
+        },
+        "high-med": { 
+            "cctv" : 2,
+            "shotspotter" : 2
+        },
+        "high": { 
+            "cctv" : 1,
+            "shotspotter" : 1
+        }        
+    },
+    "social-media": {
+        "daily": { 
+            "smm" : 4
+        },
+        "often": { 
+            "smm" : 3
+        },
+        "occasionally": { 
+            "smm" : 2
+        },
+        "never": { 
+            "smm" : 1
+        }        
+    },
+    "social-connections": {
+        "low": { 
+            "smm" : 1
+        },
+        "low-med": { 
+            "smm" : 2
+        },
+        "medium": {
+            "smm" : 3
+        },
+        "high-med": { 
+            "smm" : 4
+        },
+        "high": { 
+            "smm" : 5
+        }    
+    }
+  },
+  "sample1": {
+    "cell": "yes",
+    "car": "maybe",
+    "public-transit": "yes",
+    "public-events": "monthly",
+    "income": "medium",
+    "social-media": "often",
+    "social-connections": "medium"
+  },
+  "tech": {
+    "stingray": {
+        "what-you-say": 1,
+        "what-you-do": 5,
+        "who-you-know": 2,
+        "where-you-go": 5,
+        "what-you-say-blurb": "Depending on the specific model's capability and use policy, can capture phone call and message content.",
+        "what-you-do-blurb": "Operators can infer activities by knowing a phone's presence at a given time & place (for example, at a protest).",
+        "who-you-know-blurb": "In targeted mode, can collect numbers of phonecalls dialed/received, texts sent/received, although information can be accessed via pen registers/Trap and Trace devices or provided by phone companies.",
+        "where-you-go-blurb": "Captures a cell phone's location to within 2 meters, but only those within range (1km - 200m). 'Dragnet' mode may capture information for all phones in range, but watchlists can limit collateral collection."
+    },
+    "alpr": {
+        "what-you-say": 0,
+        "what-you-do": 4,
+        "who-you-know": 2,
+        "where-you-go": 6,
+        "what-you-say-blurb": "",
+        "what-you-do-blurb": "Activities may be inferred based on locations, direction, and frequency of vehicle observations, depending on the amount of data.",
+        "who-you-know-blurb": "Associates may be inferred based on common location of vehicles, depending on the amount of data. Associates may be captured by cameras that can accompany ALPR systems.",
+        "where-you-go-blurb": "Captures location and time data of license plates. These readings accrue over time, revealing patterns, and can be associated with a person through DMV records or other observation."
+    },
+    "shotspotter": {
+        "what-you-say": 3,
+        "what-you-do": 3,
+        "who-you-know": 0,
+        "where-you-go": 1,
+        "what-you-say-blurb": "Can records sounds including human voice, but it's purportedly only active after being triggered by high decibel noises such as gunshots.",
+        "what-you-do-blurb": "Monitors activities (gun shots, fireworks), but also can lead to increased police presence in neighborhoods the systems are deployed.",
+        "who-you-know-blurb": "",
+        "where-you-go-blurb": "Can locate sounds over certain decibel levels, generally with more accuracy if more systems detect the same sound. The data is not linked to any identity."
+    },
+    "smm": {
+        "what-you-say": 6,
+        "what-you-do": 8,
+        "who-you-know": 9,
+        "where-you-go": 5,
+        "what-you-say-blurb": "Captures public posts, photographs, and comments in open groups. Can be directly tied to an individual.",
+        "what-you-do-blurb": "Activities can be determined from event attendance or the content of posts.",
+        "who-you-know-blurb": "Captures public friend & follower lists and members of common groups. Associates can be determined from public photos, tagged or not.",
+        "where-you-go-blurb": "Captures public check-ins, geotagged photos, and locations of venues & organizations of interest."
+    },
+    "cctv": {
+        "what-you-say": 2,
+        "what-you-do": 7,
+        "who-you-know": 7,
+        "where-you-go": 5,
+        "what-you-say-blurb": "Public recording equipment are frequently capable of capturing audio, although this information may not be associated with specific individuals.",
+        "what-you-do-blurb": "Captures acitivities on video cameras, but may not target a specifc individual. Can be enhanced by facial recognition technologies.",
+        "who-you-know-blurb": "Associates may be determined from appearance in captured video. Can be enhanced by facial recognition technologies.",
+        "where-you-go-blurb": "Cameras can capture persons as they enter and leave monitored locations. May be enhanced by facial recognition technologies."
+    }
+  }
+}}
