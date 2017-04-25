@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!--leaflet.css-->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"
+    integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ=="
+    crossorigin=""/>
+
+  <!--leaflet.js-->
+  <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"
+    integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg=="
+    crossorigin=""></script>
+
+</head>
+
+<style>
+
+.info {
+    padding: 6px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
+}
+
+</style>
+
+<body>
+
+<div id="mapid" style="width: 1245px; height: 500px;"></div>
+
+<!-- data sources -->
+<script type="text/javascript" src="CA_counties.json"></script>
+<!-- <script type="text/javascript" src="CA_cities.json"></script> -->
+
+<script>
+
+  var data = countiesCA
+  // set starting coordinates
+  var map = L.map('mapid').setView([37.7, -122.3], 10);
+
+  // access mapbox layers
+  L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: 'Map description',
+    maxZoom: 18,
+    id: 'mapbox.light',
+    //accessToken: 'pk.eyJ1IjoicGV0ZXJyb3dsYW5kIiwiYSI6ImNqMXJ5ZHoxeTAwOXMycW12cHVrMnh2MTAifQ.JzTXpmB_mNcuiWqUYyXH8Q'
+    accessToken: 'pk.eyJ1IjoicGV0ZXJyb3dsYW5kIiwiYSI6ImNqMXJ5ZHoxeTAwOXMycW12cHVrMnh2MTAifQ.JzTXpmB_mNcuiWqUYyXH8Q'
+  }).addTo(map);
+
+  // styling
+  function style(feature) {
+      return {
+          // fillColor: getColor(feature.properties.density),
+          weight: 2,
+          opacity: 1,
+          color: 'white',
+          dashArray: '3',
+          fillOpacity: 0.7
+      };
+  }
+
+  // geoJSON layer variable
+  var geojson;
+
+  // highlighting on hover listener
+  function highlightFeature(e) {
+      var layer = e.target;
+
+      // highlight style
+      layer.setStyle({
+          weight: 5,
+          color: '#666',
+          dashArray: '',
+          fillOpacity: 0.7
+      });
+
+      // send layer properties to info control
+      info.update(layer.feature.properties);
+
+      // compatibility
+      if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+          layer.bringToFront();
+      }
+  }
+
+  // reset highlight listener
+  function resetHighlight(e) {
+      geojson.resetStyle(e.target);
+
+      // reset info control
+      info.update();
+  }
+
+  // call listener functions
+  function onEachFeature(feature, layer) {
+      layer.on({
+          mouseover: highlightFeature,
+          mouseout: resetHighlight,
+          //click: zoomToFeature
+      });
+  }
+
+  // highlight info control
+  var info = L.control();
+
+  // returns info div
+  info.onAdd = function (map) {
+    this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+    this.update();
+    return this._div;
+  };
+
+  // method that we will use to update the control based on feature properties passed
+  info.update = function (props) {
+    this._div.innerHTML = (props ?
+      '<h4>' + props.name + '</h4>' :
+      'Hover over a city');
+  };
+
+  // put control onto map
+  info.addTo(map);
+
+  // set map object and draw map
+  geojson = L.geoJson(data, {
+      style: style,
+      onEachFeature: onEachFeature
+  }).addTo(map);
+
+</script>
+
+</body>
+
+</html>
