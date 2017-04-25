@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Maxim - Modern One Page Bootstrap Template</title>
+<title>Surveillance Strategies</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="">
@@ -11,6 +11,7 @@
 <link href="color/default.css" rel="stylesheet">
 <link rel="shortcut icon" href="img/favicon.ico">
 <link rel="stylesheet" href="css/font-awesome.css">
+<link rel="stylesheet" href="css/bootstrap-combobox.css">
 <!-- =======================================================
     Theme Name: Maxim
     Theme URL: https://bootstrapmade.com/maxim-free-onepage-bootstrap-theme/
@@ -94,75 +95,81 @@
 				<form action="" method="post" role="form" class="contactForm">
 					<div class="row">
 						<div class="span6">
-							<!-- Cell phone button -->
-							<div class="field form-group">
-							  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							    Do you use a cell phone? <span class="caret"></span>
-							  </button>
-							  <ul class="dropdown-menu">
-							    <li><a href="#">Yes</a></li>
-							    <li><a href="#">No</a></li>
-							  </ul>
+							<!-- combobox from https://github.com/danielfarrell/bootstrap-combobox -->
+							<!-- Cell Phone -->
+							Do you use a cell phone?
+							<div class="form-group">
+								<select class="combobox">
+								  <option></option>
+								  <option value="Yes">Yes</option>
+								  <option value="No">No</option>
+								</select>
 							</div>
-							<!-- Car button -->
-							<div class="field form-group">
-							  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							    Do you own a car? <span class="caret"></span>
-							  </button>
-							  <ul class="dropdown-menu">
-							    <li><a href="#">Yes, I use it daily</a></li>
-							    <li><a href="#">Yes, I use it sometimes</a></li>
-							    <li><a href="#">No</a></li>
-							  </ul>
+
+							<!-- Car -->
+							Do you own a car?
+							<div class="form-group">
+								<select class="combobox">
+								  <option></option>
+								  <option value="Yes daily">Yes, I use it daily</option>
+								  <option value="Yes sometimes">Yes, I use it sometimes</option>
+								  <option value="No">No</option>
+								</select>
 							</div>
-							<!-- Public Transit button -->
-							<div class="field form-group">
-							  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							    Do you use public transit? <span class="caret"></span>
-							  </button>
-							  <ul class="dropdown-menu">
-							    <li><a href="#">Yes, I use it daily</a></li>
-							    <li><a href="#">Yes, I use it sometimes</a></li>
-							    <li><a href="#">No</a></li>
-							  </ul>
+
+							<!-- Public Transit -->
+							Do you use public transit?
+							<div class="form-group">
+								<select class="combobox">
+								  <option></option>
+								  <option value="Yes daily">Yes, I use it daily</option>
+								  <option value="Yes sometimes">Yes, I use it sometimes</option>
+								  <option value="No">No</option>
+								</select>
 							</div>
-							<!-- Public Events button -->
-							<div class="field form-group">
-							  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							    How often do you attend public events?  <span class="caret"></span>
-							  </button>
-							  <ul class="dropdown-menu">
-							    <li><a href="#">Weekly</a></li>
-							    <li><a href="#">Monthly</a></li>
-							    <li><a href="#">Sometimes</a></li>
-							    <li><a href="#">Never</a></li>
-							  </ul>
+							<!-- Public Events -->
+							How often do you attend public events?
+							<div class="form-group">
+								<select class="combobox">
+								  <option></option>
+								  <option value="Weekly">Weekly</option>
+								  <option value="Monthly">Monthly</option>
+								  <option value="Sometimes">Sometimes</option>
+								  <option value="Never">Never</option>
+								</select>
 							</div>
+
 							<!-- Income button -->
-							<div class="field form-group">
-							  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							    What is your income bracket?  <span class="caret"></span>
-							  </button>
-							  <ul class="dropdown-menu">
-							    <li><a href="#">Low</a></li>
-							    <li><a href="#">Low-Medium</a></li>
-							    <li><a href="#">Medium</a></li>
-							    <li><a href="#">High-Medium</a></li>
-							    <li><a href="#">High</a></li>
-							  </ul>
+							What is your income bracket?
+							<div class="form-group">
+								<select class="combobox">
+								  <option></option>
+								  <option value="Low">Low</option>
+								  <option value="Medium">Medium</option>
+								  <option value="High">High</option>
+								</select>
 							</div>
-							<!-- Income button -->
-							<div class="field form-group">
-							  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							    How important is Social Media to you?  <span class="caret"></span>
-							  </button>
-							  <ul class="dropdown-menu">
-							    <li><a href="#">I use it daily - it is essential for my social life or business</a></li>
-							    <li><a href="#">I use it often - it is not essential for my social life or business</a></li>
-							    <li><a href="#">I use it occasionally</a></li>
-							    <li><a href="#">I do not use any social media</a></li>
-							  </ul>
+
+							<!-- Social Media button -->
+							How important is Social Media to you?
+							<div class="form-group">
+								<select class="combobox">
+								  <option></option>
+								  <option value="Daily">I use it daily - it is essential for my social life or business</option>
+								  <option value="Often">I use it often - it is not essential for my social life or business</option>
+								  <option value="Occasionally">I use it occasionally</option>
+								  <option value="No">I do not use any social media</option>
+								</select>
 							</div>
+
+
+							<script type="text/javascript">
+							  $(document).ready(function(){
+							    $('.combobox').combobox();
+							  });
+							</script>
+
+
 							<!--name-->
 <!-- 							<div class="field your-name form-group">
 								<input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
@@ -660,6 +667,7 @@
 <script src="js/validate.js"></script>
 <script src="js/custom.js"></script>
 <script src="contactform/contactform.js"></script>
+<script src="js/bootstrap-combobox.js"></script>
 
 </body>
 </html>
