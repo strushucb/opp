@@ -47,7 +47,7 @@
 <div id="header-wrapper" class="header-slider">
 	<header class="clearfix">
 	<div class="logo">
-		<img src="img/stingray.png" alt="stinkray" />
+		<img src="img/stingray-small.png" alt="stinkray" />
 	</div>
 	<div class="container">
 		<div class="row">
@@ -77,22 +77,123 @@
 	</div>
 	</header>
 </div>
-<!-- spacer section -->
-<section class="spacer green">
+<!-- section: contact -->
+<section id="contact" class="section">
 <div class="container">
+	<h4>Tell us a little about yourself!</h4>
+	<p>
+		 In order to assess your surveillance score, we'd like to know a little about your background. lita prompta et mel vidisse phaedrum pri et. Facilisis posidonium ex his. Mutat iudico vis in, mea aeque tamquam scripserit an, mea eu ignota viderer probatus. Lorem legere consetetur ei eum. Sumo aeque assentior te eam, pri nominati posidonium consttuam
+	</p>
+	<div class="blankdivider30">
+	</div>
 	<div class="row">
-		<div class="span6 alignright flyLeft">
-			<blockquote class="large">
-				 This is where a quote from the interview goes <cite>Ray Sting, Concerned Citizen</cite>
-			</blockquote>
+		<div class="span12">
+			<div class="cform" id="contact-form">
+				<div id="sendmessage">Your message has been sent. Thank you!</div>
+                <div id="errormessage"></div>
+				<form action="" method="post" role="form" class="contactForm">
+					<div class="row">
+						<div class="span6">
+							<!-- Cell phone button -->
+							<div class="field form-group">
+							  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							    Do you use a cell phone? <span class="caret"></span>
+							  </button>
+							  <ul class="dropdown-menu">
+							    <li><a href="#">Yes</a></li>
+							    <li><a href="#">No</a></li>
+							  </ul>
+							</div>
+							<!-- Car button -->
+							<div class="field form-group">
+							  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							    Do you own a car? <span class="caret"></span>
+							  </button>
+							  <ul class="dropdown-menu">
+							    <li><a href="#">Yes, I use it daily</a></li>
+							    <li><a href="#">Yes, I use it sometimes</a></li>
+							    <li><a href="#">No</a></li>
+							  </ul>
+							</div>
+							<!-- Public Transit button -->
+							<div class="field form-group">
+							  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							    Do you use public transit? <span class="caret"></span>
+							  </button>
+							  <ul class="dropdown-menu">
+							    <li><a href="#">Yes, I use it daily</a></li>
+							    <li><a href="#">Yes, I use it sometimes</a></li>
+							    <li><a href="#">No</a></li>
+							  </ul>
+							</div>
+							<!-- Public Events button -->
+							<div class="field form-group">
+							  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							    How often do you attend public events?  <span class="caret"></span>
+							  </button>
+							  <ul class="dropdown-menu">
+							    <li><a href="#">Weekly</a></li>
+							    <li><a href="#">Monthly</a></li>
+							    <li><a href="#">Sometimes</a></li>
+							    <li><a href="#">Never</a></li>
+							  </ul>
+							</div>
+							<!-- Income button -->
+							<div class="field form-group">
+							  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							    What is your income bracket?  <span class="caret"></span>
+							  </button>
+							  <ul class="dropdown-menu">
+							    <li><a href="#">Low</a></li>
+							    <li><a href="#">Low-Medium</a></li>
+							    <li><a href="#">Medium</a></li>
+							    <li><a href="#">High-Medium</a></li>
+							    <li><a href="#">High</a></li>
+							  </ul>
+							</div>
+							<!-- Income button -->
+							<div class="field form-group">
+							  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							    How important is Social Media to you?  <span class="caret"></span>
+							  </button>
+							  <ul class="dropdown-menu">
+							    <li><a href="#">I use it daily - it is essential for my social life or business</a></li>
+							    <li><a href="#">I use it often - it is not essential for my social life or business</a></li>
+							    <li><a href="#">I use it occasionally</a></li>
+							    <li><a href="#">I do not use any social media</a></li>
+							  </ul>
+							</div>
+							<!--name-->
+<!-- 							<div class="field your-name form-group">
+								<input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                                <div class="validation"></div>
+							</div>
+							<div class="field your-email form-group">
+								<input type="text" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                                <div class="validation"></div>
+							</div>
+							<div class="field subject form-group">
+								<input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                                <div class="validation"></div>
+							</div> -->
+						</div>
+						<!-- Put the image here? -->
+						<div class="span6">
+							<div class="field message form-group">
+								<textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                                <div class="validation"></div>
+							</div>
+							<input type="submit" value="Send message" class="btn btn-theme pull-left">
+						</div>
+					</div>
+				</form>
+			</div>
 		</div>
-		<div class="span6 aligncenter flyRight">
-			<i class="icon-coffee icon-10x"></i>
-		</div>
+		<!-- ./span12 -->
 	</div>
 </div>
 </section>
-<!-- end spacer section -->
+
 <!-- section: team -->
 <section id="about" class="section">
 <div class="container">
@@ -163,6 +264,22 @@
 <!-- /.container -->
 </section>
 <!-- end section: team -->
+<!-- spacer section -->
+<section class="spacer green">
+<div class="container">
+	<div class="row">
+		<div class="span6 alignright flyLeft">
+			<blockquote class="large">
+				 This is where a quote from the interview goes <cite>Ray Sting, Concerned Citizen</cite>
+			</blockquote>
+		</div>
+		<div class="span6 aligncenter flyRight">
+			<i class="icon-coffee icon-10x"></i>
+		</div>
+	</div>
+</div>
+</section>
+<!-- end spacer section -->
 <!-- section: services -->
 <section id="services" class="section orange">
 <div class="container">
@@ -501,51 +618,7 @@
 </section>
 
 <!-- end spacer section -->
-<!-- section: contact -->
-<section id="contact" class="section green">
-<div class="container">
-	<h4>Get in Touch</h4>
-	<p>
-		 Reque facer nostro et ius, cu persius mnesarchum disputando eam, clita prompta et mel vidisse phaedrum pri et. Facilisis posidonium ex his. Mutat iudico vis in, mea aeque tamquam scripserit an, mea eu ignota viderer probatus. Lorem legere consetetur ei eum. Sumo aeque assentior te eam, pri nominati posidonium consttuam
-	</p>
-	<div class="blankdivider30">
-	</div>
-	<div class="row">
-		<div class="span12">
-			<div class="cform" id="contact-form">
-				<div id="sendmessage">Your message has been sent. Thank you!</div>
-                <div id="errormessage"></div>
-				<form action="" method="post" role="form" class="contactForm">
-					<div class="row">
-						<div class="span6">
-							<div class="field your-name form-group">
-								<input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                                <div class="validation"></div>
-							</div>
-							<div class="field your-email form-group">
-								<input type="text" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
-                                <div class="validation"></div>
-							</div>
-							<div class="field subject form-group">
-								<input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-                                <div class="validation"></div>
-							</div>
-						</div>
-						<div class="span6">
-							<div class="field message form-group">
-								<textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
-                                <div class="validation"></div>
-							</div>
-							<input type="submit" value="Send message" class="btn btn-theme pull-left">
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-		<!-- ./span12 -->
-	</div>
-</div>
-</section>
+
 <footer>
 <div class="container">
 	<div class="row">
