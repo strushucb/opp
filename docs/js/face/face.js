@@ -6,8 +6,8 @@
 * License: MIT  [ http://koalastothemax.com/LICENSE ]
 *
 */
-  var koala = {
-    version: '1.8.2'
+  var face = {
+    version: '2.1.3'
   };  
   
 $.queue = {
@@ -46,7 +46,7 @@ $.queue = {
  
 function run_persona() {
 
-  koala = {
+  face = {
     version: '1.8.2'
   };  
   
@@ -75,12 +75,12 @@ function run_persona() {
     ];
   }
 
-  koala.supportsCanvas = function() {
+  face.supportsCanvas = function() {
     var elem = document.createElement('canvas');
     return !!(elem.getContext && elem.getContext('2d'));
   };
 
-  koala.supportsSVG = function() {
+  face.supportsSVG = function() {
     return !!document.createElementNS && !!document.createElementNS('http://www.w3.org/2000/svg', "svg").createSVGRect;
   };
 
@@ -177,7 +177,7 @@ function run_persona() {
   var scores;
   var what_scores = {"what-you-say": 1,"what-you-do": 1, "who-you-know": 1, "where-you-go": 1};
 
-  koala.loadImage = function(imageData) {
+  face.loadImage = function(imageData) {
     // Create a canvas for image data resizing and extraction
     var canvas = document.createElement('canvas').getContext('2d');
     // Draw the image into the corner, resizing it to dim x dim
@@ -192,7 +192,7 @@ function run_persona() {
     scores = data.scores;
   });
 
-  koala.makeCircles = function(selector, colorData, onEvent) {
+  face.makeCircles = function(selector, colorData, onEvent) {
     onEvent = onEvent || function() {};
 
     var splitableByLayer = [],
@@ -332,22 +332,22 @@ function run_persona() {
     d3.select("#SMULevel").on("input", function() {
         console.log("Social Media changed 1");
         $.queue.clear();
-        $.queue.add(function(){koala.updateData()},this,500);
+        $.queue.add(function(){face.updateData()},this,500);
         console.log("Social Media changed 2");
     });
     d3.select("#IncLevel").on("input", function() {
         $.queue.clear();
-        $.queue.add(function(){koala.updateData()},this,500);
+        $.queue.add(function(){face.updateData()},this,500);
     });
       
     var base_scores = (JSON.parse(JSON.stringify(scores.tech)));
       
-    koala.loadProfileData = function loadProfileData(num){
+    face.loadProfileData = function loadProfileData(num){
        var answers = scores["sample"+num];
        d3.select("#SMULevel").property("value", answers["social-connections"]);
        d3.select("#IncLevel").property("value", answers["income"]);
        d3.select("#CarUse").property("value", answers["car"]);
-       koala.updateData();
+       face.updateData();
     }; 
     
     
@@ -361,7 +361,7 @@ function run_persona() {
        }
     }
     
-    koala.updateData = function updateData(){
+    face.updateData = function updateData(){
        base_scores = (JSON.parse(JSON.stringify(scores.tech)));
        var smuResult, incResult, carResult;
        var i = 1; 
@@ -463,6 +463,6 @@ function run_persona() {
       } 
   };
     
-  return koala;
+  return face;
 }
 
