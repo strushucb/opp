@@ -4,9 +4,9 @@
       technologies = ["Stingray", "ALPR", "ShotSpotter","CCTV and Public Transit", 
               "Social Media Monitoring"];
 
-  var margin = {top: 10, right: 10, bottom: 10, left: 10},
-      width = 800 - margin.left - margin.right,
-      height = 450 - margin.top - margin.bottom;
+  var margin = {top: 10, right: 100, bottom: 10, left: 10},
+      width = Math.round($(window).width() * .95) - margin.left - margin.right,
+      height = Math.round($(window).height() * .75) - margin.top - margin.bottom;
 
   /* Initialize tooltip */
   var tipLinks = d3.tip()
@@ -32,11 +32,12 @@
       .attr("transform", 
             "translate(" + margin.left + "," + margin.top + ")");
 
+
   // Set the sankey diagram properties
   var sankey = d3.alluvialGrowth()
       .nodeWidth(36)
       .nodePadding(14)
-      .size([width, height]);
+      .size([width-200, height]);
 
   var path = sankey.link();
   var alpr_link = 1;
@@ -203,23 +204,56 @@ var tech_data = {
     }
 
     
-    function get_blurb(tech, title){
+      
+      
+    function write_blurb(tech, title){
+    
+        d3.selectAll(".panel-text").remove();
         var titlekey = title.replace(/\s+/g, '-').toLowerCase() + "-blurb";
         var blurb = tech_more[tech_data[tech].short][titlekey];
         var split_blurb = blurb.split(" ");
 
         var result = "";
         var char_count = 0;
+        line = 0;
+        
+        svg.append("text")
+                .attr("class","panel-text")
+                .attr("x", width-290)
+                .attr("y", 20*(line+1))
+                .style("fill", "white")
+                .style("font-size","smaller")
+                .style("font-weight",900)
+                .text(function(d){return tech+" & "+title+": ";});
+        line++;
+        
+        
         for(var i = 0; i < split_blurb.length; i++){
-            if(char_count > 30){
-                result = result + "<br>";
+            if(char_count > 27){
+                svg.append("text")
+                .attr("class","panel-text")
+                .attr("x", width-290)
+                .attr("y", 20*(line+1))
+                .style("fill", "white")
+                .style("font-size","smaller")
+                .text(function(d){return result;});
+                result = "";
                 char_count = 0;
+                line++;
             }
             result = result + " "+split_blurb[i];
             char_count = char_count + split_blurb[i].length;
             //console.log(result);
         }
-        return result;
+        if(char_count > 0){
+             svg.append("text")
+                    .attr("class","panel-text")
+                    .attr("x", width-290)
+                    .attr("y", 20*(line+1))
+                    .style("fill", "white")
+                    .style("font-size","smaller")
+                    .text(function(d){return result;});
+        }
     }
       
       
@@ -255,7 +289,10 @@ var tech_data = {
             '</div>';
       }
 
-      return html;
+      d3.selectAll(".panel-text")
+            .style("fill", "white")
+            .text(function(d) { return html});
+      return "";
     });
 
     tipNodes.html(function(d) {
@@ -339,6 +376,8 @@ var tech_data = {
     function renderSankey(init) {
       d3.select('body').selectAll('g').remove();
 
+
+        
       graph = processData(currentData, init);
 
       /*graph.links.forEach(function (d, i) {
@@ -354,14 +393,14 @@ var tech_data = {
 
 
       svg = d3.select('.sankey')
-          .attr("width", width+200)
+          .attr("width", width)
           .attr("height", height)
         .append("g");
 
 
         
       sankey = d3.alluvialGrowth()
-        .size([width, height])
+        .size([width-400, height])
         .nodes(myNodes)
         .links(myLinks)
         .layout(120);
@@ -385,14 +424,27 @@ var tech_data = {
            })
           .sort(function(a, b) { return b.dy - a.dy; })
           .on('mousemove', function(event) {
-            tipLinks
-              .style("top", (d3.event.pageY - linkTooltipOffset) + "px")
-              .style("left", function () {
-                var left = (Math.max(d3.event.pageX - linkTooltipOffset, 10)); 
-                left = Math.min(left, window.innerWidth - $('.d3-tip').width() - 20)
-                return left + "px"; })
+          
+              //tipLinks
+              //.style("top", 0+"px") //(d3.event.pageY - linkTooltipOffset) + "px")
+              //.style("left", (width-300)+"px");// function () {
+              //var left = (Math.max(d3.event.pageX - linkTooltipOffset, 10)); 
+              //left = Math.min(left, window.innerWidth - $('.d3-tip').width() - 20)
+              //return left + "px"; })
             })
-          .on('mouseover', tipLinks.show)
+          .on('mouseover', function(event){
+            console.log(event);
+            var title, tech, html;
+            if (technologies.indexOf(event.source.name) > -1) {
+                    tech = event.source.name;
+                    title = event.target.name;
+            } else {
+                    tech = event.target.name;
+                    title = event.source.name;
+            }   
+            write_blurb(tech, title);
+            tipLinks.show;
+          })
           .on('mouseout', tipLinks.hide);
 
 
@@ -474,10 +526,31 @@ var tech_data = {
             .attr("x", -6)
             .attr("text-anchor", "end");
       }
+        
+      svg.append("svg:rect")
+        .style("fill", "black")
+        .attr("opacity", 0.7)
+        .attr("class", "sankey-panel")
+        .attr("transform", function(d) { 
+          return "translate(" + (width-300) + "," + (0) + ")"; })
+        .attr("height", height)
+        .attr("width", 300);
+        
+        svg.append("text")
+        .attr("class","panel-text")
+        .attr("x", (width-300))
+        .attr("y", 30)
+        .attr("height", height)
+        .attr("width", 300)
+        .style("fill", "white");
     }
 
-    d3.select(window).on('resize.sankey', renderSankey(false));
-      
+    d3.select(window).on('resize.sankey', function(){
+        width = Math.round($(window).width() * .95) - margin.left - margin.right,
+        height = Math.round($(window).height() * .75) - margin.top - margin.bottom;
+        renderSankey(false);
+    });
+                         
     function getGradient(d) {
             var color = "#CCCCCC";
             var speed = "3s";

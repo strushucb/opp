@@ -3,7 +3,7 @@ svg text {
 	stroke-width: 0;
 	fill: black;
 }
-body {
+/*body {
 	font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
 	display: flex;
 	justify-content: center;
@@ -12,14 +12,15 @@ body {
     background-color:darkgrey;
 	margin: 5px;
 	margin-bottom: 10px;
-}
+}*/
 
 .election-wrapper {
-	display: flex;
-	flex-direction: column;
+    max-width: 60%;
+	/*display: flex;
+	flex-direction: column;*/
 }
 .sankey {
-	overflow: visible;
+	/*overflow: visible;*/
 }
 .sankey .node text {
 	pointer-events: none;
@@ -189,7 +190,7 @@ rect.none:hover {
   }
 }
 
-#footer {
+/*#footer {
   position: fixed;
   justify-content: center;
   align-items: center;
@@ -200,4 +201,4 @@ rect.none:hover {
   padding-bottom: 2px;
   background: -webkit-gradient(linear, left bottom, left top, from(rgba(255, 255, 255, 1)), to(rgba(255, 255, 255, 0)));
   background: -moz-linear-gradient(bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
-}
+}*/
