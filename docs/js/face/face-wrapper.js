@@ -77,12 +77,12 @@
                 window.location.href = domain;
               }, 750);
             }
-            console.log("Loooad!!!!");
+            //console.log("Loooad!!!!");
             if (colorData) {
               face.makeCircles("#dots", colorData, null);
-              console.log("Loooad!2222!!!");
-              face.loadProfileData(1)
-              console.log("Loooad!3333!!!");
+              //console.log("Loooad!2222!!!");
+              face.loadProfileData(0);
+              //console.log("Loooad!3333!!!");
               //track('GoodLoad', 'Yay');
             }
           };
