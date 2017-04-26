@@ -36,7 +36,7 @@
 
 <body>
 
-<div id="mapid" style="width: 1245px; height: 500px;"></div>
+<div id="mapid" style="width: 600px; height: 800px;"></div>
 
 <!-- data sources -->
 <!-- src: http://catalog.opendata.city/dataset/california-counties-polygon/resource/6f805645-0836-478d-b168-c1f72d53b4f3 -->
@@ -46,15 +46,15 @@
 
 <script>
 
+  // copy data to generic variable
   var data = citiesCA
-  // set starting coordinates
-  // TODO: lock view
-  var p1 = L.latLng(37.7, -122.4)
-      p2 = L.latLng(37.7, -122.3)
 
-  var bounds = L.bounds(p1, p2);
-
-  var map = L.map('mapid', { zoomControl:false }).setView([37.7, -122.3], 10).setMaxBounds(bounds);
+  // Set boundaries to lock view
+  var map = L.map('mapid', {
+    zoomControl:false,
+    minZoom:10,
+    maxZoom:10
+  }).setView([37.7, -122.1], 10).setMaxBounds(bounds);
   var bounds = map.getBounds();
   map.setMaxBounds(bounds);
 
@@ -154,11 +154,11 @@
     opacity: 0.3
   };
 
-  var polyline = new L.Polyline(oaklandToAlameda, polylineOptions);
-  var polyline2 = new L.Polyline(sfToAlameda, polylineOptions);
+  // var polyline = new L.Polyline(oaklandToAlameda, polylineOptions);
+  // var polyline2 = new L.Polyline(sfToAlameda, polylineOptions);
   // Note: AntPath doesn't support layer toggling
-  // var polyline = new L.Polyline.AntPath(oaklandToAlameda, polylineOptions);
-  // var polyline2 = new L.Polyline.AntPath(sfToAlameda, polylineOptions);
+  var polyline = new L.Polyline.AntPath(oaklandToAlameda, polylineOptions);
+  var polyline2 = new L.Polyline.AntPath(sfToAlameda, polylineOptions);
 
   // TODO: draw line layer above boundary layer
   var lineLayer = L.layerGroup([polyline, polyline2]);

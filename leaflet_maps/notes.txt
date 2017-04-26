@@ -18,3 +18,7 @@ San Francisco County: 37.7749° N, 122.4194° W
 Oakland: 37.8044° N, 122.2711° W
 Fremont: 37.5483° N, 121.9886° W
 San Francisco: 37.7749° N, 122.4194° W
+
+
+NICRIC: 37.7820212, -122.4206751
+Bay Area UASI: 37.7821445,-122.4235457
