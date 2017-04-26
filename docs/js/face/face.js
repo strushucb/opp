@@ -84,7 +84,7 @@ function run_persona() {
     return !!document.createElementNS && !!document.createElementNS('http://www.w3.org/2000/svg', "svg").createSVGRect;
   };
 
-  function Circle(vis, xi, yi, size, color, children, layer, onSplit) {
+  function Circle(vis, xi, yi, size, color, children, layer) {
     this.vis = vis;
     this.x = size * (xi + 0.5);
     this.y = size * (yi + 0.5);
@@ -94,19 +94,6 @@ function run_persona() {
     //this.rgb = d3.rgb((color[0]+color[1]+color[2])/3, (color[0]+color[1]+color[2])/3, (color[0]+color[1]+color[2])/3);
     this.children = children;
     this.layer = layer;
-    this.onSplit = onSplit;
-  }
-
-  Circle.prototype.isSplitable = function() {
-    return this.node && this.children
-  }
-
-  Circle.prototype.split = function() {
-    if (!this.isSplitable()) return;
-    d3.select(this.node).remove();
-    //delete this.node;
-    Circle.addToVis(this.vis, this.children);
-    this.onSplit(this);
   }
 
   Circle.prototype.checkIntersection = function(startPoint, endPoint) {
@@ -178,21 +165,6 @@ function run_persona() {
         splitableTotal = 0,
         nextPercent = 0;
 
-    function onSplit(circle) {
-      // manage events
-      var layer = circle.layer;
-      splitableByLayer[layer]--;
-      if (splitableByLayer[layer] === 0) {
-        onEvent('LayerClear', layer);
-      }
-
-      var percent = 1 - d3.sum(splitableByLayer) / splitableTotal;
-      if (percent >= nextPercent) {
-        onEvent('PercentClear', Math.round(nextPercent * 100));
-        nextPercent += 0.05;
-      }
-    }
-
     // Make sure that the SVG exists and is empty
     if (!vis) {
       // Create the SVG ellement
@@ -243,7 +215,7 @@ function run_persona() {
           c4 = prevLayer(2 * xi + 1, 2 * yi + 1);
           color = avgColor(c1.color, c2.color, c3.color, c4.color);
           c1.parent = c2.parent = c3.parent = c4.parent = layer(xi, yi,
-            new Circle(vis, xi, yi, size, color, [c1, c2, c3, c4], currentLayer, onSplit)
+            new Circle(vis, xi, yi, size, color, [c1, c2, c3, c4], currentLayer)
           );
         }
       }
@@ -261,35 +233,55 @@ function run_persona() {
     Circle.addToVis(vis, [level_list[1](0,1)], "wyg",delay);
     Circle.addToVis(vis, [level_list[1](1,1)], "wyd",delay);
       
-    // Interaction helper functions
-    function splitableCircleAt(pos) {
-      var xi = Math.floor(pos[0] / minSize),
-          yi = Math.floor(pos[1] / minSize),
-          circle = finestLayer(xi, yi);
-      if (!circle) return null;
-      while (circle && !circle.isSplitable()) circle = circle.parent;
-      return circle || null;
-    }
  
+    var answered_tech = {"social-connections": false,
+                   "income": false,
+                   "car": false};
+    var variables_set = 0;
+      
     d3.select("#SMULevel").on("input", function() {
-        console.log("Social Media changed 1");
+        if(!answered_tech["social-connections"]){
+            answered_tech["social-connections"] = true;
+            variables_set++;
+        }
         $.queue.clear();
-        $.queue.add(function(){face.updateData()},this,500);
-        console.log("Social Media changed 2");
+        $.queue.add(function(){face.updateData()},this,50);
     });
     d3.select("#IncLevel").on("input", function() {
+        if(!answered_tech["income"]){
+            answered_tech["income"] = true;
+            variables_set++;
+        }
         $.queue.clear();
-        $.queue.add(function(){face.updateData()},this,500);
+        $.queue.add(function(){face.updateData()},this,50);
     });
+      
+    face.updateCarData = function updateCarData(){
+        if(!answered_tech["car"]){
+            answered_tech["car"] = true;
+            variables_set++;
+        }
+        $.queue.clear();
+        $.queue.add(function(){face.updateData()},this,50);
+    }
       
     var base_scores = (JSON.parse(JSON.stringify(scores.tech)));
       
     face.loadProfileData = function loadProfileData(num){
-       var answers = scores["sample"+num];
-       d3.select("#SMULevel").property("value", answers["social-connections"]);
-       d3.select("#IncLevel").property("value", answers["income"]);
-       d3.select("#CarUse").property("value", answers["car"]);
-       face.updateData();
+       if(num > 0){
+           variables_set = 3;
+           var answers = scores["sample"+num];
+           d3.select("#SMULevel").property("value", answers["social-connections"]);
+           d3.select("#IncLevel").property("value", answers["income"]);
+           d3.select("#CarUse").property("value", answers["car"]);
+           answered_tech = 
+               {"social-connections": true,
+                "income": true,
+                "car": true};
+           face.updateData();
+       }else{
+           variables_set = 0;
+       }
     }; 
     
     
@@ -307,24 +299,28 @@ function run_persona() {
        base_scores = (JSON.parse(JSON.stringify(scores.tech)));
        var smuResult, incResult, carResult;
        var i = 1; 
-       for (item in scores.survey["social-connections"]){
-           if (i == d3.select("#SMULevel").property("value"))
-               smuResult = scores.survey["social-connections"][item];
-           i++;
+       if(answered_tech["social-connections"]){ 
+           for (item in scores.survey["social-connections"]){
+               if (i == d3.select("#SMULevel").property("value"))
+                   smuResult = scores.survey["social-connections"][item];
+               i++;
+           }
+           addToTotal(smuResult);
        }
-       i = 1; 
-       for (item in scores.survey["income"]){
-           if (i == d3.select("#IncLevel").property("value"))
-               incResult = scores.survey["income"][item];
-           i++;
+       if(answered_tech["income"]){ 
+           i = 1; 
+           for (item in scores.survey["income"]){
+               if (i == d3.select("#IncLevel").property("value"))
+                   incResult = scores.survey["income"][item];
+               i++;
+           }
+           addToTotal(incResult);
+       }
+       if(answered_tech["car"]){ 
+           carResult = scores.survey["car"][d3.select("#CarUse").property("value")];
+           addToTotal(carResult);
        }
 
-       var carResult = scores.survey["car"][d3.select("#CarUse").property("value")];
-    
-       addToTotal(smuResult);
-       addToTotal(incResult);
-       addToTotal(carResult);
-    
        what_scores["what-you-say"] = 1;
        what_scores["what-you-do"] = 1;
        what_scores["who-you-know"] = 1;
@@ -332,17 +328,33 @@ function run_persona() {
    
         
         for(var item in base_scores){
-            what_scores["what-you-say"] = Math.min(1365, what_scores["what-you-say"] + Math.pow(base_scores[item]["what-you-say"],2));
-            what_scores["what-you-do"] = Math.min(1365, what_scores["what-you-do"] + Math.pow(base_scores[item]["what-you-do"],2));
-            what_scores["who-you-know"] =  Math.min(1365, what_scores["who-you-know"] + Math.pow(base_scores[item]["who-you-know"],2));
-            what_scores["where-you-go"] = Math.min(1365, what_scores["where-you-go"] + Math.pow(base_scores[item]["where-you-go"],2));
+            if(variables_set < 3){
+                console.log("GRRRR!!!!");
+                if(scores.tech[item]["what-you-say"] != base_scores[item]["what-you-say"]){
+                    what_scores["what-you-say"] = Math.min(1365, what_scores["what-you-say"] + Math.pow(base_scores[item]["what-you-say"],2));
+                }
+                if(scores.tech[item]["what-you-do"] != base_scores[item]["what-you-do"]){
+                    what_scores["what-you-do"] = Math.min(1365, what_scores["what-you-do"] + Math.pow(base_scores[item]["what-you-do"],2));
+                }
+                if(scores.tech[item]["who-you-know"] == base_scores[item]["who-you-know"]){
+                    what_scores["who-you-know"] =  Math.min(1365, what_scores["who-you-know"] + Math.pow(base_scores[item]["who-you-know"],2));
+                }
+                if(scores.tech[item]["where-you-go"] == base_scores[item]["where-you-go"]){    
+                    what_scores["where-you-go"] = Math.min(1365, what_scores["where-you-go"] + Math.pow(base_scores[item]["where-you-go"],2));
+                }
+            }else{
+                what_scores["what-you-say"] = Math.min(1365, what_scores["what-you-say"] + Math.pow(base_scores[item]["what-you-say"],2));
+                what_scores["what-you-do"] = Math.min(1365, what_scores["what-you-do"] + Math.pow(base_scores[item]["what-you-do"],2));
+                what_scores["who-you-know"] =  Math.min(1365, what_scores["who-you-know"] + Math.pow(base_scores[item]["who-you-know"],2));
+                what_scores["where-you-go"] = Math.min(1365, what_scores["where-you-go"] + Math.pow(base_scores[item]["where-you-go"],2));
+            }
         }
         //console.log(base_scores);
         //console.log("GRRRR!!!!")
         $.queue.add(function(){update(what_scores["who-you-know"],"wyk",0,0)},this);
-        $.queue.add(function(){update(what_scores["what-you-say"],"wys",1,0)},this);
+        $.queue.add(function(){update(what_scores["what-you-say"],"wys",1,1)},this);
         $.queue.add(function(){update(what_scores["where-you-go"],"wyg",0,1)},this);
-        $.queue.add(function(){update(what_scores["what-you-do"],"wyd",1,1)},this);
+        $.queue.add(function(){update(what_scores["what-you-do"],"wyd",1,0)},this);
 
         //console.log("Jerkk!!!!")
     };
@@ -369,7 +381,8 @@ function run_persona() {
         var counter = 0;
         //console.log("DelyMax:"+delay_max);
         if (nLevel <= 1) {
-            Circle.addToVis(vis,[level_list[1](x,y)],cat)
+            Circle.addToVis(vis,[level_list[1](x,y)],cat);
+            re_label();
             return;
         }
         if (x <= 0) { 
@@ -459,26 +472,26 @@ function run_persona() {
             console.log("Who You Know! "+mousePosition);
             d3.selectAll(".shitstain").remove();
             d3.selectAll(".shitstain-text").remove();
-            generate_reports(0,0,"WHO YOU KNOW",20,20);
+            generate_reports(0,0,"WHO YOU KNOW",14,14);
  
         }
         else if(mousePosition[0] >= maxSize / 2 && mousePosition[1] < maxSize / 2){
             console.log("What You Do! "+mousePosition);
             d3.selectAll(".shitstain").remove();
             d3.selectAll(".shitstain-text").remove();
-            generate_reports((maxSize / 2),0,"WHAT YOU DO", maxSize - 150, 20);
+            generate_reports((maxSize / 2),0,"WHAT YOU DO", maxSize - 151, 14);
         }
         else if(mousePosition[0] < maxSize / 2 && mousePosition[1] >= maxSize / 2){
             console.log("Where You Go! "+mousePosition);
             d3.selectAll(".shitstain").remove();
             d3.selectAll(".shitstain-text").remove();
-            generate_reports(0,(maxSize / 2),"WHERE YOU GO",20, maxSize - 30);
+            generate_reports(0,(maxSize / 2),"WHERE YOU GO",14, maxSize - 16);
         }
         else if(mousePosition[0] >= maxSize / 2 && mousePosition[1] >= maxSize / 2){
             console.log("What You Say! "+mousePosition);
             d3.selectAll(".shitstain").remove();
             d3.selectAll(".shitstain-text").remove();
-            generate_reports((maxSize / 2),(maxSize / 2),"WHAT YOU SAY",maxSize - 150,maxSize - 30);
+            generate_reports((maxSize / 2),(maxSize / 2),"WHAT YOU SAY",maxSize - 151,maxSize - 16);
 
         }
       }
@@ -501,14 +514,14 @@ function run_persona() {
     }
     
       
-    generate_titles(20,20,"WHO YOU KNOW","black", "normal-text");
-    generate_titles(maxSize - 150,20,"WHAT YOU DO","black", "normal-text");
-    generate_titles(20,maxSize - 30,"WHERE YOU GO","black", "normal-text");
-    generate_titles(maxSize - 150,maxSize - 30,"WHAT YOU SAY","black", "normal-text");  
-    generate_titles(19,19,"WHO YOU KNOW","white", "normal-text");
-    generate_titles(maxSize - 151,19,"WHAT YOU DO","white", "normal-text");
-    generate_titles(19,maxSize - 31,"WHERE YOU GO","white", "normal-text");
-    generate_titles(maxSize - 151,maxSize - 31,"WHAT YOU SAY","white", "normal-text");
+    generate_titles(15,15,"WHO YOU KNOW","black", "normal-text");
+    generate_titles(maxSize - 150,15,"WHAT YOU DO","black", "normal-text");
+    generate_titles(15,maxSize - 15,"WHERE YOU GO","black", "normal-text");
+    generate_titles(maxSize - 150,maxSize - 15,"WHAT YOU SAY","black", "normal-text");  
+    generate_titles(14,14,"WHO YOU KNOW","white", "normal-text");
+    generate_titles(maxSize - 151,14,"WHAT YOU DO","white", "normal-text");
+    generate_titles(14,maxSize - 16,"WHERE YOU GO","white", "normal-text");
+    generate_titles(maxSize - 151,maxSize - 16,"WHAT YOU SAY","white", "normal-text");
 
   
     d3.select("#dots")
