@@ -1,0 +1,20 @@
+Resources:
+
+Snake animation of poly lines:
+https://github.com/IvanSanchez/Leaflet.Polyline.SnakeAnim
+
+Transitions:
+https://github.com/naturalatlas/leaflet-transitionedicon
+
+Ant-path animation of poly lines:
+https://rubenspgcavalcante.github.io/leaflet-ant-path/
+
+
+Center Coordinates:
+Alameda County: 37.6017° N, 121.7195° W
+Contra Costa County: 37.8534° N, 121.9018° W
+San Francisco County: 37.7749° N, 122.4194° W
+
+Oakland: 37.8044° N, 122.2711° W
+Fremont: 37.5483° N, 121.9886° W
+San Francisco: 37.7749° N, 122.4194° W

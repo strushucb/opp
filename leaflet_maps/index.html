@@ -7,10 +7,13 @@
     integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ=="
     crossorigin=""/>
 
-  <!--leaflet.js-->
+  <!--leaflet.js v.1.0.3-->
   <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"
     integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg=="
     crossorigin=""></script>
+
+  <!-- Ant Path animations -->
+  <script src="/libs/leaflet-ant-path.js"></script>
 
 </head>
 
@@ -36,14 +39,17 @@
 <div id="mapid" style="width: 1245px; height: 500px;"></div>
 
 <!-- data sources -->
-<script type="text/javascript" src="CA_counties.json"></script>
-<!-- <script type="text/javascript" src="CA_cities.json"></script> -->
+<!-- src: http://catalog.opendata.city/dataset/california-counties-polygon/resource/6f805645-0836-478d-b168-c1f72d53b4f3 -->
+<!-- <script type="text/javascript" src="data/CA_counties.json"></script> -->
+<!-- http://catalog.civicdashboards.com/dataset/541573bc-3e3f-4ab0-be55-80e002c4e7bf/resource/4d58b8e8-a067-4285-ae4b-136faf8d7f06/download/919bbd6cf880459dabcc4d781dbde59btemp.geojson -->
+<script type="text/javascript" src="data/CA_cities.json"></script>
 
 <script>
 
-  var data = countiesCA
+  var data = citiesCA
   // set starting coordinates
-  var map = L.map('mapid').setView([37.7, -122.3], 10);
+  // TODO: lock view
+  var map = L.map('mapid', { zoomControl:false }).setView([37.7, -122.3], 10);
 
   // access mapbox layers
   L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
@@ -124,14 +130,43 @@
       'Hover over a city');
   };
 
-  // put control onto map
-  info.addTo(map);
+  // Add poly-lines
+  var oaklandToAlameda = [
+    new L.LatLng(37.8044, -122.2711),
+    new L.LatLng(37.6017, -121.7195)
+  ];
 
-  // set map object and draw map
+  var sfToAlameda = [
+    new L.LatLng(37.7749, -122.4194),
+    new L.LatLng(37.6017, -121.7195)
+  ]
+
+  var polylineOptions = {
+    color: 'blue',
+    weight: 6,
+    opacity: 0.3
+  };
+
+  var polyline = new L.Polyline.AntPath(oaklandToAlameda, polylineOptions);
+  var polyline2 = new L.Polyline.AntPath(sfToAlameda, polylineOptions);
+
+  // draw boundaries object and draw map
   geojson = L.geoJson(data, {
       style: style,
       onEachFeature: onEachFeature
-  }).addTo(map);
+  });
+  map.addLayer(geojson);
+
+  // TODO: draw line layer above boundary layer
+  var lineLayer = L.layerGroup([polyline, polyline2]);
+
+  // map.addLayer(polyline);
+  // map.addLayer(polyline2);
+  map.addLayer(lineLayer);
+
+  // put control onto map
+  info.addTo(map);
+
 
 </script>
 

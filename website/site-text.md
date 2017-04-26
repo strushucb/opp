@@ -1,4 +1,4 @@
-## Scoring Form
+### Scoring Form
 
 # Assess your Surveillance Score:
 In order to assess your surveillance score, we'd like to know a little about your background.
@@ -22,4 +22,4 @@ In order to assess your surveillance score, we'd like to know a little about you
 ## We are being Surveilled (Project Description)
 Blah Blah
 
-## How Surveillance Technologies capture your information
+### How Surveillance Technologies capture your information (Sankey Diagram)
