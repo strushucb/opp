@@ -49,7 +49,14 @@
   var data = citiesCA
   // set starting coordinates
   // TODO: lock view
-  var map = L.map('mapid', { zoomControl:false }).setView([37.7, -122.3], 10);
+  var p1 = L.latLng(37.7, -122.4)
+      p2 = L.latLng(37.7, -122.3)
+
+  var bounds = L.bounds(p1, p2);
+
+  var map = L.map('mapid', { zoomControl:false }).setView([37.7, -122.3], 10).setMaxBounds(bounds);
+  var bounds = map.getBounds();
+  map.setMaxBounds(bounds);
 
   // access mapbox layers
   L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
@@ -64,11 +71,11 @@
   function style(feature) {
       return {
           // fillColor: getColor(feature.properties.density),
-          weight: 2,
+          weight: 1,
           opacity: 1,
           color: 'white',
-          dashArray: '3',
-          fillOpacity: 0.7
+          dashArray: '2',
+          fillOpacity: 0.3
       };
   }
 
@@ -147,8 +154,15 @@
     opacity: 0.3
   };
 
-  var polyline = new L.Polyline.AntPath(oaklandToAlameda, polylineOptions);
-  var polyline2 = new L.Polyline.AntPath(sfToAlameda, polylineOptions);
+  var polyline = new L.Polyline(oaklandToAlameda, polylineOptions);
+  var polyline2 = new L.Polyline(sfToAlameda, polylineOptions);
+  // Note: AntPath doesn't support layer toggling
+  // var polyline = new L.Polyline.AntPath(oaklandToAlameda, polylineOptions);
+  // var polyline2 = new L.Polyline.AntPath(sfToAlameda, polylineOptions);
+
+  // TODO: draw line layer above boundary layer
+  var lineLayer = L.layerGroup([polyline, polyline2]);
+  map.addLayer(lineLayer);
 
   // draw boundaries object and draw map
   geojson = L.geoJson(data, {
@@ -157,12 +171,17 @@
   });
   map.addLayer(geojson);
 
-  // TODO: draw line layer above boundary layer
-  var lineLayer = L.layerGroup([polyline, polyline2]);
+  var overlayMaps = {
+    "lines": lineLayer
+  };
 
-  // map.addLayer(polyline);
-  // map.addLayer(polyline2);
-  map.addLayer(lineLayer);
+  var baseMaps = {
+    "cities": geojson
+  };
+
+  // Create a control for layers on the map
+  // Note: first group always radio buttons, second is toggle
+  L.control.layers(baseMaps, overlayMaps).addTo(map);
 
   // put control onto map
   info.addTo(map);
