@@ -234,9 +234,14 @@ function run_persona() {
     Circle.addToVis(vis, [level_list[1](1,1)], "wyd",delay);
       
  
-    var answered_tech = {"social-connections": false,
-                   "income": false,
-                   "car": false};
+    var answered_tech = {
+                    "social-connections": false,
+                    "income": false,
+                    "car": false,
+                    "cell": false,
+                    "transit": false,
+                    "events": false,
+                    "smuse": false};
     var variables_set = 0;
       
     d3.select("#SMULevel").on("input", function() {
@@ -256,28 +261,41 @@ function run_persona() {
         $.queue.add(function(){face.updateData()},this,50);
     });
       
-    face.updateCarData = function updateCarData(){
-        if(!answered_tech["car"]){
-            answered_tech["car"] = true;
+    face.updateDataWrap = function updateDataWrap(key){
+        if(!answered_tech[key]){
+            answered_tech[key] = true;
             variables_set++;
         }
+        
+        console.log("Updating " + key);
         $.queue.clear();
         $.queue.add(function(){face.updateData()},this,50);
     }
+    
+
       
     var base_scores = (JSON.parse(JSON.stringify(scores.tech)));
       
     face.loadProfileData = function loadProfileData(num){
        if(num > 0){
-           variables_set = 3;
+           variables_set = 7;
            var answers = scores["sample"+num];
            d3.select("#SMULevel").property("value", answers["social-connections"]);
            d3.select("#IncLevel").property("value", answers["income"]);
            d3.select("#CarUse").property("value", answers["car"]);
+           d3.select("#CellUse").property("value", answers["cell"]);
+           d3.select("#TransitUse").property("value", answers["transit"]);
+           d3.select("#EventUse").property("value", answers["events"]);
+           d3.select("#SMUse").property("value", answers["smuse"]);
+
            answered_tech = 
                {"social-connections": true,
                 "income": true,
-                "car": true};
+                "car": true,
+                "cell": false,
+                "transit": false,
+                "events": false,
+                "smuse": false};
            face.updateData();
        }else{
            variables_set = 0;
@@ -297,7 +315,7 @@ function run_persona() {
     
     face.updateData = function updateData(){
        base_scores = (JSON.parse(JSON.stringify(scores.tech)));
-       var smuResult, incResult, carResult;
+       var smuResult, incResult, carResult, cellResult, transitResult, eventsResult, smuseResult;
        var i = 1; 
        if(answered_tech["social-connections"]){ 
            for (item in scores.survey["social-connections"]){
@@ -320,6 +338,22 @@ function run_persona() {
            carResult = scores.survey["car"][d3.select("#CarUse").property("value")];
            addToTotal(carResult);
        }
+       if(answered_tech["cell"]){ 
+           cellResult = scores.survey["cell"][d3.select("#CellUse").property("value")];
+           addToTotal(cellResult);
+       }
+       if(answered_tech["transit"]){ 
+           transitResult = scores.survey["transit"][d3.select("#TransitUse").property("value")];
+           addToTotal(transitResult);
+       }
+       if(answered_tech["events"]){ 
+           eventsResult = scores.survey["events"][d3.select("#EventUse").property("value")];
+           addToTotal(eventsResult);
+       }
+       if(answered_tech["smuse"]){ 
+           smuseResult = scores.survey["smuse"][d3.select("#SMUse").property("value")];
+           addToTotal(smuseResult);
+       }
 
        what_scores["what-you-say"] = 1;
        what_scores["what-you-do"] = 1;
@@ -330,16 +364,16 @@ function run_persona() {
         for(var item in base_scores){
             if(variables_set < 3){
                 console.log("GRRRR!!!!");
-                if(scores.tech[item]["what-you-say"] != base_scores[item]["what-you-say"]){
+                if(scores.tech[item]["what-you-say"] > 0 && scores.tech[item]["what-you-say"] != base_scores[item]["what-you-say"]){
                     what_scores["what-you-say"] = Math.min(1365, what_scores["what-you-say"] + Math.pow(base_scores[item]["what-you-say"],2));
                 }
-                if(scores.tech[item]["what-you-do"] != base_scores[item]["what-you-do"]){
+                if(scores.tech[item]["what-you-do"] > 0 && scores.tech[item]["what-you-do"] != base_scores[item]["what-you-do"]){
                     what_scores["what-you-do"] = Math.min(1365, what_scores["what-you-do"] + Math.pow(base_scores[item]["what-you-do"],2));
                 }
-                if(scores.tech[item]["who-you-know"] == base_scores[item]["who-you-know"]){
+                if(scores.tech[item]["who-you-know"] > 0 && scores.tech[item]["who-you-know"] != base_scores[item]["who-you-know"]){
                     what_scores["who-you-know"] =  Math.min(1365, what_scores["who-you-know"] + Math.pow(base_scores[item]["who-you-know"],2));
                 }
-                if(scores.tech[item]["where-you-go"] == base_scores[item]["where-you-go"]){    
+                if(scores.tech[item]["where-you-go"] > 0 && scores.tech[item]["where-you-go"] != base_scores[item]["where-you-go"]){    
                     what_scores["where-you-go"] = Math.min(1365, what_scores["where-you-go"] + Math.pow(base_scores[item]["where-you-go"],2));
                 }
             }else{

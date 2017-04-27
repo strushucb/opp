@@ -3,7 +3,7 @@
   "survey": {
     "cell": {
         "yes": { 
-            "stingray" : 1
+            "stingray" : 2
         },
         "no": { 
             "stingray" : 0
@@ -20,7 +20,7 @@
             "alpr" : 1
         }        
     },
-    "public-transit": {
+    "transit": {
         "yes": { 
             "cctv" : 3
         },
@@ -31,7 +31,7 @@
             "cctv" : 1
         }        
     },
-    "public-events": {
+    "events": {
         "weekly": { 
             "cctv" : 4,
             "smm" : 4,
@@ -75,7 +75,7 @@
             "shotspotter" : 1
         }        
     },
-    "social-media": {
+    "smuse": {
         "daily": { 
             "smm" : 4
         },
