@@ -362,25 +362,25 @@ function run_persona() {
    
         
         for(var item in base_scores){
-            if(variables_set < 3){
+            if(variables_set < 7){
                 console.log("GRRRR!!!!");
                 if(scores.tech[item]["what-you-say"] > 0 && scores.tech[item]["what-you-say"] != base_scores[item]["what-you-say"]){
-                    what_scores["what-you-say"] = Math.min(1365, what_scores["what-you-say"] + Math.pow(base_scores[item]["what-you-say"],2));
+                    what_scores["what-you-say"] = Math.min(1365, what_scores["what-you-say"] + Math.pow(base_scores[item]["what-you-say"],1));
                 }
                 if(scores.tech[item]["what-you-do"] > 0 && scores.tech[item]["what-you-do"] != base_scores[item]["what-you-do"]){
-                    what_scores["what-you-do"] = Math.min(1365, what_scores["what-you-do"] + Math.pow(base_scores[item]["what-you-do"],2));
+                    what_scores["what-you-do"] = Math.min(1365, what_scores["what-you-do"] + Math.pow(base_scores[item]["what-you-do"],1));
                 }
                 if(scores.tech[item]["who-you-know"] > 0 && scores.tech[item]["who-you-know"] != base_scores[item]["who-you-know"]){
-                    what_scores["who-you-know"] =  Math.min(1365, what_scores["who-you-know"] + Math.pow(base_scores[item]["who-you-know"],2));
+                    what_scores["who-you-know"] =  Math.min(1365, what_scores["who-you-know"] + Math.pow(base_scores[item]["who-you-know"],1));
                 }
                 if(scores.tech[item]["where-you-go"] > 0 && scores.tech[item]["where-you-go"] != base_scores[item]["where-you-go"]){    
-                    what_scores["where-you-go"] = Math.min(1365, what_scores["where-you-go"] + Math.pow(base_scores[item]["where-you-go"],2));
+                    what_scores["where-you-go"] = Math.min(1365, what_scores["where-you-go"] + Math.pow(base_scores[item]["where-you-go"],1));
                 }
             }else{
-                what_scores["what-you-say"] = Math.min(1365, what_scores["what-you-say"] + Math.pow(base_scores[item]["what-you-say"],2));
-                what_scores["what-you-do"] = Math.min(1365, what_scores["what-you-do"] + Math.pow(base_scores[item]["what-you-do"],2));
-                what_scores["who-you-know"] =  Math.min(1365, what_scores["who-you-know"] + Math.pow(base_scores[item]["who-you-know"],2));
-                what_scores["where-you-go"] = Math.min(1365, what_scores["where-you-go"] + Math.pow(base_scores[item]["where-you-go"],2));
+                what_scores["what-you-say"] = Math.min(1365, what_scores["what-you-say"] + Math.pow(base_scores[item]["what-you-say"],1));
+                what_scores["what-you-do"] = Math.min(1365, what_scores["what-you-do"] + Math.pow(base_scores[item]["what-you-do"],1));
+                what_scores["who-you-know"] =  Math.min(1365, what_scores["who-you-know"] + Math.pow(base_scores[item]["who-you-know"],1));
+                what_scores["where-you-go"] = Math.min(1365, what_scores["where-you-go"] + Math.pow(base_scores[item]["where-you-go"],1));
             }
         }
         //console.log(base_scores);
