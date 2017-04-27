@@ -43,29 +43,45 @@
 <!-- <script type="text/javascript" src="data/CA_counties.json"></script> -->
 <!-- http://catalog.civicdashboards.com/dataset/541573bc-3e3f-4ab0-be55-80e002c4e7bf/resource/4d58b8e8-a067-4285-ae4b-136faf8d7f06/download/919bbd6cf880459dabcc4d781dbde59btemp.geojson -->
 <script type="text/javascript" src="data/CA_cities.json"></script>
+<!-- <script type="text/javascript" src="latLng.json"></script> -->
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="coords.json"></script>
+
+</script>
 
 <script>
+
+//TODO: JSON Data structures
+//TODO: Add department markers and labels
+//TODO: Create line layer groups (panes) by program / styling
+//TODO: Interactions - buttons, highlighting
+
 
   // copy data to generic variable
   var data = citiesCA
 
-  // Set boundaries to lock view
+  // Set boundaries to lock view and zoom
   var map = L.map('mapid', {
     zoomControl:false,
-    minZoom:10,
-    maxZoom:10
-  }).setView([37.7, -122.1], 10).setMaxBounds(bounds);
+    //minZoom:10,
+    //maxZoom:10
+  }).setView([37.7, -122.2], 10);
   var bounds = map.getBounds();
-  map.setMaxBounds(bounds);
+  //map.setMaxBounds(bounds);
 
-  // access mapbox layers
+  // Get mapbox layers
   L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
     attribution: 'Map description',
-    maxZoom: 18,
+    maxZoom: 10,
     id: 'mapbox.light',
     //accessToken: 'pk.eyJ1IjoicGV0ZXJyb3dsYW5kIiwiYSI6ImNqMXJ5ZHoxeTAwOXMycW12cHVrMnh2MTAifQ.JzTXpmB_mNcuiWqUYyXH8Q'
     accessToken: 'pk.eyJ1IjoicGV0ZXJyb3dsYW5kIiwiYSI6ImNqMXJ5ZHoxeTAwOXMycW12cHVrMnh2MTAifQ.JzTXpmB_mNcuiWqUYyXH8Q'
   }).addTo(map);
+
+  // To layers from cartoDB instead
+  // L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png', {
+  //   attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attribution">CARTO</a>'
+  // }).addTo(map);
 
   // styling
   function style(feature) {
@@ -75,7 +91,8 @@
           opacity: 1,
           color: 'white',
           dashArray: '2',
-          fillOpacity: 0.3
+          fillOpacity: 0.3,
+          zIndex: 2
       };
   }
 
@@ -111,7 +128,7 @@
       info.update();
   }
 
-  // call listener functions
+  // call listener functions on mouse move
   function onEachFeature(feature, layer) {
       layer.on({
           mouseover: highlightFeature,
@@ -137,31 +154,31 @@
       'Hover over a city');
   };
 
-  // Add poly-lines
-  var oaklandToAlameda = [
-    new L.LatLng(37.8044, -122.2711),
-    new L.LatLng(37.6017, -121.7195)
-  ];
-
-  var sfToAlameda = [
-    new L.LatLng(37.7749, -122.4194),
-    new L.LatLng(37.6017, -121.7195)
-  ]
+  // lines
 
   var polylineOptions = {
     color: 'blue',
-    weight: 6,
-    opacity: 0.3
+    weight: 2,
+    opacity: 1,
+    zIndex: 1
   };
 
-  // var polyline = new L.Polyline(oaklandToAlameda, polylineOptions);
-  // var polyline2 = new L.Polyline(sfToAlameda, polylineOptions);
-  // Note: AntPath doesn't support layer toggling
-  var polyline = new L.Polyline.AntPath(oaklandToAlameda, polylineOptions);
-  var polyline2 = new L.Polyline.AntPath(sfToAlameda, polylineOptions);
+  var ncric_lines = [];
 
-  // TODO: draw line layer above boundary layer
-  var lineLayer = L.layerGroup([polyline, polyline2]);
+  // Load all coordinate values
+  Object.keys(coords).forEach(function(key) {
+    ncric_lines.push(new L.Polyline([coords[key], coords.ncric], polylineOptions));
+  });
+
+  console.log(ncric_lines);
+
+  // var oak_acda = new L.Polyline([coords.Oakland, coords.NCRIC], polylineOptions);
+  // var sf_acda = new L.Polyline([coords.SanFrancisco, coords.NCRIC], polylineOptions);
+  // Note: AntPath doesn't support layer toggling
+  // var polyline = new L.Polyline.AntPath(oaklandToAlameda, polylineOptions);
+  // var polyline2 = new L.Polyline.AntPath(sfToAlameda, polylineOptions);
+
+  var lineLayer = L.layerGroup(ncric_lines);
   map.addLayer(lineLayer);
 
   // draw boundaries object and draw map
@@ -181,7 +198,7 @@
 
   // Create a control for layers on the map
   // Note: first group always radio buttons, second is toggle
-  L.control.layers(baseMaps, overlayMaps).addTo(map);
+  L.control.layers(overlayMaps, baseMaps).addTo(map);
 
   // put control onto map
   info.addTo(map);
