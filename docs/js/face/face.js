@@ -505,7 +505,7 @@ function run_persona() {
         return;
       } 
       if(mousePosition[0] < 0 || mousePosition[1] < 0 || mousePosition[0] > maxSize || mousePosition[1] > maxSize){
-        console.log(mousePosition);
+        //console.log(mousePosition);
         d3.selectAll(".shitstain").remove();
         d3.selectAll(".shitstain-text").remove();
         re_label();

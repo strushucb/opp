@@ -118,6 +118,14 @@
   },
   "tech": {
     "stingray": {
+        "image" : "img/stingray.png",
+        "bio" : "<p>Blah Blah Blah Stung.</p>",
+        "color" : "#54AF52",
+        "speed" : "20s",
+        "short" : "stingray",
+        "long": "Cell Site Simulators",
+        "in_score" : 5,
+        "out_score" : 10,
         "what-you-say": 1,
         "what-you-do": 5,
         "who-you-know": 2,
@@ -128,6 +136,14 @@
         "where-you-go-blurb": "Captures a cell phone's location to within 2 meters, but only those within range (1km - 200m). 'Dragnet' mode may capture information for all phones in range, but watchlists can limit collateral collection."
     },
     "alpr": {
+        "in_score" : 7,
+        "out_score" : 10,
+        "image" : "img/alpr1.jpg",
+        "bio" : "<p>Blah Blah Blah Beep.</p>",
+        "color" : "#DD6CA7",
+        "speed" : "4s",
+        "short" : "alpr",
+        "long" : "Automatic License Plate Readers",
         "what-you-say": 0,
         "what-you-do": 4,
         "who-you-know": 2,
@@ -138,8 +154,16 @@
         "where-you-go-blurb": "Captures location and time data of license plates. These readings accrue over time, revealing patterns, and can be associated with a person through DMV records or other observation."
     },
     "shotspotter": {
+        "in_score" : 7,
+        "out_score" : 7,
+        "image" : "img/shotspotter.jpg",
+        "bio" : "<p>Blah Blah Blah Bang.</p>",
+        "color" : "#ff9f2f",
+        "speed" : "17s",
+        "short" : "shotspotter",
+        "long" : "Acoustic Detection Systems",
         "what-you-say": 3,
-        "what-you-do": 3,
+        "what-you-do": 2,
         "who-you-know": 0,
         "where-you-go": 1,
         "what-you-say-blurb": "Can records sounds including human voice, but it's purportedly only active after being triggered by high decibel noises such as gunshots.",
@@ -148,6 +172,14 @@
         "where-you-go-blurb": "Can locate sounds over certain decibel levels, generally with more accuracy if more systems detect the same sound. The data is not linked to any identity."
     },
     "smm": {
+        "in_score" : 5,
+        "out_score" : 7,
+        "image" : "img/socialmedia.jpg",
+        "bio" : "<p>Blah Blah Blah Tweet.</p>",
+        "color" : "#AB9C27",
+        "speed" : "8s",
+        "short" : "smm",
+        "long" : "Social Media Monitoring",
         "what-you-say": 6,
         "what-you-do": 8,
         "who-you-know": 9,
@@ -158,6 +190,14 @@
         "where-you-go-blurb": "Captures public check-ins, geotagged photos, and locations of venues & organizations of interest."
     },
     "cctv": {
+        "in_score" : 5,
+        "out_score" : 10,
+        "image" : "img/cctv.jpg",
+        "bio" : "<p>Blah Blah Blah Bus.</p>",
+        "color" : "#9D5130",
+        "speed" : "3s",
+        "short" : "cctv",
+        "long" : "Public Camera Systems",
         "what-you-say": 2,
         "what-you-do": 7,
         "who-you-know": 7,
@@ -167,5 +207,41 @@
         "who-you-know-blurb": "Associates may be determined from appearance in captured video. Can be enhanced by facial recognition technologies.",
         "where-you-go-blurb": "Cameras can capture persons as they enter and leave monitored locations. May be enhanced by facial recognition technologies."
     }
-  }
-}}
+  },
+  "orgs": {
+      "opd": {
+            "tech":{
+                "stingray": 3,
+                "smm": 3,
+                "alpr": 3,
+                "cctv": 3,
+                "shotspotter": 3
+            },
+            "short": "opd",
+            "long": "Oakland Police Department"
+        },
+      "fpd": {
+            "tech":{
+                "stingray": 0,
+                "smm": 3,
+                "alpr": 3,
+                "cctv": 0,
+                "shotspotter": 3
+            },
+            "short": "fpd",
+            "long": "Fremont Police Department"
+        },
+      "alcosd": {
+            "tech":{
+                "stingray": 3,
+                "smm": 3,
+                "alpr": 0,
+                "cctv": 3,
+                "shotspotter": 3
+            },
+            "short": "alcosd",
+            "long": "Alameda County Sheriffs Department"
+        }
+  }  
+}
+}

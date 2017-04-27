@@ -109,7 +109,9 @@ d3.alluvialGrowth = function() {
       var num3 = d3.sum(node.targetLinks, value);
       if (num1 != 0 && num3 != 0){
           node.value = num2;
-      } else node.value = Math.max(num1,num2,num3);
+      } else{
+          node.value = Math.max(num1,num2);
+      }
     });
   }
 
