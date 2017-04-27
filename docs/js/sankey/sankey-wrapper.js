@@ -1,8 +1,12 @@
   var units = "USD",
       linkTooltipOffset = 62,
       nodeTooltipOffset = 130,
-      technologies = ["Stingray", "ALPR", "ShotSpotter","CCTV and Public Transit", 
-              "Social Media Monitoring"];
+      technologies, orgs;
+
+  d3.json("survey.json", function(data) {
+    technologies = data.scores.tech;
+    orgs = data.scores.orgs;
+  });
 
   var margin = {top: 10, right: 100, bottom: 10, left: 10},
       width = Math.round($(window).width() * .95) - margin.left - margin.right,
@@ -42,176 +46,123 @@
   var path = sankey.link();
   var alpr_link = 1;
   var tech_more;
-  d3.json("survey.json", function(data) {
-    tech_more = data.scores.tech;
-  });
-    
-var tech_data = {
-    "Stingray": {
-        in_score : 1,
-        out_score : 1,
-        image : "img/stingray.png",
-        bio : "<p>Blah Blah Blah Stung.</p>",
-        color : "#54AF52",
-        speed : "20s",
-        short : "stingray"
-    },  
-    "ALPR": {
-        in_score : 1,
-        out_score : 1,
-        image : "img/alpr1.jpg",
-        bio : "<p>Blah Blah Blah Beep.</p>",
-        color : "#DD6CA7",
-        speed : "4s",
-        short : "alpr"
-    }, 
-    "ShotSpotter": {
-        in_score : 1,
-        out_score : 1,
-        image : "img/shotspotter.jpg",
-        bio : "<p>Blah Blah Blah Bang.</p>",
-        color : "#ff9f2f",
-        speed : "17s",
-        short : "shotspotter"
-    }, 
-    "CCTV and Public Transit": {
-        in_score : 1,
-        out_score : 1,
-        image : "img/cctv.jpg",
-        bio : "<p>Blah Blah Blah Bus.</p>",
-        color : "#9D5130",
-        speed : "3s",
-        short : "cctv"
-    }, 
-    "Social Media Monitoring": {
-        in_score : 1,
-        out_score : 1,
-        image : "img/socialmedia.jpg",
-        bio : "<p>Blah Blah Blah Tweet.</p>",
-        color : "#AB9C27",
-        speed : "8s",
-        short : "smm"
-    }};
-    
-  var category_data = {
-      "Where You Go": {
-          in_score : 1,
-      },
-      "Who You Know": {
-          in_score : 1,
-      },
-      "What You Say": {
-          in_score : 1,
-      },
-      "What You Do": {
-          in_score : 1,
-      }
-  };
-    
-  var agency_data = {
-      "Oakland Police": {
-          out_score : 1,
-      },
-      "Alameda County Sheriff": {
-          out_score : 1,
-      },
-      "FBI": {
-          out_score : 1,
-      },
-      "DHS": {
-          out_score : 1,
-      }
-  };
+
 
  console.log("About to load sankey data!!");
-  d3.csv("scores.csv", function(error, data) {
-
+ d3.json("survey.json", function(data) {
+    
     var currentData = data;
-
     function processData(data, init) {
-      var graph = {"nodes" : [], "links" : []};
+        
 
-      data.forEach(function (d) {
-        graph.nodes.push({ "name": d.source,
-                           "shortname": d.shortname });
-        graph.nodes.push({ "name": d.target,
-                           "shortname": d.shortname });
-        if(init){
-            if(d.target in tech_data){
-                graph.links.push({ "source": d.source,
-                               "target": d.target,
-                               "endValue": +d.endval,
-                               "value": +d.startval});
-                tech_data[d.target].out_score = +d.startval;
-            } else if(d.source in tech_data){
-                graph.links.push({ "source": d.source,
-                               "target": d.target,
-                               "value": +d.startval,
-                               "endValue": +d.endval });
-                tech_data[d.source].in_score = +d.endval;
-            } else {
-                graph.links.push({ "source": d.source,
-                   "target": d.target,
-                   "endValue": +d.endval,
-                   "value": +d.startval}); 
+        console.log(data.scores);
+        technologies = data["scores"]["tech"];
+        orgs = data.scores.orgs;
+
+        var graph = {"nodes" : [], "links" : []};
+        console.log(technologies);
+        for(var item in technologies){
+            d = technologies[item];
+            console.log(d["short"]);
+            graph.nodes.push({ "shortname": d["long"],
+                               "name": d["short"] });        
+            
+            
+            if(+d["what-you-say"] > 0){
+                graph.nodes.push({ "name": "What You Say",        
+                                   "shortname": "what-you-say" });
+                graph.links.push({ "source": "What You Say",
+                                    "target": d["short"],
+                                    "endValue": d["in_score"],
+                                    "value": +d["what-you-say"]});  
             }
-        } else {
-            if(d.target in tech_data){
-                graph.links.push({ "source": d.source,
-                               "target": d.target,
-                               "endValue": +d.endval,
-                               "value": +d.startval}); //tech_data[d.target].out_score});            
-            } else if(d.source in tech_data){
-                graph.links.push({ "source": d.source,
-                               "target": d.target,
-                               "value": +d.startval,
-                               "endValue": tech_data[d.source].in_score});
-            } else {
-                graph.links.push({ "source": d.source,
-                   "target": d.target,
-                   "endValue": +d.endval,
-                   "value": +d.startval});
+            if(+d["what-you-do"] > 0){
+            graph.nodes.push({ "name": "What You Do",        
+                               "shortname": "what-you-do" });
+            graph.links.push({ "source": "What You Do",
+                                "target": d["short"],
+                                "endValue": d["in_score"],
+                                "value": +d["what-you-do"]});  
+            }
+            if(+d["where-you-go"] > 0){
+                graph.nodes.push({ "name": "Where You Go",        
+                               "shortname": "where-you-go" });
+                graph.links.push({ "source": "Where You Go",
+                                "target": d["short"],
+                                "endValue": d["in_score"],
+                                "value": +d["where-you-go"]});  
+            }
+            if(+d["who-you-know"] > 0){            
+                graph.nodes.push({ "name": "Who You Know",        
+                                   "shortname": "who-you-know" });
+                graph.links.push({ "source": "Who You Know",
+                                    "target": d["short"],
+                                    "endValue": d["in_score"],
+                                    "value": +d["who-you-know"]});  
+            }
+         }
+        
+        for(var item in orgs){
+            d = orgs[item];
+            equipment = d["tech"];
+            console.log(d["short"]);
+            graph.nodes.push({ "shortname": d["long"],
+                               "name": d["short"] });
+            for(tech in equipment){
+                if(equipment[tech] > 0){
+                    graph.links.push({ "source": tech,
+                                    "target": d["short"],
+                                    "endValue": equipment[tech],
+                                    "value": technologies[tech]["out_score"]});  
+                }
             }
         }
-       });
+          graph.nodesNew = d3.nest()
+             .key(function (d) { return d.name; })
+             .rollup(function (d) { return d[0].shortname; }) // returns the shorname of the first element of that key
+             .map(graph.nodes);
 
-      graph.nodesNew = d3.nest()
-         .key(function (d) { return d.name; })
-         .rollup(function (d) { return d[0].shortname; }) // returns the shorname of the first element of that key
-         .map(graph.nodes);
-
-       // return only the distinct / unique nodes
-      graph.nodes = d3.keys(d3.nest()
-         .key(function (d) { return d.name; })
-         .map(graph.nodes));
+           // return only the distinct / unique nodes
+          graph.nodes = d3.keys(d3.nest()
+             .key(function (d) { return d.name; })
+             .map(graph.nodes));
 
 
-      // loop through each link replacing the text with its index from node
-      graph.links.forEach(function (d, i) {
-        graph.links[i].source = graph.nodes.indexOf(graph.links[i].source);
-        graph.links[i].target = graph.nodes.indexOf(graph.links[i].target);
-      });
+          // loop through each link replacing the text with its index from node
+          graph.links.forEach(function (d, i) {
+            graph.links[i].source = graph.nodes.indexOf(graph.links[i].source);
+            graph.links[i].target = graph.nodes.indexOf(graph.links[i].target);
+          });
         
 
 
-      //now loop through each nodes to make nodes an array of objects
-      // rather than an array of strings
-      graph.nodes.forEach(function (d, i) {
-        graph.nodes[i] = { "name": d,
-                           "shortname": d };
-      });
-      return graph;
+          //now loop through each nodes to make nodes an array of objects
+          // rather than an array of strings
+          graph.nodes.forEach(function (d, i) {
+            graph.nodes[i] = { "name": d,
+                               "shortname": d };
+          });
+        return graph;
     }
 
     
       
       
-    function write_blurb(tech, title){
+    function write_link_blurb(tech, title){
     
         d3.selectAll(".panel-text").remove();
-        var titlekey = title.replace(/\s+/g, '-').toLowerCase() + "-blurb";
-        var blurb = tech_more[tech_data[tech].short][titlekey];
-        var split_blurb = blurb.split(" ");
+        var titlekey,blurb,split_blurb;
+        if(title in orgs){
+            titlekey = tech + "-blurb";
+            blurb = orgs[title][titlekey];
+            split_blurb = blurb.split(" ");
+            title = orgs[title].long;
+        }else{
+            titlekey = title.replace(/\s+/g, '-').toLowerCase() + "-blurb";
+            blurb = technologies[tech][titlekey];
+            split_blurb = blurb.split(" ");
+            
+        }
 
         var result = "";
         var char_count = 0;
@@ -224,10 +175,19 @@ var tech_data = {
                 .style("fill", "white")
                 .style("font-size","smaller")
                 .style("font-weight",900)
-                .text(function(d){return tech+" & "+title+": ";});
+                .text(function(d){return technologies[tech].long;});
         line++;
-        
-        
+
+        svg.append("text")
+                .attr("class","panel-text")
+                .attr("x", width-290)
+                .attr("y", 20*(line+1))
+                .style("fill", "white")
+                .style("font-size","smaller")
+                .style("font-weight",900)
+                .text(function(d){return " & "+title+": ";});
+        line++;
+
         for(var i = 0; i < split_blurb.length; i++){
             if(char_count > 27){
                 svg.append("text")
@@ -256,7 +216,74 @@ var tech_data = {
         }
     }
       
-      
+    function write_node_blurb(item){
+    
+        d3.selectAll(".panel-text").remove();
+        //var titlekey = title.replace(/\s+/g, '-').toLowerCase() + "-blurb";
+        
+        if(item in technologies){
+            blurb = technologies[item].long;
+        }else if(item in orgs){
+            blurb = orgs[item].long;   
+        }else{
+            blurb = item;
+        }
+
+        //var split_blurb = blurb.split(" ");
+        var result = "";
+        var char_count = 0;
+        line = 0;
+        
+        svg.append("text")
+                .attr("class","panel-text")
+                .attr("x", width-290)
+                .attr("y", 20*(line+1))
+                .style("fill", "white")
+                .style("font-size","smaller")
+                .style("font-weight",900)
+                .text(function(d){return blurb;});
+        line++;
+
+        svg.append("text")
+                .attr("class","panel-text")
+                .attr("x", width-290)
+                .attr("y", 20*(line+1))
+                .style("fill", "white")
+                .style("font-size","smaller")
+                .style("font-weight",900)
+                .text(function(d){return " & You: ";});
+        line++;
+
+        /*for(var i = 0; i < split_blurb.length; i++){
+            if(char_count > 27){
+                svg.append("text")
+                .attr("class","panel-text")
+                .attr("x", width-290)
+                .attr("y", 20*(line+1))
+                .style("fill", "white")
+                .style("font-size","smaller")
+                .text(function(d){return result;});
+                result = "";
+                char_count = 0;
+                line++;
+            }
+            result = result + " "+split_blurb[i];
+            char_count = char_count + split_blurb[i].length;
+            //console.log(result);
+        }
+        if(char_count > 0){
+             svg.append("text")
+                    .attr("class","panel-text")
+                    .attr("x", width-290)
+                    .attr("y", 20*(line+1))
+                    .style("fill", "white")
+                    .style("font-size","smaller")
+                    .text(function(d){return result;});
+        }*/
+    }
+
+     
+     
     tipLinks.html(function(d) {
       var title, tech;
       if (technologies.indexOf(d.source.name) > -1) {
@@ -350,55 +377,21 @@ var tech_data = {
       return l;
     }
 
-    d3.select('#spending-button').on('click', function () {
-      d3.selectAll(".sankey-label").classed("clicked", false);
-      d3.select(this).classed("clicked", true);
-      currentData = data.filter(function (d) {
-        return technologies.indexOf(d.source)+1;
-      });
-      renderSankey(false);
-    });
-    d3.select('#revenue-button').on('click', function () {
-      d3.selectAll(".sankey-label").classed("clicked", false);
-      d3.select(this).classed("clicked", true);
-      currentData = data.filter(function (d) {
-        return technologies.indexOf(d.target)+1;
-      });
-      renderSankey(false);
-    });
-    d3.select('#showall-button').on('click', function () {
-      d3.selectAll(".sankey-label").classed("clicked", false);
-      d3.select(this).classed("clicked", true);
-      currentData = data;
-      renderSankey(false);
-    })
 
     function renderSankey(init) {
       d3.select('body').selectAll('g').remove();
-
-
-        
-      graph = processData(currentData, init);
-
-      /*graph.links.forEach(function (d, i) {
-            if(graph.nodes[d.source].name == "ALPR"){
-                console.log(graph.nodes[d.source].name);
-                graph.links[i].value = d3.select("#ALPRLevel").value;
-            } 
-        });*/
-        
+      graph = processData(currentData, init);        
         
       myLinks = graph.links;
       myNodes = graph.nodes;
 
-
+      console.log("Links: "+myLinks);
+    
       svg = d3.select('.sankey')
           .attr("width", width)
           .attr("height", height)
         .append("g");
 
-
-        
       sankey = d3.alluvialGrowth()
         .size([width-400, height])
         .nodes(myNodes)
@@ -406,8 +399,6 @@ var tech_data = {
         .layout(120);
 
       path = sankey.link();
-
-
 
       // add in the links
       link = svg.append("g").selectAll(".link")
@@ -424,29 +415,19 @@ var tech_data = {
            })
           .sort(function(a, b) { return b.dy - a.dy; })
           .on('mousemove', function(event) {
-          
-              //tipLinks
-              //.style("top", 0+"px") //(d3.event.pageY - linkTooltipOffset) + "px")
-              //.style("left", (width-300)+"px");// function () {
-              //var left = (Math.max(d3.event.pageX - linkTooltipOffset, 10)); 
-              //left = Math.min(left, window.innerWidth - $('.d3-tip').width() - 20)
-              //return left + "px"; })
             })
           .on('mouseover', function(event){
-            console.log(event);
             var title, tech, html;
-            if (technologies.indexOf(event.source.name) > -1) {
+            if (event.source.name in technologies) {
                     tech = event.source.name;
                     title = event.target.name;
             } else {
                     tech = event.target.name;
                     title = event.source.name;
             }   
-            write_blurb(tech, title);
-            tipLinks.show;
+            write_link_blurb(tech, title);
           })
           .on('mouseout', tipLinks.hide);
-
 
      // add in the nodes
       node = svg.append("g").selectAll(".node")
@@ -456,26 +437,19 @@ var tech_data = {
           .attr("transform", function(d) { 
               return "translate(" + d.x + "," + d.y + ")"; })
           .on('mousemove', function(event) {
-            tipNodes
-              .style("top", (d3.event.pageY - $('.d3-tip-nodes').height() - 20) + "px")
-              .style("left", function () {
-                var left = (Math.max(d3.event.pageX - nodeTooltipOffset, 10)); 
-                left = Math.min(left, window.innerWidth - $('.d3-tip').width() - 20)
-                return left + "px"; })
-            })
+          })
           .on('mouseover', function(event){
-            d3.select(this).style("cursor", "pointer");
-            tipNodes.show(event);
+                write_node_blurb(event.name);
           })
           .on('mouseout', tipNodes.hide)
-        .call(d3.behavior.drag()
+        
+          .call(d3.behavior.drag()
           .origin(function(d) { return d; })
           .on("dragstart", function() { 
               this.parentNode.appendChild(this); })
           .on("drag", dragmove))
-            .on("mousedown", function(d){
-               //console.log("CLIK!");
-                if(d.name in tech_data){
+          .on("mousedown", function(d){
+                if(d.name in technologies){
                     showTechInfo(d.name);
                 }
             });
@@ -487,17 +461,15 @@ var tech_data = {
           .attr("width", function(d) { return d.dy; })
           .attr("xlink:href", function(d) {
             //console.log(d);
-            if(d.name in tech_data){return tech_data[d.name].image;}
+            if(d.name in technologies){return technologies[d.name].image;}
             return "img/node.png";
           })
   
           .attr("class", function(d) { 
-            if (d.name == "Bernie Sanders" || d.name == "Hillary Clinton") { d.class = 'dem'; } 
-            else if (technologies.indexOf(d.name) > 1) { d.class = 'rep'; } 
-            else { d.class = 'none'; }
+                d.class = 'tech'; 
             return d.class; })
           .style("fill", function(d) {
-            if(d.name in tech_data) tech_data[d.name].color;
+            if(d.name in technologies) technologies[d.name].color;
             return "#CCCCCC";
           })
           .style("stroke", function(d) { 
@@ -555,15 +527,15 @@ var tech_data = {
             var color = "#CCCCCC";
             var speed = "3s";
             var name = "undefined";
-            if(d.source.name in tech_data){ 
-                color = tech_data[d.source.name].color;
-                speed = tech_data[d.source.name].speed;
+            if(d.source.name in technologies){ 
+                color = technologies[d.source.name].color;
+                speed = technologies[d.source.name].speed;
                 name = d.source.name;
                 
             }
-            if(d.target.name in tech_data){ 
-                color = tech_data[d.target.name].color;
-                speed = tech_data[d.target.name].speed;
+            if(d.target.name in technologies){ 
+                color = technologies[d.target.name].color;
+                speed = technologies[d.target.name].speed;
                 name = d.target.name;
             }
             name = name.replace(/\s/g,'');
@@ -612,12 +584,12 @@ var tech_data = {
     }  
     
     function showTechInfo(name){
-        document.getElementById("techinfo").innerHTML=tech_data[name].bio;
+        document.getElementById("techinfo").innerHTML=technologies[name].bio;
         document.getElementById("techinfo").style.display = 'block';
     }
       
     d3.select("#ALPRLevel").on("input", function() {
-         tech_data["ALPR"].in_score = +this.value;
+         technologies["alpr"].in_score = +this.value;
          renderSankey(false);
 		});
 
