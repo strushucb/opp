@@ -148,12 +148,21 @@
     
       
       
-    function write_blurb(tech, title){
+    function write_link_blurb(tech, title){
     
         d3.selectAll(".panel-text").remove();
-        var titlekey = title.replace(/\s+/g, '-').toLowerCase() + "-blurb";
-        var blurb = technologies[tech][titlekey];
-        var split_blurb = blurb.split(" ");
+        var titlekey,blurb,split_blurb;
+        if(title in orgs){
+            titlekey = tech + "-blurb";
+            blurb = orgs[title][titlekey];
+            split_blurb = blurb.split(" ");
+            title = orgs[title].long;
+        }else{
+            titlekey = title.replace(/\s+/g, '-').toLowerCase() + "-blurb";
+            blurb = technologies[tech][titlekey];
+            split_blurb = blurb.split(" ");
+            
+        }
 
         var result = "";
         var char_count = 0;
@@ -207,7 +216,74 @@
         }
     }
       
-      
+    function write_node_blurb(item){
+    
+        d3.selectAll(".panel-text").remove();
+        //var titlekey = title.replace(/\s+/g, '-').toLowerCase() + "-blurb";
+        
+        if(item in technologies){
+            blurb = technologies[item].long;
+        }else if(item in orgs){
+            blurb = orgs[item].long;   
+        }else{
+            blurb = item;
+        }
+
+        //var split_blurb = blurb.split(" ");
+        var result = "";
+        var char_count = 0;
+        line = 0;
+        
+        svg.append("text")
+                .attr("class","panel-text")
+                .attr("x", width-290)
+                .attr("y", 20*(line+1))
+                .style("fill", "white")
+                .style("font-size","smaller")
+                .style("font-weight",900)
+                .text(function(d){return blurb;});
+        line++;
+
+        svg.append("text")
+                .attr("class","panel-text")
+                .attr("x", width-290)
+                .attr("y", 20*(line+1))
+                .style("fill", "white")
+                .style("font-size","smaller")
+                .style("font-weight",900)
+                .text(function(d){return " & You: ";});
+        line++;
+
+        /*for(var i = 0; i < split_blurb.length; i++){
+            if(char_count > 27){
+                svg.append("text")
+                .attr("class","panel-text")
+                .attr("x", width-290)
+                .attr("y", 20*(line+1))
+                .style("fill", "white")
+                .style("font-size","smaller")
+                .text(function(d){return result;});
+                result = "";
+                char_count = 0;
+                line++;
+            }
+            result = result + " "+split_blurb[i];
+            char_count = char_count + split_blurb[i].length;
+            //console.log(result);
+        }
+        if(char_count > 0){
+             svg.append("text")
+                    .attr("class","panel-text")
+                    .attr("x", width-290)
+                    .attr("y", 20*(line+1))
+                    .style("fill", "white")
+                    .style("font-size","smaller")
+                    .text(function(d){return result;});
+        }*/
+    }
+
+     
+     
     tipLinks.html(function(d) {
       var title, tech;
       if (technologies.indexOf(d.source.name) > -1) {
@@ -349,7 +425,7 @@
                     tech = event.target.name;
                     title = event.source.name;
             }   
-            write_blurb(tech, title);
+            write_link_blurb(tech, title);
           })
           .on('mouseout', tipLinks.hide);
 
@@ -361,25 +437,18 @@
           .attr("transform", function(d) { 
               return "translate(" + d.x + "," + d.y + ")"; })
           .on('mousemove', function(event) {
-            tipNodes
-              .style("top", (d3.event.pageY - $('.d3-tip-nodes').height() - 20) + "px")
-              .style("left", function () {
-                var left = (Math.max(d3.event.pageX - nodeTooltipOffset, 10)); 
-                left = Math.min(left, window.innerWidth - $('.d3-tip').width() - 20)
-                return left + "px"; })
-            })
+          })
           .on('mouseover', function(event){
-            d3.select(this).style("cursor", "pointer");
-            tipNodes.show(event);
+                write_node_blurb(event.name);
           })
           .on('mouseout', tipNodes.hide)
-        .call(d3.behavior.drag()
+        
+          .call(d3.behavior.drag()
           .origin(function(d) { return d; })
           .on("dragstart", function() { 
               this.parentNode.appendChild(this); })
           .on("drag", dragmove))
-            .on("mousedown", function(d){
-               //console.log("CLIK!");
+          .on("mousedown", function(d){
                 if(d.name in technologies){
                     showTechInfo(d.name);
                 }

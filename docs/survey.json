@@ -123,7 +123,7 @@
         "color" : "#54AF52",
         "speed" : "20s",
         "short" : "stingray",
-        "long": "Cell Site Simulators",
+        "long": "Cell Site Simulators (Stingrays)",
         "in_score" : 5,
         "out_score" : 10,
         "what-you-say": 1,
@@ -143,7 +143,7 @@
         "color" : "#DD6CA7",
         "speed" : "4s",
         "short" : "alpr",
-        "long" : "Automatic License Plate Readers",
+        "long" : "Automatic License Plate Readers (ALPR)",
         "what-you-say": 0,
         "what-you-do": 4,
         "who-you-know": 2,
@@ -161,7 +161,7 @@
         "color" : "#ff9f2f",
         "speed" : "17s",
         "short" : "shotspotter",
-        "long" : "Acoustic Detection Systems",
+        "long" : "Acoustic Detection Systems (ShotSpotter)",
         "what-you-say": 3,
         "what-you-do": 2,
         "who-you-know": 0,
@@ -218,7 +218,13 @@
                 "shotspotter": 3
             },
             "short": "opd",
-            "long": "Oakland Police Department"
+            "long": "Oakland Police Department",
+            "stingray-blurb": "The Oakland Police Department acquired a cell site simulator (commonly known as a Stingray) in 200X. Not until 2016 did Oakland Police Department have a policy for its use.",
+            "alpr-blurb": "The Oakland Police Department operates XXX ALPR systems. ALPR is regulated by a policy with retention of data limited to 6 months.",
+            "smm-blurb": "The Oakland Police Department has used social media monitoring tools in the past such as Geofeedia.",
+            "cctv-blurb": "The Oakland Police Department has established a network of CCTV cameras and have dispatched at least XXX body cameras to its patrol officers. Currently, no plans to acquire facial recognition systems are in place.",
+            "shotspotter-blurb": "The Oakland Police Department has plans to increase its ShotSpotter system to include placing systems in schools."
+          
         },
       "fpd": {
             "tech":{
@@ -229,7 +235,12 @@
                 "shotspotter": 3
             },
             "short": "fpd",
-            "long": "Fremont Police Department"
+            "long": "Fremont Police Department",
+            "stingray-blurb": "The Fremont Police Department acquired a cell site simulator (commonly known as a Stingray) in 200X. Not until 2016 did Fremont Police Department have a policy for its use.",
+            "alpr-blurb": "The Fremont Police Department operates XXX ALPR systems. ALPR is regulated by a policy with retention of data limited to 6 months.",
+            "smm-blurb": "The Fremont Police Department has used social media monitoring tools in the past such as Geofeedia.",
+            "cctv-blurb": "The Fremont Police Department has established a network of CCTV cameras and have dispatched at least XXX body cameras to its patrol officers. Currently, no plans to acquire facial recognition systems are in place.",
+            "shotspotter-blurb": "The Fremont Police Department has plans to increase its ShotSpotter system to include placing systems in schools."
         },
       "alcosd": {
             "tech":{
@@ -240,7 +251,12 @@
                 "shotspotter": 3
             },
             "short": "alcosd",
-            "long": "Alameda County Sheriffs Department"
+            "long": "Alameda County Sheriffs Department",
+            "stingray-blurb": "The ALCO Sheriff Department acquired a cell site simulator (commonly known as a Stingray) in 200X. Not until 2016 did ALCO Sheriff Department have a policy for its use.",
+            "alpr-blurb": "The ALCO Sheriff Department operates XXX ALPR systems. ALPR is regulated by a policy with retention of data limited to 6 months.",
+            "smm-blurb": "The ALCO Sheriff Department has used social media monitoring tools in the past such as Geofeedia.",
+            "cctv-blurb": "The ALCO Sheriff Department has established a network of CCTV cameras and have dispatched at least XXX body cameras to its patrol officers. Currently, no plans to acquire facial recognition systems are in place.",
+            "shotspotter-blurb": "The ALCO Sheriff Department has plans to increase its ShotSpotter system to include placing systems in schools."
         }
   }  
 }
