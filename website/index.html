@@ -32,11 +32,11 @@
 				<!-- navigation -->
 				<nav class="pull-right nav-collapse collapse">
 				<ul id="menu-main" class="nav">
+					<li><a title="quiz" href="#quiz">Quiz</a></li>
 					<li><a title="team" href="#about">About</a></li>
 					<li><a title="services" href="#services">Services</a></li>
 					<li><a title="works" href="#works">Works</a></li>
 					<li><a title="blog" href="#blog">Blog</a></li>
-					<li><a title="contact" href="#contact">Contact</a></li>
 					<li><a href="page.html">Page</a></li>
 				</ul>
 				</nav>
@@ -57,9 +57,15 @@
 					<ul class="slides">
 						<li>
 						<p class="home-slide-content">
-							<strong>STINK</strong> Ray
+							<strong>Team</strong> name
 						</p>
-						</li>
+						<p class="team-name">
+							Steve, Peter, Michelle
+						</p>
+						<p class="team-name">
+							An investigation on surveillance
+						</p>
+<!-- 						</li>
 						<li>
 						<p class="home-slide-content">
 							Surveillance is <strong>NOW</strong>
@@ -69,7 +75,7 @@
 						<p class="home-slide-content">
 							Hide <strong>yourshelfs</strong>
 						</p>
-						</li>
+						</li> -->
 					</ul>
 				</div>
 				<!-- end slider -->
@@ -78,21 +84,17 @@
 	</div>
 	</header>
 </div>
-<!-- section: contact -->
-<section id="contact" class="section">
+<!-- section: quiz -->
+<section id="quiz" class="section">
 <div class="container">
-	<h4>Tell us a little about yourself!</h4>
+	<h4>Before we get started, <p>tell us a little about yourself</p></h4>
 	<p>
-		 In order to assess your surveillance score, we'd like to know a little about your background. lita prompta et mel vidisse phaedrum pri et. Facilisis posidonium ex his. Mutat iudico vis in, mea aeque tamquam scripserit an, mea eu ignota viderer probatus. Lorem legere consetetur ei eum. Sumo aeque assentior te eam, pri nominati posidonium consttuam
+		 In order to assess your surveillance score, we'd like to know a little about your background. We can use this information to show the impact of your behaviors on your surveillance. Alternatively, select one of the personas below to view a sample score.
 	</p>
 	<div class="blankdivider30">
 	</div>
 	<div class="row">
 		<div class="span12">
-			<div class="cform" id="contact-form">
-				<div id="sendmessage">Your message has been sent. Thank you!</div>
-                <div id="errormessage"></div>
-				<form action="" method="post" role="form" class="contactForm">
 					<div class="row">
 						<div class="span6">
 							<!-- combobox from https://github.com/danielfarrell/bootstrap-combobox -->
@@ -150,6 +152,12 @@
 								</select>
 							</div>
 
+							<!-- Income -->
+							What is your Income Level?
+							<div class="field form-group">
+                                <input type="range" min="1" max="5" id="IncLevel" value ="1">
+							</div>							
+
 							<!-- Social Media button -->
 							How important is Social Media to you?
 							<div class="form-group">
@@ -162,35 +170,23 @@
 								</select>
 							</div>
 
+							<!-- Social Media followers -->
+							How many followers do you have on social media?
+							<div class="field form-group">
+                                    <input type="range" min="1" max="5" id="SMULevel" value ="1">
+							</div>
+
 
 							<script type="text/javascript">
 							  $(document).ready(function(){
 							    $('.combobox').combobox();
 							  });
 							</script>
-
-
-							<!--name-->
-<!-- 							<div class="field your-name form-group">
-								<input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                                <div class="validation"></div>
-							</div>
-							<div class="field your-email form-group">
-								<input type="text" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
-                                <div class="validation"></div>
-							</div>
-							<div class="field subject form-group">
-								<input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-                                <div class="validation"></div>
-							</div> -->
 						</div>
 						<!-- Put the image here? -->
 						<div class="span6">
-							<div class="field message form-group">
-								<textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
-                                <div class="validation"></div>
-							</div>
-							<input type="submit" value="Send message" class="btn btn-theme pull-left">
+							Image here please
+						</div>
 						</div>
 					</div>
 				</form>
@@ -519,7 +515,7 @@
 </div>
 </section>
 <!-- spacer section -->
-<section class="spacer bg3">
+<section class="spacer bg4">
 <div class="container">
 	<div class="row">
 		<div class="span12 aligncenter flyLeft">
