@@ -28,3 +28,14 @@ var coords = {
   "walnutCreek": [37.901521,	-122.061137],
   "westSacramento":	[38.586308,	-121.527531]
 };
+
+var cityData = {
+  "Oakland Police Department": {
+    "coordinates": [37.799362,-122.275087],
+    "text": "Oakland Police Department participates in x"
+  },
+  "Fremont Police Department": {
+    "coordinates": [37.552717,-121.969067],
+    "text" : "Fremont Police Department participates in x"
+  }
+};
