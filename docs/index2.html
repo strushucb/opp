@@ -31,20 +31,20 @@
 <script src="js/animate.js"></script>
 <script src="js/validate.js"></script>
 <script src="js/custom.js"></script>   
+<script src="js/bootstrap-combobox.js"></script>
 <!--[if gte IE 9]><!-->
 <script type="text/javascript" src="js/face/d3.min.js"></script>
 <script type="text/javascript" src="js/face/d3.v3.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 <script type="text/javascript" src="js/face/face.js"></script>
+
 <!--<![endif]-->
 <link rel="stylesheet3" type="text/css" href="css/face.css"/>
 <link rel="stylesheet2" type="text/css" href="css/sankey.css">
 <script type="text/javascript" src="https://cdn.rawgit.com/Caged/d3-tip/master/index.js"></script>
 <script type="text/javascript" src="js/sankey/alluvial-growth.js"></script>
 <script type="text/javascript" src="js/sankey/sankey.js"></script>
-
-
 
 <!-- =======================================================
     Theme Name: Maxim
@@ -66,11 +66,11 @@
 				<!-- navigation -->
 				<nav class="pull-right nav-collapse collapse">
 				<ul id="menu-main" class="nav">
+					<li><a title="quiz" href="#quiz">Quiz</a></li>
 					<li><a title="team" href="#about">About</a></li>
 					<li><a title="services" href="#services">Services</a></li>
 					<li><a title="works" href="#works">Works</a></li>
 					<li><a title="blog" href="#blog">Blog</a></li>
-					<li><a title="contact" href="#contact">Contact</a></li>
 					<li><a href="page.html">Page</a></li>
 				</ul>
 				</nav>
@@ -91,9 +91,15 @@
 					<ul class="slides">
 						<li>
 						<p class="home-slide-content">
-							<strong>STINK</strong> Ray
+							<strong>Team</strong> name
 						</p>
-						</li>
+						<p class="team-name">
+							Steve, Peter, Michelle
+						</p>
+						<p class="team-name">
+							An investigation on surveillance
+						</p>
+<!-- 						</li>
 						<li>
 						<p class="home-slide-content">
 							Surveillance is <strong>NOW</strong>
@@ -103,7 +109,7 @@
 						<p class="home-slide-content">
 							Hide <strong>yourshelfs</strong>
 						</p>
-						</li>
+						</li> -->
 					</ul>
 				</div>
 				<!-- end slider -->
@@ -112,101 +118,99 @@
 	</div>
 	</header>
 </div>
-<!-- section: contact -->
-<section id="contact" class="section">
+<!-- section: quiz -->
+<section id="quiz" class="section">
 <div class="container">
-	<h4>Tell us a little about yourself!</h4>
+	<h4>Before we get started, <p>tell us a little about yourself</p></h4>
 	<p>
-		 In order to assess your surveillance score, we'd like to know a little about your background. lita prompta et mel vidisse phaedrum pri et. Facilisis posidonium ex his. Mutat iudico vis in, mea aeque tamquam scripserit an, mea eu ignota viderer probatus. Lorem legere consetetur ei eum. Sumo aeque assentior te eam, pri nominati posidonium consttuam
+		 In order to assess your surveillance score, we'd like to know a little about your background. We can use this information to show the impact of your behaviors on your surveillance. Alternatively, select one of the personas below to view a sample score.
 	</p>
 	<div class="blankdivider30">
 	</div>
 	<div class="row">
 		<div class="span12">
-			<div class="cform" id="contact-form">
-				This is where the image goes
 					<div class="row">
 						<div class="span6">
-							<!-- Cell phone button -->
-							<div class="field form-group">
-							  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							    Do you use a cell phone? <span class="caret"></span>
-							  </button>
-							  <ul class="dropdown-menu">
-							    <li><a href="#">Yes</a></li>
-							    <li><a href="#">No</a></li>
-							  </ul>
+							<!-- combobox from https://github.com/danielfarrell/bootstrap-combobox -->
+							<!-- Cell Phone -->
+							Do you use a cell phone?
+							<div class="form-group">
+								<select class="combobox" id="CellUse" onChange="face.updateDataWrap('cell')">
+								  <option></option>
+								  <option value="yes">Yes</option>
+								  <option value="no">No</option>
+								</select>
 							</div>
-							<!-- Car button -->
+
+							<!-- Car -->
+							Do you own a car?
+							<div class="form-group">
+								<select class="combobox" id="CarUse" onChange="face.updateDataWrap('car')">
+								  <option></option>
+								  <option value="yes">Yes, I use it daily</option>
+								  <option value="maybe">Yes, I use it sometimes</option>
+								  <option value="no">No</option>
+								</select>
+							</div>
+
+							<!-- Public Transit -->
+							Do you use public transit?
+							<div class="form-group">
+								<select class="combobox" id="TransitUse" onChange="face.updateDataWrap('transit')">
+								  <option></option>
+								  <option value="yes">Yes, I use it daily</option>
+								  <option value="maybe">Yes, I use it sometimes</option>
+								  <option value="no">No</option>
+								</select>
+							</div>
+							<!-- Public Events -->
+							How often do you attend public events?
+							<div class="form-group" id="EventUse" onChange="face.updateDataWrap('events')">
+								<select class="combobox">
+								  <option></option>
+								  <option value="weekly">Weekly</option>
+								  <option value="monthly">Monthly</option>
+								  <option value="sometimes">Sometimes</option>
+								  <option value="never">Never</option>
+								</select>
+							</div>
+
+							<!-- Income -->
+							What is your Income Level?
 							<div class="field form-group">
-                                    Income Level?<input type="range" min="1" max="5" id="IncLevel" value ="1">
+                                <input type="range" min="1" max="5" id="IncLevel" value ="1">
 							</div>							
-                            <div class="field form-group">
-                                    Social Media Use?<input type="range" min="1" max="5" id="SMULevel" value ="1">
+
+							<!-- Social Media button -->
+							How important is Social Media to you?
+							<div class="form-group">
+								<select class="combobox" id="SMUse" onChange="face.updateDataWrap('smuse')">
+								  <option></option>
+								  <option value="daily">I use it daily - it is essential for my social life or business</option>
+								  <option value="often">I use it often - it is not essential for my social life or business</option>
+								  <option value="occasionally">I use it occasionally</option>
+								  <option value="no">I do not use any social media</option>
+								</select>
 							</div>
+
+							<!-- Social Media followers -->
+							How many friends or followers do you have on social media?
 							<div class="field form-group">
-							  Do you own a car? <select id="CarUse" class="btn btn-default dropdown-toggle" aria-expanded="false" onChange="face.updateCarData()">
-							     <span class="caret"></span>
-							  <ul class="dropdown-menu">
-							    <li><option value="yes">Yes, I use it daily</option></li>
-							    <li><option value="maybe">Yes, I use it sometimes</option></li>
-							    <li><option value="no">No</option></li>
-							  </ul>
-                              </select>
+                                    <input type="range" min="1" max="5" id="SMULevel" value ="1">
 							</div>
-							<!-- Public Transit button -->
-							<div class="field form-group">
-							  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							    Do you use public transit? <span class="caret"></span>
-							  </button>
-							  <ul class="dropdown-menu">
-							    <li><a href="#">Yes, I use it daily</a></li>
-							    <li><a href="#">Yes, I use it sometimes</a></li>
-							    <li><a href="#">No</a></li>
-							  </ul>
-							</div>
-							<!-- Public Events button -->
-							<div class="field form-group">
-							  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							    How often do you attend public events?  <span class="caret"></span>
-							  </button>
-							  <ul class="dropdown-menu">
-							    <li><a href="#">Weekly</a></li>
-							    <li><a href="#">Monthly</a></li>
-							    <li><a href="#">Sometimes</a></li>
-							    <li><a href="#">Never</a></li>
-							  </ul>
-							</div>
-							<!-- Income button -->
-							<div class="field form-group">
-							  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							    What is your income bracket?  <span class="caret"></span>
-							  </button>
-							  <ul class="dropdown-menu">
-							    <li><a href="#">Low</a></li>
-							    <li><a href="#">Low-Medium</a></li>
-							    <li><a href="#">Medium</a></li>
-							    <li><a href="#">High-Medium</a></li>
-							    <li><a href="#">High</a></li>
-							  </ul>
-							</div>
-							<!-- Income button -->
-							<div class="field form-group">
-							  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							    How important is Social Media to you?  <span class="caret"></span>
-							  </button>
-							  <ul class="dropdown-menu">
-							    <li><a href="#">I use it daily - it is essential for my social life or business</a></li>
-							    <li><a href="#">I use it often - it is not essential for my social life or business</a></li>
-							    <li><a href="#">I use it occasionally</a></li>
-							    <li><a href="#">I do not use any social media</a></li>
-							  </ul>
-							</div>
+
+
+							<script type="text/javascript">
+							  /*$(document).ready(function(){
+							     $('.combobox').combobox();
+							  });*/
+							</script>
 						</div>
 						<!-- Put the image here? -->
 						<div class="span6">
-							<div></div>
-							<div id="dots"></div>
+				            <div id="dots"></div>
+                            <script type="text/javascript" src="js/face/face-wrapper.js"></script>
+						</div>
 						</div>
 					</div>
 				</form>
@@ -216,7 +220,6 @@
 	</div>
 </div>
 </section>
-
 
 <!-- section: team -->
 <section id="about" class="section">
@@ -307,24 +310,47 @@
 <!-- section: services -->
 <section id="services" class="section orange">
 <div class="container">
-	<div class="row">
-        <div class="span12">
+	<h4>Services</h4>
 	<!-- Four columns -->
-        <div class="span12">
-        <div class="election-wrapper">
-            <div id="sankey"></div>
-            <p>Technology Information:</p>
-            <div id="techinfo" class="text" style="display:none;">
-            <p>Blah Blah Blah.</p>
-                <script type="text/javascript" src="js/sankey/sankey-wrapper.js"></script>
-            </div>
-        </div>
-            </div>
-        <div class="span6">HELLLO BITCH</div>
-        </div>
-    </div>
+	<div class="row">
+		<div class="span3 animated-fast flyIn">
+			<div class="service-box">
+				<img src="img/icons/laptop.png" alt="" />
+				<h2>Web design</h2>
+				<p>
+					 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+				</p>
+			</div>
+		</div>
+		<div class="span3 animated flyIn">
+			<div class="service-box">
+				<img src="img/icons/lab.png" alt="" />
+				<h2>Web development</h2>
+				<p>
+					 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+				</p>
+			</div>
+		</div>
+		<div class="span3 animated-fast flyIn">
+			<div class="service-box">
+				<img src="img/icons/camera.png" alt="" />
+				<h2>Photography</h2>
+				<p>
+					 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+				</p>
+			</div>
+		</div>
+		<div class="span3 animated-slow flyIn">
+			<div class="service-box">
+				<img src="img/icons/basket.png" alt="" />
+				<h2>Ecommerce</h2>
+				<p>
+					 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+				</p>
+			</div>
+		</div>
+	</div>
 </div>
-    
 </section>
 <!-- end section: services -->
 <!-- section: works -->
@@ -513,7 +539,7 @@
 </div>
 </section>
 <!-- spacer section -->
-<section class="spacer bg3">
+<section class="spacer bg4">
 <div class="container">
 	<div class="row">
 		<div class="span12 aligncenter flyLeft">
@@ -625,10 +651,13 @@
 	<div class="row">
 		<div class="span6 offset3">
 			<ul class="social-networks">
+				<li><a href="#"><i class="icon-circled icon-bgdark icon-instagram icon-2x"></i></a></li>
 				<li><a href="#"><i class="icon-circled icon-bgdark icon-twitter icon-2x"></i></a></li>
+				<li><a href="#"><i class="icon-circled icon-bgdark icon-dribbble icon-2x"></i></a></li>
+				<li><a href="#"><i class="icon-circled icon-bgdark icon-pinterest icon-2x"></i></a></li>
 			</ul>
 			<p class="copyright">
-				&copy; Oakland Privacy Project. All rights reserved.
+				&copy; Maxim Theme. All rights reserved.
                 <div class="credits">
                     <!-- 
                         All the links in the footer should remain intact. 
@@ -636,7 +665,7 @@
                         Licensing information: https://bootstrapmade.com/license/
                         Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Maxim
                     -->
-                    <a href="https://bootstrapmade.com/">Powered by Bootstrap</a>
+                    <a href="https://bootstrapmade.com/">Free Bootstrap Themes</a> by BootstrapMade.com
                 </div>
 			</p>
 		</div>
@@ -645,7 +674,6 @@
 <!-- ./container -->
 </footer>
 <a href="#" class="scrollup"><i class="icon-angle-up icon-square icon-bgdark icon-2x"></i></a>
-
 
 </body>
 </html>
