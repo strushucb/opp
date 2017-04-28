@@ -15,6 +15,14 @@
   <!-- Ant Path animations -->
   <script src="/libs/leaflet-ant-path.js"></script>
 
+  <!-- data sources -->
+  <!-- src: http://catalog.opendata.city/dataset/california-counties-polygon/resource/6f805645-0836-478d-b168-c1f72d53b4f3 -->
+  <script type="text/javascript" src="data/CA_counties.json"></script>
+  <!-- src: http://catalog.civicdashboards.com/dataset/541573bc-3e3f-4ab0-be55-80e002c4e7bf/resource/4d58b8e8-a067-4285-ae4b-136faf8d7f06/download/919bbd6cf880459dabcc4d781dbde59btemp.geojson -->
+  <script type="text/javascript" src="data/CA_cities.json"></script>
+  <script type="text/javascript" src="data/coords.json"></script>
+  <script type="text/javascript" src="jquery.js"></script>
+
 </head>
 
 <style>
@@ -34,39 +42,29 @@
 
 </style>
 
-<body>
+  <body>
 
-<div id="mapid" style="width: 600px; height: 800px;"></div>
+    <div id="mapid" style="width: 600px; height: 800px;"></div>
 
-<!-- data sources -->
-<!-- src: http://catalog.opendata.city/dataset/california-counties-polygon/resource/6f805645-0836-478d-b168-c1f72d53b4f3 -->
-<!-- <script type="text/javascript" src="data/CA_counties.json"></script> -->
-<!-- http://catalog.civicdashboards.com/dataset/541573bc-3e3f-4ab0-be55-80e002c4e7bf/resource/4d58b8e8-a067-4285-ae4b-136faf8d7f06/download/919bbd6cf880459dabcc4d781dbde59btemp.geojson -->
-<script type="text/javascript" src="data/CA_cities.json"></script>
-<!-- <script type="text/javascript" src="latLng.json"></script> -->
-<script type="text/javascript" src="jquery.js"></script>
-<script type="text/javascript" src="coords.json"></script>
-
-</script>
 
 <script>
 
-//TODO: JSON Data structures
 //TODO: Add department markers and labels
 //TODO: Create line layer groups (panes) by program / styling
 //TODO: Interactions - buttons, highlighting
 
-
   // copy data to generic variable
-  var data = citiesCA
-
-  // Set boundaries to lock view and zoom
+  var cities = citiesCA
+  var counties = countiesCA
+  // Create map
   var map = L.map('mapid', {
+    // Options to lock zoom
     zoomControl:false,
     //minZoom:10,
     //maxZoom:10
   }).setView([37.7, -122.2], 10);
   var bounds = map.getBounds();
+  // Option to lock view boundary
   //map.setMaxBounds(bounds);
 
   // Get mapbox layers
@@ -78,12 +76,12 @@
     accessToken: 'pk.eyJ1IjoicGV0ZXJyb3dsYW5kIiwiYSI6ImNqMXJ5ZHoxeTAwOXMycW12cHVrMnh2MTAifQ.JzTXpmB_mNcuiWqUYyXH8Q'
   }).addTo(map);
 
-  // To layers from cartoDB instead
+  // To get layers from cartoDB instead
   // L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png', {
   //   attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attribution">CARTO</a>'
   // }).addTo(map);
 
-  // styling
+  // Styling for county / city outlines
   function style(feature) {
       return {
           // fillColor: getColor(feature.properties.density),
@@ -96,10 +94,8 @@
       };
   }
 
-  // geoJSON layer variable
-  var geojson;
-
   // highlighting on hover listener
+  var lastLayer;
   function highlightFeature(e) {
       var layer = e.target;
 
@@ -113,6 +109,7 @@
 
       // send layer properties to info control
       info.update(layer.feature.properties);
+      lastLayer = layer;
 
       // compatibility
       if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
@@ -122,7 +119,11 @@
 
   // reset highlight listener
   function resetHighlight(e) {
-      geojson.resetStyle(e.target);
+      layer = e.target
+      layer.setStyle(
+        style(layer)
+      );
+      //geojson.resetStyle(e.target);
 
       // reset info control
       info.update();
@@ -154,8 +155,7 @@
       'Hover over a city');
   };
 
-  // lines
-
+  // Polyline styling
   var polylineOptions = {
     color: 'blue',
     weight: 2,
@@ -163,42 +163,45 @@
     zIndex: 1
   };
 
+  // Polyline variable
   var ncric_lines = [];
-
   // Load all coordinate values
   Object.keys(coords).forEach(function(key) {
     ncric_lines.push(new L.Polyline([coords[key], coords.ncric], polylineOptions));
   });
 
-  console.log(ncric_lines);
+  // Create Layer Group for lines
+  var ncricLayer = L.layerGroup(ncric_lines);
+  map.addLayer(ncricLayer);
 
-  // var oak_acda = new L.Polyline([coords.Oakland, coords.NCRIC], polylineOptions);
-  // var sf_acda = new L.Polyline([coords.SanFrancisco, coords.NCRIC], polylineOptions);
-  // Note: AntPath doesn't support layer toggling
-  // var polyline = new L.Polyline.AntPath(oaklandToAlameda, polylineOptions);
-  // var polyline2 = new L.Polyline.AntPath(sfToAlameda, polylineOptions);
-
-  var lineLayer = L.layerGroup(ncric_lines);
-  map.addLayer(lineLayer);
-
-  // draw boundaries object and draw map
-  geojson = L.geoJson(data, {
+  // geoJSON layer variable
+  var gj_counties;
+  gj_counties = L.geoJson(counties, {
       style: style,
       onEachFeature: onEachFeature
   });
-  map.addLayer(geojson);
 
+  var gj_cities;
+  gj_cities = L.geoJson(cities, {
+      style: style,
+      onEachFeature: onEachFeature
+  });
+
+  // Political boundary layer
+  map.addLayer(gj_counties);
+
+  // Layer Groups
   var overlayMaps = {
-    "lines": lineLayer
+    "lines": ncricLayer
   };
 
   var baseMaps = {
-    "cities": geojson
+    "cities": gj_cities,
+    "counties": gj_counties
   };
 
-  // Create a control for layers on the map
-  // Note: first group always radio buttons, second is toggle
-  L.control.layers(overlayMaps, baseMaps).addTo(map);
+  // Layer toggle control
+  L.control.layers(baseMaps, overlayMaps).addTo(map);
 
   // put control onto map
   info.addTo(map);
