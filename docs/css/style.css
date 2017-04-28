@@ -371,7 +371,7 @@ header .logo {
 
 /* --- Header slider --- */
 #header-wrapper.header-slider {
-	background: #444 url(../img/bg/bg-3.jpg) no-repeat center center fixed;
+	background: #444 url(../img/bg/bg-7.jpg) no-repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -380,13 +380,24 @@ header .logo {
 
 #main-flexslider ul.slides li p {
 	font-size: 72px;
-	text-transform: uppercase;
+	/*text-transform: uppercase;*/
 	position: relative;
 	margin-bottom: 0px;
 	text-align: center;
 	line-height: 1;
 	color:#fff;
 }
+
+#main-flexslider ul.slides li p.team-name {
+	font-size: 40px;
+	position: relative;
+	margin-bottom: 0px;
+	text-align: center;
+	line-height: 1;
+	color:#fff;
+	padding-bottom: 40px;
+}
+
 #main-flexslider.flexslider {
 		margin:0;
 		background:none;
@@ -460,10 +471,14 @@ section.inner {
 
 
 
-.section.orange h4 ,.section.green h4{
+.section.orange h4 ,.section.green,.section.yellow h4{
 	color: #fcfcfc;
 }
 .section.orange p,.section.green p {
+	color: #f7f7f7;
+}
+
+.section.orange a,.section.green a {
 	color: #f7f7f7;
 }
 
@@ -483,11 +498,15 @@ section.spacer {
 	color:#fff;
 }
 
-.spacer.yellow,.section.yellow  {
-	background:#ffe873;
+.spacer.yelloxw,.section.yellow  {
+	background:#FAAF4C;
 }
 .spacer.orange,.section.orange {
 	background:#f36f36;
+}
+
+.spacer.blue,.section.blue {
+	background:#2A3B8E;
 }
 
 section.spacer.bg2 {
@@ -499,6 +518,13 @@ section.spacer.bg2 {
 
 section.spacer.bg3 {
 	background: url(../img/bg/bg-3.jpg) 50% 0 no-repeat fixed;
+	width:100%;
+	height:auto;
+	margin:0;	
+}
+
+section.spacer.bg4 {
+	background: url(../img/bg/lights_night_city_blurring.jpg) 50% 0 no-repeat fixed;
 	width:100%;
 	height:auto;
 	margin:0;	
@@ -725,18 +751,18 @@ section.spacer blockquote cite {
 
 /* === section services === */
 
-section#services h2 {
+section#tech h2 {
 	font-size: 22px;
 	margin-bottom: 15px;
 	margin-top: 10px;
 	text-align:center;
 }
-section#services p {
+section#tech p {
 	margin:10px;
 }
 
 
-section#services .service-box {
+section#tech .service-box {
 	text-align: center;
 	padding: 20px;
 	-webkit-transition: all 0.3s ease-in-out;
@@ -745,25 +771,29 @@ section#services .service-box {
 	-ms-transition: all 0.3s ease-in-out;
 	transition: all 0.3s ease-in-out;
 }
-section#services .span3:hover {
+section#tech .span2:hover {
 	background:#e3e3e3;
 }
 
-section#services .service-box h2 {
+section#tech .service-box h2 {
 	color: #f7f7f7;
 	font-weight: 700;
 }
 
-section#services.section.orange .service-box:hover {
+section#tech.section.orange .service-box:hover {
 	background:#f36518;
 }
 
 
-/* === section blog === */
+/* === section Involved/blog === */
 
 section#blog {
 	background: #f2f2f2;
 }
+
+/*section#involved {
+	background: #f2f2f2;
+}*/
 
 .home-post {
 	background:#fff;
@@ -824,11 +854,11 @@ section#blog {
 
 
 
-/* === section about === */
+/* === section Tech/about === */
 
-section#about {
+/*section#tech {
 	background:#f2f2f2;
-}
+}*/
 
 .people {
 	text-align:center;
@@ -884,10 +914,10 @@ section#about {
 	margin-right:20px;
 }
 
-/* === Contact section === */
+/* === Contact section/Quiz Section === */
 
 
-/* Contact Form */
+/* Contact/Quiz Form */
 
 .validation {
     color: red;
@@ -927,6 +957,10 @@ section#about {
 	position: relative;
 	z-index: 999;
 }
+#quiz-form {
+	position: relative;
+	z-index: 999;
+}
 
 #contact-form input[type=text], .contactForm textarea {
 	background: rgba(227, 231, 228, 1);
@@ -937,7 +971,20 @@ section#about {
 	vertical-align: middle;
 }
 
+#quiz-form input[type=text], .quizForm textarea {
+	background: rgba(227, 231, 228, 1);
+	font-family: 'Open Sans', sans serif;
+	border: 0;
+	font-size:16px;
+	text-align: left;
+	vertical-align: middle;
+}
+
 .contactForm textarea {
+	height: 156px;
+}
+
+.quizForm textarea {
 	height: 156px;
 }
 
@@ -951,10 +998,21 @@ section#about {
 	-moz-transition: background 0.25 ease-in;
 	-webkit-transition: background 0.25 ease-in;
 }
-#contact-form input[type=text] {
+
+#quiz-form input[type=text]:focus, .quizForm textarea:focus {
+	background: #fff;
+	color: #555;
+	box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	transition: background 0.25 ease-in;
+	-moz-transition: background 0.25 ease-in;
+	-webkit-transition: background 0.25 ease-in;
+#quiz-form input[type=text] {
 	height: 60px;
 	margin-bottom:30px;
 }
+
 #contact-form input[type=submit] {
 	color: #fff;
 	width: 185px;
@@ -974,12 +1032,45 @@ section#about {
 	-moz-box-shadow: none;
 	-webkit-box-shadow: none;
 }
+
+#quiz-form input[type=submit] {
+	color: #fff;
+	width: 185px;
+	height: 60px;
+	text-shadow: none;
+	font-size: 16px;
+	padding:0.5em;
+	letter-spacing: 0.05em;
+	margin: 0 0 20px 0;
+	display: block;
+	border: 0;
+	text-transform: none;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+}
+
+
 #contact-form input[type=submit]:hover, #contact-form input[type=submit]:active {
 	background: #43413e !important;
 }
+
+#quiz-form input[type=submit]:hover, #quiz-form input[type=submit]:active {
+	background: #43413e !important;
+}
+
 #contact-form textarea {
 	padding-top: 1em;
 }
+
+#quiz-form textarea {
+	padding-top: 1em;
+}
+
+
 div.cform-response-output {
 	max-width: 60%;
 	text-align: center;
@@ -1673,10 +1764,10 @@ i.icon-white {
  display: block;
 }
 
- section#services h2 {
+ section#tech h2 {
  margin-bottom: 0.25em;
 }
- section#services h2, section#services ul {
+ section#tech h2, section#tech ul {
  text-align: center;
 }
 		
@@ -1705,4 +1796,56 @@ i.icon-white {
 	#contact-form input[type=submit] {
 		width: 100%;
 	}
+}
+
+
+/* combobox */
+@media (min-width: 768px) {
+  .form-search .combobox-container,
+  .form-inline .combobox-container {
+    display: inline-block;
+    margin-bottom: 0;
+    vertical-align: top;
+  }
+  .form-search .combobox-container .input-group-addon,
+  .form-inline .combobox-container .input-group-addon {
+    width: auto;
+  }
+}
+.combobox-selected .caret {
+  display: none;
+}
+/* :not doesn't work in IE8 */
+.combobox-container:not(.combobox-selected) .glyphicon-remove {
+  display: none;
+}
+.typeahead-long {
+  max-height: 300px;
+  overflow-y: auto;
+}
+.control-group.error .combobox-container .add-on {
+  color: #B94A48;
+  border-color: #B94A48;
+}
+.control-group.error .combobox-container .caret {
+  border-top-color: #B94A48;
+}
+.control-group.warning .combobox-container .add-on {
+  color: #C09853;
+  border-color: #C09853;
+}
+.control-group.warning .combobox-container .caret {
+  border-top-color: #C09853;
+}
+.control-group.success .combobox-container .add-on {
+  color: #468847;
+  border-color: #468847;
+}
+.control-group.success .combobox-container .caret {
+  border-top-color: #468847;
+}
+
+
+.form-group {
+	padding-bottom: 10px;
 }

@@ -10,15 +10,15 @@ Ant-path animation of poly lines:
 https://rubenspgcavalcante.github.io/leaflet-ant-path/
 
 
-Center Coordinates:
-Alameda County: 37.6017° N, 121.7195° W
-Contra Costa County: 37.8534° N, 121.9018° W
-San Francisco County: 37.7749° N, 122.4194° W
+County Center Coordinates:
 
+City Center Coordinates:
 Oakland: 37.8044° N, 122.2711° W
 Fremont: 37.5483° N, 121.9886° W
 San Francisco: 37.7749° N, 122.4194° W
 
+Alameda County Sheriff: 37.801261,-122.262975
 
+Fusion Centers:
 NICRIC: 37.7820212, -122.4206751
 Bay Area UASI: 37.7821445,-122.4235457
