@@ -98,7 +98,6 @@
   }
 
   // highlighting on hover listener
-  var lastLayer;
   function highlightFeature(e) {
       var layer = e.target;
 
@@ -112,7 +111,6 @@
 
       // send layer properties to info control
       info.update(layer.feature.properties);
-      lastLayer = layer;
 
       // compatibility
       if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
@@ -188,7 +186,13 @@
   });
 
   // Create Layer Groups
-  var ncricLayer = L.layerGroup(ncric_lines);
+  // var ncricLayer = L.layerGroup(ncric_lines);
+  var ncricLayer = L.featureGroup(ncric_lines)
+    .bindPopup("hello world!")
+    .on('mouseover', function(e) {
+      e.target.setStyle(style(e.target)); })
+    .addTo(map);
+
   var marker_layer = L.layerGroup(markers);
   //map.addLayer(ncricLayer);
   ncricLayer.addTo(map);
