@@ -70,6 +70,10 @@
   // Option to lock view boundary
   //map.setMaxBounds(bounds);
 
+  // Create pane for lines and set high z-index
+  map.createPane('lines');
+  map.getPane('lines').style.zIndex = 650;
+
   // Get mapbox layers
   L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
     attribution: 'Map description',
@@ -139,6 +143,8 @@
       });
   }
 
+
+
   // highlight info control
   var info = L.control();
 
@@ -187,14 +193,13 @@
 
   // Create Layer Groups
   // var ncricLayer = L.layerGroup(ncric_lines);
-  var ncricLayer = L.featureGroup(ncric_lines)
-    .bindPopup("hello world!")
-    .on('mouseover', function(e) {
-      e.target.setStyle(style(e.target)); })
-    .addTo(map);
+  var ncricLayer = L.featureGroup(ncric_lines, {
+      style: style,
+      onEachFeature: onEachFeature,
+      pane: 'lines'
+  });
 
   var marker_layer = L.layerGroup(markers);
-  //map.addLayer(ncricLayer);
   ncricLayer.addTo(map);
   map.addLayer(marker_layer);
 
@@ -216,16 +221,13 @@
 
   // Layer Groups
   var overlayMaps = {
-    "lines": ncricLayer
-  };
-
-  var baseMaps = {
+    "lines": ncricLayer,
     "cities": gj_cities,
     "counties": gj_counties
   };
 
   // Layer toggle control
-  L.control.layers(baseMaps, overlayMaps).addTo(map);
+  L.control.layers(null, overlayMaps).addTo(map);
 
   // put control onto map
   info.addTo(map);
