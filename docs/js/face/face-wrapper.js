@@ -39,7 +39,7 @@
           function basicLoad(location) {
             var possible; 
             if(num == 0){
-                possible = "persona"+(Math.ceil(Math.random() * 4));
+                possible = "persona" +(Math.ceil(Math.random() * 4));
             }else
                 possible = "persona"+num;
             var file = 'img/team/' + possible + '.jpg'
