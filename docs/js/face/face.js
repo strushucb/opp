@@ -483,6 +483,43 @@ function run_persona() {
             this.parentNode.appendChild(this);
         });
     }
+   
+    function write_report_blurb(x, y, text){
+        var titlekey,blurb,split_blurb;
+        titlekey = text.replace(/\s+/g, '-').toLowerCase();
+        blurb = scores.information_categories[titlekey];
+        split_blurb = blurb.split(" ");
+        var result = "";
+        var char_count = 0;
+        line = 0;
+
+        for(var i = 0; i < split_blurb.length; i++){
+            if(char_count > 27){
+                vis.append("text")
+                .attr("class","shitstain-text")
+                .attr("x", x)
+                .attr("y", y+ (20*(line+1)))
+                .style("fill", "white")
+                .style("font-size","smaller")
+                .text(function(d){return result;});
+                result = "";
+                char_count = 0;
+                line++;
+            }
+            result = result + " "+split_blurb[i];
+            char_count = char_count + split_blurb[i].length;
+            //console.log(result);
+        }
+        if(char_count > 0){
+             vis.append("text")
+                    .attr("class","shitstain-text")
+                    .attr("x", x)
+                    .attr("y", y+ (20*(line+1)))
+                    .style("fill", "white")
+                    .style("font-size","smaller")
+                    .text(function(d){return result;});
+        }
+    }
       
     function generate_reports(x,y,text,tx,ty){
         vis.append("svg:rect")
@@ -495,6 +532,7 @@ function run_persona() {
         .attr("width", maxSize / 2);
 
         generate_titles(tx,ty,text,"white", "shitstain-text");
+        write_report_blurb(x+20,y+60,text);
     }  
       
     function onMouseMove() {
