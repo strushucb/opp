@@ -33,18 +33,7 @@
 <script src="js/custom.js"></script>   
 <script src="js/bootstrap-combobox.js"></script>
 <!--[if gte IE 9]><!-->
-<script type="text/javascript" src="js/face/d3.min.js"></script>
-<script type="text/javascript" src="js/face/d3.v3.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
-<script type="text/javascript" src="js/face/face.js"></script>
 
-<!--<![endif]-->
-<link rel="stylesheet3" type="text/css" href="css/face.css"/>
-<link rel="stylesheet2" type="text/css" href="css/sankey.css">
-<script type="text/javascript" src="https://cdn.rawgit.com/Caged/d3-tip/master/index.js"></script>
-<script type="text/javascript" src="js/sankey/alluvial-growth.js"></script>
-<script type="text/javascript" src="js/sankey/sankey.js"></script>
 
 <!-- =======================================================
     Theme Name: Maxim
@@ -62,7 +51,7 @@
 				<!-- Responsive navbar -->
 				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
 				</a>
-				<h1 class="brand"><a href="index.html">Stinkray</a></h1>
+				<h1 class="brand"><a href="index.html">Bay Area Surveillance</a></h1>
 				<!-- navigation -->
 				<nav class="pull-right nav-collapse collapse">
 				<ul id="menu-main" class="nav">
@@ -91,13 +80,11 @@
 					<ul class="slides">
 						<li>
 						<p class="home-slide-content">
-							<strong>Team</strong> name
+							<strong>The Bay Area Surveillance Project</strong>
 						</p>
+                            <br>
 						<p class="team-name">
-							Steve, Peter, Michelle
-						</p>
-						<p class="team-name">
-							An investigation on surveillance
+							A Resource for Cities and Citizens
 						</p>
 <!-- 						</li>
 						<li>
@@ -130,130 +117,136 @@
 	<div class="row">
 		<div class="span12">
 					<div class="row">
-						<div class="span6">
-							<!-- combobox from https://github.com/danielfarrell/bootstrap-combobox -->
-							<!-- Cell Phone -->
-							Do you use a cell phone?
-							<div class="form-group">
-								<select class="combobox" id="CellUse" onChange="face.updateDataWrap('cell')">
-								  <option></option>
-								  <option value="yes">Yes</option>
-								  <option value="no">No</option>
-								</select>
-							</div>
+						<div class="span6" style="font-size:smaller">
+                            <div class ="row" style="margin-bottom:0px">
+                                <div class="span3">
+                                <!-- combobox from https://github.com/danielfarrell/bootstrap-combobox -->
+                                <!-- Cell Phone -->
+                                Do you use a cell phone?
+                                <div class="form-group">
+                                    <select class="combobox" id="CellUse" onChange="face.updateDataWrap('cell')">
+                                      <option></option>
+                                      <option value="yes">Yes</option>
+                                      <option value="no">No</option>
+                                    </select>
+                                </div>
 
-							<!-- Car -->
-							Do you own a car?
-							<div class="form-group">
-								<select class="combobox" id="CarUse" onChange="face.updateDataWrap('car')">
-								  <option></option>
-								  <option value="yes">Yes, I use it daily</option>
-								  <option value="maybe">Yes, I use it sometimes</option>
-								  <option value="no">No</option>
-								</select>
-							</div>
+                                <!-- Car -->
+                                Do you own a car?
+                                <div class="form-group">
+                                    <select class="combobox" id="CarUse" onChange="face.updateDataWrap('car')">
+                                      <option></option>
+                                      <option value="yes">Yes, I use it daily</option>
+                                      <option value="maybe">Yes, I use it sometimes</option>
+                                      <option value="no">No</option>
+                                    </select>
+                                </div>
 
-							<!-- Public Transit -->
-							Do you use public transit?
-							<div class="form-group">
-								<select class="combobox" id="TransitUse" onChange="face.updateDataWrap('transit')">
-								  <option></option>
-								  <option value="yes">Yes, I use it daily</option>
-								  <option value="maybe">Yes, I use it sometimes</option>
-								  <option value="no">No</option>
-								</select>
-							</div>
-							<!-- Public Events -->
-							How often do you attend public events?
-							<div class="form-group" id="EventUse" onChange="face.updateDataWrap('events')">
-								<select class="combobox">
-								  <option></option>
-								  <option value="weekly">Weekly</option>
-								  <option value="monthly">Monthly</option>
-								  <option value="sometimes">Sometimes</option>
-								  <option value="never">Never</option>
-								</select>
-							</div>
+                                <!-- Public Transit -->
+                                Do you use public transit?
+                                <div class="form-group">
+                                    <select class="combobox" id="TransitUse" onChange="face.updateDataWrap('transit')">
+                                      <option></option>
+                                      <option value="yes">Yes, I use it daily</option>
+                                      <option value="maybe">Yes, I use it sometimes</option>
+                                      <option value="no">No</option>
+                                    </select>
+                                </div>
+                                <!-- Public Events -->
+                                How often do you attend public events?
+                                <div class="form-group" >
+                                    <select class="combobox" id="EventUse" onChange="face.updateDataWrap('events')">
+                                      <option></option>
+                                      <option value="weekly">Weekly</option>
+                                      <option value="monthly">Monthly</option>
+                                      <option value="sometimes">Sometimes</option>
+                                      <option value="never">Never</option>
+                                    </select>
+                                </div>
 
-							<!-- Income -->
-							What is your Income Level?
-							<div class="field form-group">
-                                <input type="range" min="1" max="5" id="IncLevel" value ="1">
-							</div>							
+                                <!-- Income -->
+                                What is your household income level?
+                                <div class="field form-group">
+                                    0 <input type="range" min="1" max="5" id="IncLevel" value ="1"> &gt; $250K
+                                </div>							
 
-							<!-- Social Media button -->
-							How important is Social Media to you?
-							<div class="form-group">
-								<select class="combobox" id="SMUse" onChange="face.updateDataWrap('smuse')">
-								  <option></option>
-								  <option value="daily">I use it daily - it is essential for my social life or business</option>
-								  <option value="often">I use it often - it is not essential for my social life or business</option>
-								  <option value="occasionally">I use it occasionally</option>
-								  <option value="no">I do not use any social media</option>
-								</select>
-							</div>
+                                <!-- Social Media button -->
+                                How important is social media to you?
+                                <div class="form-group">
+                                    <select class="combobox" id="SMUse" onChange="face.updateDataWrap('smuse')">
+                                      <option></option>
+                                      <option value="daily">I use it daily - it is essential for my social life or business</option>
+                                      <option value="often">I use it often - it is not essential for my social life or business</option>
+                                      <option value="occasionally">I use it occasionally</option>
+                                      <option value="no">I do not use any social media</option>
+                                    </select>
+                                </div>
 
-							<!-- Social Media followers -->
-							How many friends or followers do you have on social media?
-							<div class="field form-group">
-                                    <input type="range" min="1" max="5" id="SMULevel" value ="1">
-							</div>
+                                <!-- Social Media followers -->
+                                How many friends or followers do you have on social media?
+                                <div class="field form-group">
+                                        0 <input type="range" min="1" max="5" id="SMULevel" value ="1" > &gt; 2000
+                                </div>
+    
+                                <b>Or select a Bay Area resident to view their profile:</b>
+                            </div>
+                            <div class="span3" style="height: 400px;" id="bio">
+                            </div>
+                        </div>
+                <div class="row" style="margin-bottom:0px">
 
-                                <div class="row">
+                    <div class="span1 flyIn">
+                        <div class="people">
+                            <input type="image" class="team-thumb img-circle" src="img/team/persona1.jpg" style="height:80px;width:80px" onclick="newImage(1)" onMouseOver="this.src=src='img/team/persona1_d.jpg'" onMouseOut="this.src=src='img/team/persona1.jpg'">
+                            <!--<img class="team-thumb img-circle" src="img/team/persona1.jpg" alt="" />-->
+                            <p>
+                                Matthew
+                            </p>
+                        </div>
+                    </div>
+                    <div class="span1 flyIn">
+                        <div class="people">
+                            <input type="image" class="team-thumb img-circle" src="img/team/persona2.jpg" style="height:80px;width:80px" onclick="newImage(2)" onMouseOver="this.src=src='img/team/persona2_d.jpg'" onMouseOut="this.src=src='img/team/persona2.jpg'">
+                            <!--<img class="team-thumb img-circle" src="img/team/persona2.jpg" alt="" />-->
+                            <p>
+                                Luke
+                            </p>
+                        </div>
+                    </div>
+                    <div class="span1 flyIn">
+                        <div class="people">
+                            <input type="image" class="team-thumb img-circle" src="img/team/persona3.jpg" style="height:80px;width:80px" onclick="newImage(3)" onMouseOver="this.src=src='img/team/persona3_d.jpg'" onMouseOut="this.src=src='img/team/persona3.jpg'">
+                            <!-- <img class="team-thumb img-circle" src="img/team/persona3.jpg" alt="" /> -->
+                            <p>
+                                Mark
+                            </p>
+                        </div>
+                    </div>
+                    <div class="span1 flyIn">
+                        <div class="people">
+                            <input type="image" class="team-thumb img-circle" src="img/team/persona4.jpg" style="height:80px;width:80px" onclick="newImage(4)" onMouseOver="this.src=src='img/team/persona4_d.jpg'" onMouseOut="this.src=src='img/team/persona4.jpg'">
+                            <!-- <img class="team-thumb img-circle" src="img/team/persona4.jpg" alt="" /> -->
+                            <p>
+                                John
+                            </p>
+                        </div>
+                    </div>
+	           </div>
 
-		<div class="span1 flyIn">
-			<div class="people">
-				<img class="team-thumb img-circle" src="img/team/img-2.jpg" alt="" />
-				<p>
-					Matthew
-				</p>
-			</div>
-		</div>
-		<div class="span1 flyIn">
-			<div class="people">
-				<img class="team-thumb img-circle" src="img/team/img-3.jpg" alt="" />
-				<p>
-					Luke
-				</p>
-			</div>
-		</div>
-		<div class="span1 flyIn">
-			<div class="people">
-				<img class="team-thumb img-circle" src="img/team/img-1.jpg" alt="" />
-				<p>
-					Mark
-				</p>
-			</div>
-		</div>
-		<div class="span1 flyIn">
-			<div class="people">
-				<img class="team-thumb img-circle" src="img/team/img-4.jpg" alt="" />
-				<p>
-					John
-				</p>
-			</div>
-		</div>
-	</div>
-							<script type="text/javascript">
-							  /*$(document).ready(function(){
-							     $('.combobox').combobox();
-							  });*/
-							</script>
-						</div>
+            </div>
+                        
+						
 						<!-- Put the image here? -->
 						<div class="span6">
 				            <div id="dots"></div>
-                            <script type="text/javascript" src="js/face/face-wrapper.js"></script>
+
                             <p style="font-size:smaller">More circles indicate that more data may be collected by certain surveillance technologies, creating a clearer picture of who you are for the technology operator.</p>
 						</div>
 						</div>
-					</div>
-				</form>
+            </div>
+        		<!-- ./span12 -->
 			</div>
 		</div>
-		<!-- ./span12 -->
-	</div>
-</div>
 </section>
 <!-- section: form -->
 
@@ -344,7 +337,7 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="js/sankey/sankey-wrapper.js"></script>
+
     
     <div class="row">
 		<div class="span2 offset1 flyIn">
@@ -733,3 +726,16 @@
 
 </body>
 </html>
+<script type="text/javascript" src="js/face/d3.min.js"></script>
+<script type="text/javascript" src="js/face/d3.v3.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+<script type="text/javascript" src="js/face/face.js"></script>
+<script type="text/javascript" src="js/face/face-wrapper.js"></script>
+<!--<![endif]-->
+<link rel="stylesheet3" type="text/css" href="css/face.css"/>
+<link rel="stylesheet2" type="text/css" href="css/sankey.css">
+<script type="text/javascript" src="https://cdn.rawgit.com/Caged/d3-tip/master/index.js"></script>
+<script type="text/javascript" src="js/sankey/alluvial-growth.js"></script>
+<script type="text/javascript" src="js/sankey/sankey.js"></script>
+    <script type="text/javascript" src="js/sankey/sankey-wrapper.js"></script>

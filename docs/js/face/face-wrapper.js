@@ -37,8 +37,12 @@
         }
 
           function basicLoad(location) {
-            var possible = ['persona'+num];
-            var file = 'img/' + possible[Math.floor(Math.random() * possible.length)] + '.jpg'
+            var possible; 
+            if(num == 0){
+                possible = "persona"+(Math.ceil(Math.random() * 4));
+            }else
+                possible = "persona"+num;
+            var file = 'img/team/' + possible + '.jpg'
             return {
               file: file,
               shownFile: location.protocol + '//' + location.host + location.pathname + file
@@ -81,11 +85,11 @@
             if (colorData) {
               face.makeCircles("#dots", colorData, null);
               //console.log("Loooad!2222!!!");
-              face.loadProfileData(0);
+              face.loadProfileData(num);
               //console.log("Loooad!3333!!!");
               //track('GoodLoad', 'Yay');
             }
           };
           img.src = file;
       };
-    newImage(1);
+    newImage(0);

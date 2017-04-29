@@ -109,12 +109,43 @@
   },
   "sample1": {
     "cell": "yes",
+    "car": "no",
+    "public-transit": "yes",
+    "public-events": "sometimes",
+    "income": 1,
+    "social-media": "often",
+    "social-connections": 3,
+    "quote": "Hello! I'm Matthew ispsum jipsum and jepsum, whatever you said I did I didn't do lorenlorem ispsum jipsum and jepsum, whatever you said I did I didn't do lorenlorem ispsum jipsum and jepsum, whatever you said I did I didn't do lorenlorem ispsum jipsum and jepsum, whatever you said I did I didn't do lorenlorem ispsum jipsum and jepsum, what..."
+  },
+  "sample2": {
+    "cell": "yes",
+    "car": "yes",
+    "public-transit": "no",
+    "public-events": "never",
+    "income": 4,
+    "social-media": "occasionally",
+    "social-connections": 2,
+    "quote": "Hello! I'm Luke ispsum jipsum and jepsum, whatever you said I did I didn't do lorenlorem ispsum jipsum and jepsum, whatever you said I did I didn't do lorenlorem ispsum jipsum and jepsum, whatever you said I did I didn't do lorenlorem ispsum jipsum and jepsum, whatever you said I did I didn't do lorenlorem ispsum jipsum and jepsum, what..."
+  },
+  "sample3": {
+    "cell": "yes",
     "car": "maybe",
     "public-transit": "yes",
-    "public-events": "monthly",
-    "income": "medium",
+    "public-events": "sometimes",
+    "income": 3,
     "social-media": "often",
-    "social-connections": "medium"
+    "social-connections": 4,
+    "quote": "Hello! I'm Mark ispsum jipsum and jepsum, whatever you said I did I didn't do lorenlorem ispsum jipsum and jepsum, whatever you said I did I didn't do lorenlorem ispsum jipsum and jepsum, whatever you said I did I didn't do lorenlorem ispsum jipsum and jepsum, whatever you said I did I didn't do lorenlorem ispsum jipsum and jepsum, what..."
+  },
+  "sample4": {
+    "cell": "yes",
+    "car": "yes",
+    "public-transit": "maybe",
+    "public-events": "weekly",
+    "income": 2,
+    "social-media": "daily",
+    "social-connections": 5,
+    "quote": "Hello! I'm John Lorem ispsum jipsum and jepsum, whatever you said I did I didn't do lorenlorem ispsum jipsum and jepsum, whatever you said I did I didn't do lorenlorem ispsum jipsum and jepsum, whatever you said I did I didn't do lorenlorem ispsum jipsum and jepsum, whatever you said I did I didn't do lorenlorem ispsum jipsum and jepsum, what..."
   },
   "tech": {
     "stingray": {

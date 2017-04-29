@@ -43,7 +43,11 @@ $.queue = {
         $.queue._queue = [];
     }
 };
- 
+  var scores;
+d3.json("survey.json", function(data) {
+    scores = data.scores;
+});
+
 function run_persona() {
 
   face = {
@@ -140,7 +144,7 @@ function run_persona() {
       minSize = 8,
       dim = maxSize / minSize;
   var level_list = [];
-  var scores;
+
   var what_scores = {"what-you-say": 1,"what-you-do": 1, "who-you-know": 1, "where-you-go": 1};
 
   face.loadImage = function(imageData) {
@@ -154,9 +158,7 @@ function run_persona() {
     return canvas.getImageData(0, 0, dim, dim).data;
   };
     
-  d3.json("survey.json", function(data) {
-    scores = data.scores;
-  });
+
 
   face.makeCircles = function(selector, colorData, onEvent) {
     onEvent = onEvent || function() {};
@@ -272,10 +274,15 @@ function run_persona() {
         $.queue.add(function(){face.updateData()},this,50);
     }
     
-
-      
-    var base_scores = (JSON.parse(JSON.stringify(scores.tech)));
-      
+    var base_scores;
+    if("undefined" === typeof scores){
+        d3.json("survey.json", function(data) {
+            scores = data.scores;
+            base_scores = (JSON.parse(JSON.stringify(scores.tech)));
+        });
+    } else {
+            base_scores = (JSON.parse(JSON.stringify(scores.tech)));
+    }
     face.loadProfileData = function loadProfileData(num){
        if(num > 0){
            variables_set = 7;
@@ -284,9 +291,9 @@ function run_persona() {
            d3.select("#IncLevel").property("value", answers["income"]);
            d3.select("#CarUse").property("value", answers["car"]);
            d3.select("#CellUse").property("value", answers["cell"]);
-           d3.select("#TransitUse").property("value", answers["transit"]);
-           d3.select("#EventUse").property("value", answers["events"]);
-           d3.select("#SMUse").property("value", answers["smuse"]);
+           d3.select("#TransitUse").property("value", answers["public-transit"]);
+           d3.select("#EventUse").property("value", answers["public-events"]);
+           d3.select("#SMUse").property("value", answers["social-media"]);
 
            answered_tech = 
                {"social-connections": true,
@@ -296,6 +303,7 @@ function run_persona() {
                 "transit": false,
                 "events": false,
                 "smuse": false};
+           document.getElementById("bio").innerHTML = "<p style='height: 400px; background-image: url(../img/quote.png); background-repeat:no-repeat; background-size: 100%; padding-left: 10px; padding-right: 50px; padding-top: 20px; padding-bottom: 5px;'>"+answers["quote"]+"</p>";
            face.updateData();
        }else{
            variables_set = 0;
@@ -590,10 +598,10 @@ function run_persona() {
     generate_titles(maxSize - 150,15,"WHAT YOU DO","black", "normal-text");
     generate_titles(15,maxSize - 15,"WHERE YOU GO","black", "normal-text");
     generate_titles(maxSize - 150,maxSize - 15,"WHAT YOU SAY","black", "normal-text");  
-    generate_titles(14,14,"WHO YOU KNOW","white", "normal-text");
-    generate_titles(maxSize - 151,14,"WHAT YOU DO","white", "normal-text");
-    generate_titles(14,maxSize - 16,"WHERE YOU GO","white", "normal-text");
-    generate_titles(maxSize - 151,maxSize - 16,"WHAT YOU SAY","white", "normal-text");
+    generate_titles(15,15,"WHO YOU KNOW","#ff8080", "normal-text");
+    generate_titles(maxSize - 150,15,"WHAT YOU DO","#ffff80", "normal-text");
+    generate_titles(15,maxSize - 15,"WHERE YOU GO","#80ff80", "normal-text");
+    generate_titles(maxSize - 150,maxSize - 15,"WHAT YOU SAY","#8080ff", "normal-text");
 
   
     d3.select("#dots")
@@ -603,5 +611,6 @@ function run_persona() {
   };
     
   return face;
+
 }
 
