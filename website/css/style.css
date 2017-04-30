@@ -792,6 +792,16 @@ section#tech .img{
 	filter: brightness(0) invert(1);
 }
 
+section#tech .col-md-12 .service-box {
+	text-align: left;
+	padding: 20px;
+	margin-left: 10px;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
 
 
 /* === section Involved/blog === */
