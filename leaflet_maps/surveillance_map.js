@@ -248,9 +248,9 @@
   //map.addLayer(marker_layer);
   //ncricLayer.addTo(map);
   // put description box onto map
-  info.addTo(map);
+  //info.addTo(map);
   // Political boundary layer
-  map.addLayer(gj_counties);
+  //map.addLayer(gj_counties);
 
   // Layer toggle control
   // L.control.layers(null, overlayMaps).addTo(map);
