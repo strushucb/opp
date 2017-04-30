@@ -55,6 +55,7 @@
 
   function stingray_view() {
     clear_layers();
+    console.log(stingrayLayer);
     stingrayLayer.addTo(map);
     map.fitBounds(stingrayLayer.getBounds());
   }
@@ -85,17 +86,44 @@
     };
   }
 
-  // AntPath Polyline styling
-  var polylineOptions = {
-    color: '#deebf7',
-    pulseColor: '#3182bd',
-    weight: 1,
-    opacity: .5,
-    speed: 200,
-    dashArray: [20, 80],
-    zIndex: 1
+  // Colors
+  var transparent = '#10000000';
+  var dashColor = '#3182bd';
 
+  // AntPath Polyline styling
+  var antPathOptions = {
+    color: transparent,
+    pulseColor: dashColor,
+    weight: 2,
+    opacity: .5,
+    delay: 600,
+    dashArray: [1, 80],
+    zIndex: 1
   };
+
+  // Regular lines
+  var polylineOptions = {
+    color: dashColor,
+    weight: 2,
+    opacity: .5,
+    zIndex: 1
+  };
+
+
+  var fusionCenterIcon = L.icon({
+    iconUrl: './icons/noun_11065.png',
+    iconSize: [38, 95],
+    //shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+    //shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+
+  });
+
+  var fusionCenterIcon = L.icon({
+    iconUrl: './icons/noun_850014_cc.png'
+  });
+
 
   // highlighting on hover listener
   function highlightFeature(e) {
@@ -168,24 +196,21 @@
   var ncricLines = [];
   // Load all coordinate values
   Object.keys(coords).forEach(function(key) {
-    ncricLines.push(new L.Polyline.AntPath([coords[key], coords.ncric], polylineOptions));
+    ncricLines.push(new L.Polyline.AntPath([coords[key], coords.ncric], antPathOptions));
   });
 
   var stingrayLines = []
-  for (each in groups.acdaStingray) {
-    // get coordinates for each
-
-    key = groups.acdaStingray[each];
-    coords = cityData[key].coordinates;
-    acda_lat_lon = cityData.acda.coordinates;
-
-    console.log(coords, acda_lat_lon);
+  hub = groups.acdaStingray.hub;
+  spokes = groups.acdaStingray.spokes;
+  hub_latLon = cityData[hub].coordinates;
+  spokes.forEach(function(spoke) {
+    // get coordinates for each spoke
+    spoke_latLon = cityData[spoke].coordinates;
 
     //add lines to array
-    line = new L.Polyline([coords, acda_lat_lon], polylineOptions);
-
+    line = new L.Polyline([spoke_latLon, hub_latLon], polylineOptions);
     stingrayLines.push(line);
-  }
+  });
 
   var stingrayLayer = L.featureGroup(stingrayLines, {
       style: style,

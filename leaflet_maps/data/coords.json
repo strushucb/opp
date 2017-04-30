@@ -29,8 +29,12 @@ var coords = {
 };
 
 var groups = {
-  "acdaStingray": ["oakland", "fremont", "acda"]
+  "acdaStingray": {
+    "hub": "acda",
+    "spokes": ["oakland", "fremont"]
+    }
   };
+
 
 var cityData = {
   "oakland": {
