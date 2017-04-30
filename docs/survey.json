@@ -149,7 +149,7 @@
   },
   "tech": {
     "stingray": {
-        "image" : "img/stingray.png",
+        "image" : "img/tech/Stingrayname.png",
         "bio" : "<p>Blah Blah Blah Stung.</p>",
         "color" : "#54AF52",
         "color2" : "#9cbc9c",
@@ -170,7 +170,7 @@
     "alpr": {
         "in_score" : 7,
         "out_score" : 10,
-        "image" : "img/alpr1.jpg",
+        "image" : "img/tech/ALPRname.png",
         "bio" : "<p>Blah Blah Blah Beep.</p>",
         "color" : "#DD6CA7",
         "color2" : "#dea7c4",
@@ -189,7 +189,7 @@
     "shotspotter": {
         "in_score" : 7,
         "out_score" : 7,
-        "image" : "img/shotspotter.jpg",
+        "image" : "img/tech/Shotspottername.png",
         "bio" : "<p>Blah Blah Blah Bang.</p>",
         "color" : "#ff9f2f",
         "color2" : "#ffc684",
@@ -208,7 +208,7 @@
     "smm": {
         "in_score" : 5,
         "out_score" : 7,
-        "image" : "img/socialmedia.jpg",
+        "image" : "img/tech/SMMname.png",
         "bio" : "<p>Blah Blah Blah Tweet.</p>",
         "color" : "#AB9C27",
         "color2" : "#b1a96d",
@@ -227,7 +227,7 @@
     "cctv": {
         "in_score" : 5,
         "out_score" : 10,
-        "image" : "img/cctv.jpg",
+        "image" : "img/tech/CCTVname.png",
         "bio" : "<p>Blah Blah Blah Bus.</p>",
         "color" : "#9D5130",
         "color2" : "#a57c6a",
