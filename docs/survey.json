@@ -333,10 +333,22 @@
         }
   },
   "information_categories":{
-      "what-you-say": "Technologies can be used to collect your social media posts, the contents of phone calls and text, or record you speaking in public.",
-      "what-you-do": "Technologies can be used to collect what you events you attend or your activities can be inferred from the location of your cell phone or vehicle.",
-      "who-you-know": "Technologies can be used to collect build a network of associates from social media, phone contacts, or show connections based on similiar patterns in time and location data.",
-      "where-you-go": "Technologies can be used to identify the location of your cell phone, vehicle, or capture your travel on public transit. The collection of social media data can reveal where you check-in or have taken photographs."
+      "what-you-say": {
+          "blurb": "Technologies can be used to collect your social media posts, the contents of phone calls and text, or record you speaking in public.",
+          "image": ""
+      },
+      "what-you-do": {
+          "blurb": "Technologies can be used to collect what you events you attend or your activities can be inferred from the location of your cell phone or vehicle.",
+          "image": ""
+      },
+      "who-you-know": {
+          "blurb": "Technologies can be used to collect build a network of associates from social media, phone contacts, or show connections based on similiar patterns in time and location data.",
+          "image": ""
+      },
+      "where-you-go": {
+          "blurb": "Technologies can be used to identify the location of your cell phone, vehicle, or capture your travel on public transit. The collection of social media data can reveal where you check-in or have taken photographs.",
+          "image": ""
+      }
   }
 }
 }
