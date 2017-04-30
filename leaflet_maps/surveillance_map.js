@@ -16,45 +16,57 @@
   var bounds = map.getBounds();
   map.setMaxBounds(bounds); // Option to lock view boundary
 
-  // Create pane for lines and set high z-index
-  map.createPane('lines');
-  map.getPane('lines').style.zIndex = 650;
-
-  // Get mapbox layers
-  L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+  // Get mapbox layer
+  var mapbox = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
     attribution: 'Map description',
     maxZoom: 10,
     id: 'mapbox.light',
     accessToken: 'pk.eyJ1IjoicGV0ZXJyb3dsYW5kIiwiYSI6ImNqMXJ5ZHoxeTAwOXMycW12cHVrMnh2MTAifQ.JzTXpmB_mNcuiWqUYyXH8Q'
   }).addTo(map);
 
-  // To get layers from cartoDB instead
-  // L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png', {
-  //   attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attribution">CARTO</a>'
-  // }).addTo(map);
-
-  // Styling for county / city outlines
-  function style(feature) {
-      return {
-          // fillColor: getColor(feature.properties.density),
-          weight: 1,
-          opacity: 1,
-          color: 'white',
-          dashArray: '2',
-          fillOpacity: 0.3,
-          zIndex: 2
-      };
-  }
-
   function set_view(view) {
     // Modify map view from links
-     if(view=='ncric')
-       console.log('ncric');
-     if(view=='stingray')
-       console.log('stingray');
-     if(view=='uasi')
-       console.log('uasi');
-     }
+    if(view=='ncric')
+      ncric_view();
+    if(view=='stingray')
+      stingray_view();
+    if(view=='uasi')
+      uasi_view();
+  }
+
+  function clear_layers() {
+    map.eachLayer(function (layer) {
+      map.removeLayer(layer);
+    });
+    // redraws after clearing, hack-y
+    mapbox.addTo(map);
+  }
+
+  function ncric_view() {
+    clear_layers();
+    ncricLayer.addTo(map);
+  }
+
+  function stingray_view() {
+    clear_layers();
+  }
+
+  function uasi_view() {
+    clear_layers();
+  }
+
+   // Styling for county / city outlines
+   function style(feature) {
+       return {
+           // fillColor: getColor(feature.properties.density),
+           weight: 1,
+           opacity: 1,
+           color: 'white',
+           dashArray: '2',
+           fillOpacity: 0.3,
+           zIndex: 2
+       };
+   }
 
   function highlight_style(feature) {
     return {
@@ -72,7 +84,6 @@
     opacity: 1,
     zIndex: 1
   };
-
 
   // highlighting on hover listener
   function highlightFeature(e) {
@@ -126,15 +137,7 @@
       'Hover over a city');
   };
 
-
-  // Polyline variable
-  var ncric_lines = [];
-  // Load all coordinate values
-  Object.keys(coords).forEach(function(key) {
-    ncric_lines.push(new L.Polyline([coords[key], coords.ncric], polylineOptions));
-  });
-
-  //Load location
+  //Load location points to create markers
   var markers = [];
 
   Object.keys(cityData).forEach(function(key) {
@@ -147,18 +150,20 @@
     marker.bindPopup(text);
     markers.push(marker);
   });
+  var marker_layer = L.layerGroup(markers);
 
-  // Create Layer Groups
-  // var ncricLayer = L.layerGroup(ncric_lines);
+  // Load Polyline data
+  var ncric_lines = [];
+  // Load all coordinate values
+  Object.keys(coords).forEach(function(key) {
+    ncric_lines.push(new L.Polyline([coords[key], coords.ncric], polylineOptions));
+  });
+
   var ncricLayer = L.featureGroup(ncric_lines, {
       style: style,
       onEachFeature: onEachFeature,
       pane: 'lines'
   });
-
-  var marker_layer = L.layerGroup(markers);
-  ncricLayer.addTo(map);
-  map.addLayer(marker_layer);
 
   // geoJSON layer variable
   var gj_counties;
@@ -173,9 +178,6 @@
       onEachFeature: onEachFeature
   });
 
-  // Political boundary layer
-  map.addLayer(gj_counties);
-
   // Layer Groups
   var overlayMaps = {
     "lines": ncricLayer,
@@ -183,8 +185,13 @@
     "counties": gj_counties
   };
 
-  // Layer toggle control
-  L.control.layers(null, overlayMaps).addTo(map);
-
-  // put control onto map
+  // Add Layers to map
+  map.addLayer(marker_layer);
+  //ncricLayer.addTo(map);
+  // put description box onto map
   info.addTo(map);
+  // Political boundary layer
+  map.addLayer(gj_counties);
+
+  // Layer toggle control
+  // L.control.layers(null, overlayMaps).addTo(map);
