@@ -33,6 +33,7 @@
 <script src="js/custom.js"></script>
 <script src="js/bootstrap-combobox.js"></script>
 
+<!-- <PR> -->
 <!-- leaflet stylesheet -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"
 	integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ=="
@@ -44,20 +45,20 @@
 	crossorigin=""></script>
 
 	<!-- Ant Path animations -->
-  <script src="./leaflet/libs/leaflet-ant-path.js"></script>
+  <script src="./js/leaflet/libs/leaflet-ant-path.js"></script>
 
   <!-- Snake Path Animation -->
-  <script src="./leaflet/libs/L.Polyline.SnakeAnim.js"></script>
+  <script src="./js/leaflet/libs/L.Polyline.SnakeAnim.js"></script>
 
   <!-- data sources -->
   <!-- src: http://catalog.opendata.city/dataset/california-counties-polygon/resource/6f805645-0836-478d-b168-c1f72d53b4f3 -->
-  <script type="text/javascript" src="leaflet/data/CA_counties.json"></script>
+  <script type="text/javascript" src="./js/leaflet/data/CA_counties.json"></script>
   <!-- src: http://catalog.civicdashboards.com/dataset/541573bc-3e3f-4ab0-be55-80e002c4e7bf/resource/4d58b8e8-a067-4285-ae4b-136faf8d7f06/download/919bbd6cf880459dabcc4d781dbde59btemp.geojson -->
-  <script type="text/javascript" src="leaflet/data/CA_cities.json"></script>
-  <script type="text/javascript" src="leaflet/data/coords.json"></script>
+  <script type="text/javascript" src="./js/leaflet/data/CA_cities.json"></script>
+  <script type="text/javascript" src="./js/leaflet/data/coords.json"></script>
 
 <!--[if gte IE 9]><!-->
-
+<!-- </PR> -->
 
 <!-- =======================================================
     Theme Name: Maxim
@@ -388,7 +389,8 @@
 </section>
 <!-- end spacer section -->
 
-<!-- Map Section -->
+<!-- <PR> -->
+<!-- section: maps -->
 <section id="map" class="section">
 	<div class="container">
 		<div class="row">
@@ -414,23 +416,11 @@
 		</div>
 	</div>
 </section>
-		<!-- <div id="span3">
-	  	<div id="controlsDiv">
-	 	 <ul>
-	 		 <li><a onclick="set_view('ncric')">NCRIC</a></li>
-	 		 <li><a onclick="set_view('stingray')">Cell Site Simulators</a></li>
-	 		 <li><a onclick="set_view('uasi')">UASI</a></li>
-	  </div>
-	  <div id="descriptionDiv"></div> -->
-
-
-
-
-<!-- section: maps -->
 
 
 
 <!-- end map section -->
+<!-- </PR> -->
 
 <!-- section: works -->
 <section id="works" class="section">
@@ -760,9 +750,9 @@
 <script type="text/javascript" src="js/face/face-wrapper.js"></script>
 <script type="text/javascript" src="js/face/face.js"></script>
 
-<!-- map scripts -->
-<script type="text/javascript" src="./leaflet/surveillance_map.js"></script>
-
+<!-- map scripts <PR> -->
+<script type="text/javascript" src="./js/leaflet/surveillance_map.js"></script>
+<!-- <PR> -->
 
 <!--<![endif]-->
 <link rel="stylesheet3" type="text/css" href="css/face.css"/>
