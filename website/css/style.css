@@ -775,6 +775,10 @@ section#tech .span2:hover {
 	background:#e3e3e3;
 }
 
+section#tech .col-md-6:hover {
+	background:#e3e3e3;
+}
+
 section#tech .service-box h2 {
 	color: #f7f7f7;
 	font-weight: 700;
@@ -783,6 +787,11 @@ section#tech .service-box h2 {
 section#tech.section.orange .service-box:hover {
 	background:#f36518;
 }
+
+section#tech .img{
+	filter: brightness(0) invert(1);
+}
+
 
 
 /* === section Involved/blog === */

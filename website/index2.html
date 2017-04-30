@@ -1,14 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-<meta charset='utf-8'>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=IE8">
-<meta name="description" content="Privacy to the Max">
-<meta name="keywords" content="Privacy to the Max">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="google" content="notranslate">
+<meta charset="utf-8">
 <title>Surveillance Strategies</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
@@ -17,35 +10,8 @@
 <link href="css/style.css" rel="stylesheet">
 <link href="color/default.css" rel="stylesheet">
 <link rel="shortcut icon" href="img/favicon.ico">
-<link rel="stylesheet1" href="css/font-awesome.css">
+<link rel="stylesheet" href="css/font-awesome.css">
 <link rel="stylesheet" href="css/bootstrap-combobox.css">
-<script src="js/jquery.js"></script>
-<script src="js/jquery.scrollTo.js"></script>
-<script src="js/jquery.nav.js"></script>
-<script src="js/jquery.localscroll-1.2.7-min.js"></script>
-<script src="js/bootstrap.js"></script>
-<script src="js/jquery.prettyPhoto.js"></script>
-<script src="js/isotope.js"></script>
-<script src="js/jquery.flexslider.js"></script>
-<script src="js/inview.js"></script>
-<script src="js/animate.js"></script>
-<script src="js/validate.js"></script>
-<script src="js/custom.js"></script>   
-<script src="js/bootstrap-combobox.js"></script>
-<!--[if gte IE 9]><!-->
-<script type="text/javascript" src="js/face/d3.min.js"></script>
-<script type="text/javascript" src="js/face/d3.v3.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
-<script type="text/javascript" src="js/face/face.js"></script>
-
-<!--<![endif]-->
-<link rel="stylesheet3" type="text/css" href="css/face.css"/>
-<link rel="stylesheet2" type="text/css" href="css/sankey.css">
-<script type="text/javascript" src="https://cdn.rawgit.com/Caged/d3-tip/master/index.js"></script>
-<script type="text/javascript" src="js/sankey/alluvial-growth.js"></script>
-<script type="text/javascript" src="js/sankey/sankey.js"></script>
-
 <!-- =======================================================
     Theme Name: Maxim
     Theme URL: https://bootstrapmade.com/maxim-free-onepage-bootstrap-theme/
@@ -62,16 +28,16 @@
 				<!-- Responsive navbar -->
 				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
 				</a>
-				<h1 class="brand"><a href="index.html">Stinkray</a></h1>
+				<h1 class="brand"><a href="index.html">Bay Area Surveillance Project</a></h1>
 				<!-- navigation -->
 				<nav class="pull-right nav-collapse collapse">
 				<ul id="menu-main" class="nav">
 					<li><a title="quiz" href="#quiz">Quiz</a></li>
 					<li><a title="tech" href="#tech">Technologies</a></li>
-					<li><a title="services" href="#services">Services</a></li>
-					<li><a title="works" href="#works">Works</a></li>
+					<li><a title="services" href="#services">How are they used?</a></li>
+					<li><a title="works" href="#works">Who has them</a></li>
 					<li><a title="involved" href="#involved">Get Involved</a></li>
-					<li><a href="page.html">Page</a></li>
+					<!-- <li><a href="page.html">Page</a></li> -->
 				</ul>
 				</nav>
 			</div>
@@ -91,13 +57,13 @@
 					<ul class="slides">
 						<li>
 						<p class="home-slide-content">
-							<strong>Team</strong> name
+							Bay Area <strong>Surveillance Project</strong>
 						</p>
 						<p class="team-name">
 							Steve, Peter, Michelle
 						</p>
 						<p class="team-name">
-							An investigation on surveillance
+							An investigation on surveillance via Info Viz
 						</p>
 <!-- 						</li>
 						<li>
@@ -135,43 +101,54 @@
 							<!-- Cell Phone -->
 							Do you use a cell phone?
 							<div class="form-group">
-								<select class="combobox" id="CellUse" onChange="face.updateDataWrap('cell')">
+								<select class="combobox">
 								  <option></option>
-								  <option value="yes">Yes</option>
-								  <option value="no">No</option>
+								  <option value="Yes">Yes</option>
+								  <option value="No">No</option>
 								</select>
 							</div>
 
 							<!-- Car -->
 							Do you own a car?
 							<div class="form-group">
-								<select class="combobox" id="CarUse" onChange="face.updateDataWrap('car')">
+								<select class="combobox">
 								  <option></option>
-								  <option value="yes">Yes, I use it daily</option>
-								  <option value="maybe">Yes, I use it sometimes</option>
-								  <option value="no">No</option>
+								  <option value="Yes daily">Yes, I use it daily</option>
+								  <option value="Yes sometimes">Yes, I use it sometimes</option>
+								  <option value="No">No</option>
 								</select>
 							</div>
 
 							<!-- Public Transit -->
 							Do you use public transit?
 							<div class="form-group">
-								<select class="combobox" id="TransitUse" onChange="face.updateDataWrap('transit')">
+								<select class="combobox">
 								  <option></option>
-								  <option value="yes">Yes, I use it daily</option>
-								  <option value="maybe">Yes, I use it sometimes</option>
-								  <option value="no">No</option>
+								  <option value="Yes daily">Yes, I use it daily</option>
+								  <option value="Yes sometimes">Yes, I use it sometimes</option>
+								  <option value="No">No</option>
 								</select>
 							</div>
 							<!-- Public Events -->
 							How often do you attend public events?
-							<div class="form-group" id="EventUse" onChange="face.updateDataWrap('events')">
+							<div class="form-group">
 								<select class="combobox">
 								  <option></option>
-								  <option value="weekly">Weekly</option>
-								  <option value="monthly">Monthly</option>
-								  <option value="sometimes">Sometimes</option>
-								  <option value="never">Never</option>
+								  <option value="Weekly">Weekly</option>
+								  <option value="Monthly">Monthly</option>
+								  <option value="Sometimes">Sometimes</option>
+								  <option value="Never">Never</option>
+								</select>
+							</div>
+
+							<!-- Income button -->
+							What is your income bracket?
+							<div class="form-group">
+								<select class="combobox">
+								  <option></option>
+								  <option value="Low">Low</option>
+								  <option value="Medium">Medium</option>
+								  <option value="High">High</option>
 								</select>
 							</div>
 
@@ -184,32 +161,31 @@
 							<!-- Social Media button -->
 							How important is Social Media to you?
 							<div class="form-group">
-								<select class="combobox" id="SMUse" onChange="face.updateDataWrap('smuse')" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject">
+								<select class="combobox">
 								  <option></option>
-								  <option value="daily">I use it daily - it is essential for my social life or business</option>
-								  <option value="often">I use it often - it is not essential for my social life or business</option>
-								  <option value="occasionally">I use it occasionally</option>
-								  <option value="no">I do not use any social media</option>
+								  <option value="Daily">I use it daily - it is essential for my social life or business</option>
+								  <option value="Often">I use it often - it is not essential for my social life or business</option>
+								  <option value="Occasionally">I use it occasionally</option>
+								  <option value="No">I do not use any social media</option>
 								</select>
 							</div>
 
 							<!-- Social Media followers -->
-							How many friends or followers do you have on social media?
+							How many followers do you have on social media?
 							<div class="field form-group">
                                     <input type="range" min="1" max="5" id="SMULevel" value ="1">
 							</div>
 
 
 							<script type="text/javascript">
-							  /*$(document).ready(function(){
-							     $('.combobox').combobox();
-							  });*/
+							  $(document).ready(function(){
+							    $('.combobox').combobox();
+							  });
 							</script>
 						</div>
 						<!-- Put the image here? -->
 						<div class="span6">
-				            <div id="dots"></div>
-                            <script type="text/javascript" src="js/face/face-wrapper.js"></script>
+							Image here please
 						</div>
 						</div>
 					</div>
@@ -228,48 +204,46 @@
 	<h4>Let's meet the players...</h4>
 	<!-- Four columns -->
 	<div class="row" align="center">
-		<div class="row">
-			<div class="col-md-6 animated-fast flyIn">
-				<div class="service-box">
-					<img class="techtool" src="img/tech/all tech-01.png" alt="" />
-					<h2>ALPR</h2>
-					<p>
-						 Automatic License Plate Readers scan your license plate 
-						 <a href="#"><p>More Details</p></a>
-					</p>
-				</div>
-			</div>
-			<div class="col-md-6 animated flyIn">
-				<div class="service-box">
-					<img src="img/tech/all tech-02.png" alt="" />
-					<h2>CCTV</h2>
-					<p>
-						 Closed Circuit TV records in public areas, often without notice.
-					</p>
-				</div>
+		<div class="span2 animated-fast flyIn">
+			<div class="service-box">
+				<img src="img/icons/laptop.png" alt="" />
+				<h2>ALPR</h2>
+				<p>
+					 Automatic License Plate Readers scan your license plate 
+					 <a href="#"><p>More Details</p></a>
+				</p>
 			</div>
 		</div>
-		<div class="col-xs-12 animated-fast flyIn">
+		<div class="span2 animated flyIn">
 			<div class="service-box">
-				<img src="img/tech/all tech-03.png" alt="" />
+				<img src="img/icons/lab.png" alt="" />
+				<h2>CCTV</h2>
+				<p>
+					 Closed Circuit TV records in public areas, often without notice.
+				</p>
+			</div>
+		</div>
+		<div class="span2 animated-fast flyIn">
+			<div class="service-box">
+				<img src="img/icons/camera.png" alt="" />
 				<h2>Shotspotter</h2>
 				<p>
 					 Shot spotter
 				</p>
 			</div>
 		</div>
-		<div class="col-xs-12 animated-slow flyIn">
+		<div class="span2 animated-slow flyIn">
 			<div class="service-box">
-				<img src="img/tech/all tech-04.png" alt="" />
+				<img src="img/icons/basket.png" alt="" />
 				<h2>Social Media</h2>
 				<p>
 					 Social media monitoring is the main culprit.
 				</p>
 			</div>
 		</div>
-		<div class="col-xs-12 animated-slow flyIn">
+		<div class="span2 animated-slow flyIn">
 			<div class="service-box">
-				<img src="img/tech/all tech-05.png" alt="" />
+				<img src="img/icons/basket.png" alt="" />
 				<h2>Stingray</h2>
 				<p>
 					 Simulated cell towers can ping your phone to give your exact location, without your permission.
@@ -288,32 +262,23 @@
 <!-- section: tech usage -->
 <section id="about" class="section">
 <div class="container">
-	<h4>Technologies in Use</h4>
+	<h4>How are they used?</h4>
 	<div class="row">
 		<div class="span4 offset1">
 			<div>
 				<h2>We are <strong>being surveilled</strong></h2>
 				<p>
-					There are quite a few technologies in use Por scientie, musica, sport etc, litot Europa usa li sam vocabular. Li lingues differe solmen in li grammatica, li pronunciation e li plu commun vocabules. Omnicos directe al desirabilite de un nov lingua franca: On refusa continuar payar custosi traductores.
+					These technologies can be used together to create large Por scientie, musica, sport etc, litot Europa usa li sam vocabular. Li lingues differe solmen in li grammatica, li pronunciation e li plu commun vocabules. Omnicos directe al desirabilite de un nov lingua franca: On refusa continuar payar custosi traductores.
 				</p>
 			</div>
 		</div>
-    </div>
+		<div class="span6">
+			<div class="aligncenter">
+				<img src="img/icons/creativity.png" alt="" />
+			</div>
+		</div>
+	</div>
 	<div class="row">
-        <div class="span12">
-	<!-- Four columns -->
-            <div class="election-wrapper">
-                <div id="sankey"></div>
-                <p>Technology Information:</p>
-                <div id="techinfo" class="text" style="display:none;">
-                    <p>Blah Blah Blah.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script type="text/javascript" src="js/sankey/sankey-wrapper.js"></script>
-    
-    <div class="row">
 		<div class="span2 offset1 flyIn">
 			<div class="people">
 				<img class="team-thumb img-circle" src="img/team/img-1.jpg" alt="" />
@@ -697,6 +662,20 @@
 <!-- ./container -->
 </footer>
 <a href="#" class="scrollup"><i class="icon-angle-up icon-square icon-bgdark icon-2x"></i></a>
+<script src="js/jquery.js"></script>
+<script src="js/jquery.scrollTo.js"></script>
+<script src="js/jquery.nav.js"></script>
+<script src="js/jquery.localscroll-1.2.7-min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/jquery.prettyPhoto.js"></script>
+<script src="js/isotope.js"></script>
+<script src="js/jquery.flexslider.js"></script>
+<script src="js/inview.js"></script>
+<script src="js/animate.js"></script>
+<script src="js/validate.js"></script>
+<script src="js/custom.js"></script>
+<script src="contactform/contactform.js"></script>
+<script src="js/bootstrap-combobox.js"></script>
 
 </body>
 </html>
