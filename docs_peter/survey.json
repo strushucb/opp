@@ -1,0 +1,300 @@
+{
+"scores": {
+  "survey": {
+    "cell": {
+        "yes": { 
+            "stingray" : 10
+        },
+        "no": { 
+            "stingray" : 0
+        }        
+    },
+    "car": {
+        "yes": { 
+            "alpr" : 5
+        },
+        "maybe": { 
+            "alpr" : 3
+        },
+        "no": { 
+            "alpr" : 0
+        }        
+    },
+    "transit": {
+        "yes": { 
+            "cctv" : 5
+        },
+        "maybe": { 
+            "cctv" : 3
+        },
+        "no": { 
+            "cctv" : 1
+        }        
+    },
+    "events": {
+        "weekly": { 
+            "cctv" : 4,
+            "smm" : 4,
+            "stingray" : 4
+        },
+        "monthly": { 
+            "cctv" : 3,
+            "smm" : 3,
+            "stingray" : 3
+        },
+        "sometimes": { 
+            "cctv" : 2,
+            "smm" : 2,
+            "stingray" : 2
+        },
+        "never": { 
+            "cctv" : 1,
+            "smm" : 1,
+            "stingray" : 1
+        }        
+    },
+    "income": {
+        "low": { 
+            "cctv" : 5,
+            "shotspotter" : 5
+        },
+        "low-med": { 
+            "cctv" : 4,
+            "shotspotter" : 4
+        },
+        "medium": { 
+            "cctv" : 3,
+            "shotspotter" : 3
+        },
+        "high-med": { 
+            "cctv" : 2,
+            "shotspotter" : 2
+        },
+        "high": { 
+            "cctv" : 1,
+            "shotspotter" : 1
+        }        
+    },
+    "smuse": {
+        "daily": { 
+            "smm" : 4
+        },
+        "often": { 
+            "smm" : 3
+        },
+        "occasionally": { 
+            "smm" : 2
+        },
+        "never": { 
+            "smm" : 1
+        }        
+    },
+    "social-connections": {
+        "low": { 
+            "smm" : 1
+        },
+        "low-med": { 
+            "smm" : 2
+        },
+        "medium": {
+            "smm" : 3
+        },
+        "high-med": { 
+            "smm" : 4
+        },
+        "high": { 
+            "smm" : 5
+        }    
+    }
+  },
+  "sample1": {
+    "cell": "yes",
+    "car": "no",
+    "public-transit": "yes",
+    "public-events": "sometimes",
+    "income": 1,
+    "social-media": "often",
+    "social-connections": 3,
+    "quote": "I’m a sophomore at UC Berkeley. I live in a house south of campus with a bunch of other women, mostly international students like me. We cook together most nights except Thursdays, when I rehearse with my dance team on Sproul and then go out with them afterward. I’ve really loved my time in Berkeley, but it’s been scary lately with all the riots and protests going on. <br>I follow everything that’s going on through social media, and I’ve been to a few protests, but I’m a little nervous to get involved because I need to get my student visa renewed for next year so I can’t get myself in any trouble. I don’t really know anything about surveillance technologies. Should I be worried, or are they supposed to keep us safe?"
+  },
+  "sample2": {
+    "cell": "yes",
+    "car": "yes",
+    "public-transit": "no",
+    "public-events": "never",
+    "income": 4,
+    "social-media": "occasionally",
+    "social-connections": 2,
+    "quote": "I’m the head of Product at a tech company in the South Bay. I live in SF and commute to work every day by car. When I’m not at work I’m out running the trails or climbing. I’m a pretty open person… I don’t really see what the big deal is with privacy. I trust and want companies and the government to use my data and data about me to improve their services. <br><br>So I’m not all that worried about privacy, but I also don’t know that the government should be spending money on surveillance technology. How do we know this technology actually works to deter crime? I’d like to see the data on that."
+  },
+  "sample3": {
+    "cell": "yes",
+    "car": "maybe",
+    "public-transit": "yes",
+    "public-events": "sometimes",
+    "income": 3,
+    "social-media": "often",
+    "social-connections": 4,
+    "quote": "I’m active with my local republican party. We’ve been doing a lot of work to bring conservative speakers to the Bay area. <br><br>I’m happy that police departments are embracing new technologies to fight crime and really don't see why some people are worried.  These tools were being used during the last President too - did they already forget about the DAC [Domain Awareness Center]? I mean, yeah, putting my tin foil hat on, I don't want the government knowing everything I do in the privacy of my home, but the police in the area are undermanned and need any edge they can get. Really, if I'm not doing anything wrong, what do I have to worry about?"
+  },
+  "sample4": {
+    "cell": "yes",
+    "car": "yes",
+    "public-transit": "maybe",
+    "public-events": "weekly",
+    "income": 2,
+    "social-media": "daily",
+    "social-connections": 5,
+    "quote": "I’m a teacher at an Oakland Public School. I love my job, but it’s tough. Many of my students have it rough. I’m very concerned about surveillance technologies because I see it as yet another policing method that will exacerbate the school to prison pipeline. We know already that license plate recognition is used disproportionately in low income communities of color. I’d bet money that’s true of CCTV and Shotspotter too, and that social media tracking is being used to primarily target people of color. Having these technologies in our neighborhoods will mean having more police officers, which will mean more arrests. My students don’t need to be arrested, they need to be in school, learning."
+  },
+  "tech": {
+    "stingray": {
+        "image" : "img/stingray.png",
+        "bio" : "<p>Blah Blah Blah Stung.</p>",
+        "color" : "#54AF52",
+        "speed" : "20s",
+        "short" : "stingray",
+        "long": "Cell Site Simulators (Stingrays)",
+        "in_score" : 5,
+        "out_score" : 10,
+        "what-you-say": 1,
+        "what-you-do": 5,
+        "who-you-know": 2,
+        "where-you-go": 5,
+        "what-you-say-blurb": "Depending on the specific model's capability and use policy, can capture phone call and message content.",
+        "what-you-do-blurb": "Operators can infer activities by knowing a phone's presence at a given time & place (for example, at a protest).",
+        "who-you-know-blurb": "In targeted mode, can collect numbers of phonecalls dialed/received, texts sent/received, although information can be accessed via pen registers/Trap and Trace devices or provided by phone companies.",
+        "where-you-go-blurb": "Captures a cell phone's location to within 2 meters, but only those within range (1km - 200m). 'Dragnet' mode may capture information for all phones in range, but watchlists can limit collateral collection."
+    },
+    "alpr": {
+        "in_score" : 7,
+        "out_score" : 10,
+        "image" : "img/alpr1.jpg",
+        "bio" : "<p>Blah Blah Blah Beep.</p>",
+        "color" : "#DD6CA7",
+        "speed" : "4s",
+        "short" : "alpr",
+        "long" : "Automatic License Plate Readers (ALPR)",
+        "what-you-say": 0,
+        "what-you-do": 4,
+        "who-you-know": 2,
+        "where-you-go": 6,
+        "what-you-say-blurb": "",
+        "what-you-do-blurb": "Activities may be inferred based on locations, direction, and frequency of vehicle observations, depending on the amount of data.",
+        "who-you-know-blurb": "Associates may be inferred based on common location of vehicles, depending on the amount of data. Associates may be captured by cameras that can accompany ALPR systems.",
+        "where-you-go-blurb": "Captures location and time data of license plates. These readings accrue over time, revealing patterns, and can be associated with a person through DMV records or other observation."
+    },
+    "shotspotter": {
+        "in_score" : 7,
+        "out_score" : 7,
+        "image" : "img/shotspotter.jpg",
+        "bio" : "<p>Blah Blah Blah Bang.</p>",
+        "color" : "#ff9f2f",
+        "speed" : "17s",
+        "short" : "shotspotter",
+        "long" : "Acoustic Detection Systems (ShotSpotter)",
+        "what-you-say": 3,
+        "what-you-do": 2,
+        "who-you-know": 0,
+        "where-you-go": 1,
+        "what-you-say-blurb": "Can records sounds including human voice, but it's purportedly only active after being triggered by high decibel noises such as gunshots.",
+        "what-you-do-blurb": "Monitors activities (gun shots, fireworks), but also can lead to increased police presence in neighborhoods the systems are deployed.",
+        "who-you-know-blurb": "",
+        "where-you-go-blurb": "Can locate sounds over certain decibel levels, generally with more accuracy if more systems detect the same sound. The data is not linked to any identity."
+    },
+    "smm": {
+        "in_score" : 5,
+        "out_score" : 7,
+        "image" : "img/socialmedia.jpg",
+        "bio" : "<p>Blah Blah Blah Tweet.</p>",
+        "color" : "#AB9C27",
+        "speed" : "8s",
+        "short" : "smm",
+        "long" : "Social Media Monitoring",
+        "what-you-say": 6,
+        "what-you-do": 8,
+        "who-you-know": 9,
+        "where-you-go": 5,
+        "what-you-say-blurb": "Captures public posts, photographs, and comments in open groups. Can be directly tied to an individual.",
+        "what-you-do-blurb": "Activities can be determined from event attendance or the content of posts.",
+        "who-you-know-blurb": "Captures public friend & follower lists and members of common groups. Associates can be determined from public photos, tagged or not.",
+        "where-you-go-blurb": "Captures public check-ins, geotagged photos, and locations of venues & organizations of interest."
+    },
+    "cctv": {
+        "in_score" : 5,
+        "out_score" : 10,
+        "image" : "img/cctv.jpg",
+        "bio" : "<p>Blah Blah Blah Bus.</p>",
+        "color" : "#9D5130",
+        "speed" : "3s",
+        "short" : "cctv",
+        "long" : "Public Camera Systems",
+        "what-you-say": 2,
+        "what-you-do": 7,
+        "who-you-know": 7,
+        "where-you-go": 5,
+        "what-you-say-blurb": "Public recording equipment are frequently capable of capturing audio, although this information may not be associated with specific individuals.",
+        "what-you-do-blurb": "Captures acitivities on video cameras, but may not target a specifc individual. Can be enhanced by facial recognition technologies.",
+        "who-you-know-blurb": "Associates may be determined from appearance in captured video. Can be enhanced by facial recognition technologies.",
+        "where-you-go-blurb": "Cameras can capture persons as they enter and leave monitored locations. May be enhanced by facial recognition technologies."
+    }
+  },
+  "orgs": {
+      "opd": {
+            "tech":{
+                "stingray": 3,
+                "smm": 3,
+                "alpr": 3,
+                "cctv": 3,
+                "shotspotter": 3
+            },
+            "short": "opd",
+            "long": "Oakland Police Department",
+            "stingray-blurb": "The Oakland Police Department acquired a cell site simulator (commonly known as a Stingray) in 200X. Not until 2016 did Oakland Police Department have a policy for its use.",
+            "alpr-blurb": "The Oakland Police Department operates XXX ALPR systems. ALPR is regulated by a policy with retention of data limited to 6 months.",
+            "smm-blurb": "The Oakland Police Department has used social media monitoring tools in the past such as Geofeedia.",
+            "cctv-blurb": "The Oakland Police Department has established a network of CCTV cameras and have dispatched at least XXX body cameras to its patrol officers. Currently, no plans to acquire facial recognition systems are in place.",
+            "shotspotter-blurb": "The Oakland Police Department has plans to increase its ShotSpotter system to include placing systems in schools."
+          
+        },
+      "fpd": {
+            "tech":{
+                "stingray": 0,
+                "smm": 3,
+                "alpr": 3,
+                "cctv": 0,
+                "shotspotter": 3
+            },
+            "short": "fpd",
+            "long": "Fremont Police Department",
+            "stingray-blurb": "The Fremont Police Department acquired a cell site simulator (commonly known as a Stingray) in 200X. Not until 2016 did Fremont Police Department have a policy for its use.",
+            "alpr-blurb": "The Fremont Police Department operates XXX ALPR systems. ALPR is regulated by a policy with retention of data limited to 6 months.",
+            "smm-blurb": "The Fremont Police Department has used social media monitoring tools in the past such as Geofeedia.",
+            "cctv-blurb": "The Fremont Police Department has established a network of CCTV cameras and have dispatched at least XXX body cameras to its patrol officers. Currently, no plans to acquire facial recognition systems are in place.",
+            "shotspotter-blurb": "The Fremont Police Department has plans to increase its ShotSpotter system to include placing systems in schools."
+        },
+      "alcosd": {
+            "tech":{
+                "stingray": 3,
+                "smm": 3,
+                "alpr": 0,
+                "cctv": 3,
+                "shotspotter": 3
+            },
+            "short": "alcosd",
+            "long": "Alameda County Sheriffs Department",
+            "stingray-blurb": "The ALCO Sheriff Department acquired a cell site simulator (commonly known as a Stingray) in 200X. Not until 2016 did ALCO Sheriff Department have a policy for its use.",
+            "alpr-blurb": "The ALCO Sheriff Department operates XXX ALPR systems. ALPR is regulated by a policy with retention of data limited to 6 months.",
+            "smm-blurb": "The ALCO Sheriff Department has used social media monitoring tools in the past such as Geofeedia.",
+            "cctv-blurb": "The ALCO Sheriff Department has established a network of CCTV cameras and have dispatched at least XXX body cameras to its patrol officers. Currently, no plans to acquire facial recognition systems are in place.",
+            "shotspotter-blurb": "The ALCO Sheriff Department has plans to increase its ShotSpotter system to include placing systems in schools."
+        }
+  },
+  "information_categories":{
+      "what-you-say": "Technologies can be used to collect your social media posts, the contents of phone calls and text, or record you speaking in public.",
+      "what-you-do": "Technologies can be used to collect what you events you attend or your activities can be inferred from the location of your cell phone or vehicle.",
+      "who-you-know": "Technologies can be used to collect build a network of associates from social media, phone contacts, or show connections based on similiar patterns in time and location data.",
+      "where-you-go": "Technologies can be used to identify the location of your cell phone, vehicle, or capture your travel on public transit. The collection of social media data can reveal where you check-in or have taken photographs."
+  }
+}
+}
