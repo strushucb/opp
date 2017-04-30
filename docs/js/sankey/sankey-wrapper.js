@@ -73,7 +73,7 @@
             if(+d["what-you-say"] > 0){
                 graph.nodes.push({ "shortname": "What You Say",        
                                    "name": "what-you-say" });
-                graph.links.push({ "source": "What You Say",
+                graph.links.push({ "source": "what-you-say",
                                     "target": d["short"],
                                     "endValue": d["in_score"],
                                     "value": +d["what-you-say"]});  
@@ -81,7 +81,7 @@
             if(+d["what-you-do"] > 0){
             graph.nodes.push({ "shortname": "What You Do",        
                                "name": "what-you-do" });
-            graph.links.push({ "source": "What You Do",
+            graph.links.push({ "source": "what-you-do",
                                 "target": d["short"],
                                 "endValue": d["in_score"],
                                 "value": +d["what-you-do"]});  
@@ -89,7 +89,7 @@
             if(+d["where-you-go"] > 0){
                 graph.nodes.push({ "shortname": "Where You Go",        
                                "name": "where-you-go" });
-                graph.links.push({ "source": "Where You Go",
+                graph.links.push({ "source": "where-you-go",
                                 "target": d["short"],
                                 "endValue": d["in_score"],
                                 "value": +d["where-you-go"]});  
@@ -97,7 +97,7 @@
             if(+d["who-you-know"] > 0){            
                 graph.nodes.push({ "shortname": "Who You Know",        
                                    "name": "who-you-know" });
-                graph.links.push({ "source": "Who You Know",
+                graph.links.push({ "source": "who-you-know",
                                     "target": d["short"],
                                     "endValue": d["in_score"],
                                     "value": +d["who-you-know"]});  
@@ -479,7 +479,7 @@
           .style("stroke", function(d) { 
 		    return d3.rgb(d.color).darker(2); });
       
-      if (true) {
+      /*if (true) {
         node.append("text")
             .attr("x", function(d) { return 6; })
             .attr("y", function(d) { return d.dy / 2; })
@@ -501,7 +501,7 @@
           .filter(function(d) { return d.x < width / 2; })
             .attr("x", -6)
             .attr("text-anchor", "end");
-      }
+      }*/
         
       svg.append("svg:rect")
         .style("fill", "black")

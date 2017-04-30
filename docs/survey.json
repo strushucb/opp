@@ -255,6 +255,7 @@
             },
             "short": "opd",
             "long": "Oakland Police Department",
+            "label": "City",
             "image": "img/orgs/berk_pd_border.png",
             "stingray-blurb": "The Oakland Police Department acquired a cell site simulator (commonly known as a Stingray) in 200X. Not until 2016 did Oakland Police Department have a policy for its use.",
             "alpr-blurb": "The Oakland Police Department operates XXX ALPR systems. ALPR is regulated by a policy with retention of data limited to 6 months.",
@@ -263,7 +264,7 @@
             "shotspotter-blurb": "The Oakland Police Department has plans to increase its ShotSpotter system to include placing systems in schools."
           
         },
-      "bpd": {
+      "bart": {
             "tech":{
                 "stingray": 0,
                 "smm": 3,
@@ -271,8 +272,9 @@
                 "cctv": 0,
                 "shotspotter": 3
             },
-            "short": "bpd",
-            "long": "Berkeley Police Department",
+            "short": "bart",
+            "long": "Bay Area Rapid Transit",
+            "label": "Transit",
             "image": "img/orgs/berk_pd_border.png",
             "stingray-blurb": "The Fremont Police Department acquired a cell site simulator (commonly known as a Stingray) in 200X. Not until 2016 did Fremont Police Department have a policy for its use.",
             "alpr-blurb": "The Fremont Police Department operates XXX ALPR systems. ALPR is regulated by a policy with retention of data limited to 6 months.",
@@ -280,7 +282,7 @@
             "cctv-blurb": "The Fremont Police Department has established a network of CCTV cameras and have dispatched at least XXX body cameras to its patrol officers. Currently, no plans to acquire facial recognition systems are in place.",
             "shotspotter-blurb": "The Fremont Police Department has plans to increase its ShotSpotter system to include placing systems in schools."
         },
-      "fpd": {
+      "fbi": {
             "tech":{
                 "stingray": 0,
                 "smm": 3,
@@ -288,8 +290,9 @@
                 "cctv": 0,
                 "shotspotter": 3
             },
-            "short": "fpd",
-            "long": "Berkeley Police Department",
+            "short": "fbi",
+            "long": "Federal Bureau of Investigation",
+            "label": "Federal",
             "image": "img/orgs/berk_pd_border.png",
             "stingray-blurb": "The Fremont Police Department acquired a cell site simulator (commonly known as a Stingray) in 200X. Not until 2016 did Fremont Police Department have a policy for its use.",
             "alpr-blurb": "The Fremont Police Department operates XXX ALPR systems. ALPR is regulated by a policy with retention of data limited to 6 months.",
@@ -297,7 +300,7 @@
             "cctv-blurb": "The Fremont Police Department has established a network of CCTV cameras and have dispatched at least XXX body cameras to its patrol officers. Currently, no plans to acquire facial recognition systems are in place.",
             "shotspotter-blurb": "The Fremont Police Department has plans to increase its ShotSpotter system to include placing systems in schools."
         },
-      "sfpd": {
+      "chp": {
             "tech":{
                 "stingray": 0,
                 "smm": 3,
@@ -305,8 +308,9 @@
                 "cctv": 0,
                 "shotspotter": 3
             },
-            "short": "sfpd",
-            "long": "Berkeley Police Department",
+            "short": "chp",
+            "long": "California Highway Patrol",
+            "label": "State",
             "image": "img/orgs/berk_pd_border.png",
             "stingray-blurb": "The Fremont Police Department acquired a cell site simulator (commonly known as a Stingray) in 200X. Not until 2016 did Fremont Police Department have a policy for its use.",
             "alpr-blurb": "The Fremont Police Department operates XXX ALPR systems. ALPR is regulated by a policy with retention of data limited to 6 months.",
@@ -324,6 +328,7 @@
             },
             "short": "alcosd",
             "long": "Alameda County Sheriffs Department",
+            "label": "County",
             "image": "img/orgs/berk_pd_border.png",
             "stingray-blurb": "The ALCO Sheriff Department acquired a cell site simulator (commonly known as a Stingray) in 200X. Not until 2016 did ALCO Sheriff Department have a policy for its use.",
             "alpr-blurb": "The ALCO Sheriff Department operates XXX ALPR systems. ALPR is regulated by a policy with retention of data limited to 6 months.",
@@ -335,19 +340,19 @@
   "information_categories":{
       "what-you-say": {
           "blurb": "Technologies can be used to collect your social media posts, the contents of phone calls and text, or record you speaking in public.",
-          "image": ""
+          "image": "img/tech/whatyousay.png"
       },
       "what-you-do": {
           "blurb": "Technologies can be used to collect what you events you attend or your activities can be inferred from the location of your cell phone or vehicle.",
-          "image": ""
+          "image": "img/tech/whatyoudo.png"
       },
       "who-you-know": {
           "blurb": "Technologies can be used to collect build a network of associates from social media, phone contacts, or show connections based on similiar patterns in time and location data.",
-          "image": ""
+          "image": "img/tech/whoyouknow.png"
       },
       "where-you-go": {
           "blurb": "Technologies can be used to identify the location of your cell phone, vehicle, or capture your travel on public transit. The collection of social media data can reveal where you check-in or have taken photographs.",
-          "image": ""
+          "image": "img/tech/whereyougo.png"
       }
   }
 }
