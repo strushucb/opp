@@ -14,7 +14,7 @@
     //maxZoom:10
   }).setView([37.7, -122.2], 10);
   var bounds = map.getBounds();
-  //map.setMaxBounds(bounds); // Option to lock view boundary
+  map.setMaxBounds(bounds); // Option to lock view boundary
 
 
   // mapbox url
@@ -51,6 +51,8 @@
     clear_layers();
     ncricLayer.addTo(map);
     map.fitBounds(ncricLayer.getBounds());
+
+    $.(#mapDescription).innerHTML("flippity");
   }
 
   function stingray_view() {
@@ -111,23 +113,19 @@
 
 
   var fusionCenterIcon = L.icon({
-    iconUrl: './js/leaflet/icons/noun_11065.png',
-    iconSize: [38, 38],
+    iconUrl: '/js/leaflet/icons/noun_11065.png',
+    iconSize: [38, 95],
     //shadowSize:   [50, 64], // size of the shadow
-    iconAnchor:   [-100, -100], // point of the icon which will correspond to marker's location
+    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
     //shadowAnchor: [4, 62],  // the same for the shadow
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 
   });
 
-  var policeIcon = L.icon({
-    iconUrl: './js/leaflet/icons/noun_850014_cc.png',
-    iconSize: [38, 38],
-    //shadowSize:   [50, 64], // size of the shadow
-    iconAnchor:   [15, 25], // point of the icon which will correspond to marker's location
-    //shadowAnchor: [4, 62],  // the same for the shadow
-    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+  var fusionCenterIcon = L.icon({
+    iconUrl: '/js/leaflet/icons/noun_11065.png'
   });
+
 
   // highlighting on hover listener
   function highlightFeature(e) {
@@ -204,26 +202,19 @@
   });
 
   var stingrayLines = []
-  var stingrayMarkers = []
   hub = groups.acdaStingray.hub;
   spokes = groups.acdaStingray.spokes;
   hub_latLon = cityData[hub].coordinates;
-
   spokes.forEach(function(spoke) {
     // get coordinates for each spoke
     spoke_latLon = cityData[spoke].coordinates;
-    spoke_lat = cityData[spoke].coordinates[0];
-    spoke_lon = cityData[spoke].coordinates[1];
-    markerLocation = new L.LatLng(spoke_lat, spoke_lon);
-    var marker = new L.Marker(markerLocation, {icon: policeIcon });
+
     //add lines to array
     line = new L.Polyline([spoke_latLon, hub_latLon], polylineOptions);
     stingrayLines.push(line);
-    stingrayMarkers.push(marker);
-    stingrayMarkers.push(line);
   });
 
-  var stingrayLayer = L.featureGroup(stingrayMarkers,  {
+  var stingrayLayer = L.featureGroup(stingrayLines, {
       style: style,
       onEachFeature: onEachFeature,
       pane: 'lines'
