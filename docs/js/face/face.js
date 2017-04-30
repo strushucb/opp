@@ -187,14 +187,24 @@ function run_persona() {
     var xi, yi, t = 0, color;
     for (yi = 0; yi < dim; yi++) {
       for (xi = 0; xi < dim; xi++) {
-        if(xi < (dim / 2) && yi < (dim / 2)){
-            color = [Math.min(colorData[t]+100,255), colorData[t+1], colorData[t+2]];
-        }else if(xi < (dim / 2) && yi >= (dim / 2)){
-            color = [colorData[t], Math.min(colorData[t+1]+100,255), colorData[t+2]];
-        }else if(xi >= (dim / 2) && yi >= (dim / 2)){
-            color = [colorData[t], colorData[t+1], Math.min(colorData[t+2]+100,255)];
-        } else{
-            color = [Math.min(colorData[t]+100,255), Math.min(colorData[t+1]+100,255), colorData[t+2]];
+        if(colorData[t] >= 240 && colorData[t+1] >= 240 && colorData[t+2] >= 240){
+            color = [255,255,255];
+        } else {
+            if(xi >= (dim / 2) && yi >= (dim / 2)){
+                //pink "color2" : "rgba(211, 84, 154, 0.75)"
+                color = [Math.min(colorData[t]+(211-colorData[t])*.60,255), Math.min(colorData[t+1]+(84-colorData[t])*.60,255), Math.min(colorData[t+2]+(154-colorData[t])*.60,255)];
+            }else if(xi >= (dim / 2) && yi < (dim / 2)){
+                //green rgba(42, 173, 147, 0.75)
+                color = [Math.min(colorData[t]+(42-colorData[t])*.60,255), Math.min(colorData[t+1]+(173-colorData[t])*.60,255), Math.min(colorData[t+2]+(147-colorData[t])*.60,255)];
+            }else if(xi < (dim / 2) && yi >= (dim / 2)){
+                //blue: blue rgba(42, 59, 142, 0.75)
+                color = [Math.min(colorData[t]+(42-colorData[t])*.60,255), Math.min(colorData[t+1]+(59-colorData[t])*.60,255), Math.min(colorData[t+2]+(142-colorData[t])*.40,255)];
+            } else{
+                //yellow rgba(250, 175, 76, 0.75)
+                color = [Math.min(colorData[t]+(250-colorData[t])*.60,255), Math.min(colorData[t+1]+(175-colorData[t])*.60,255), Math.min(colorData[t+2]+(76-colorData[t])*.60,255)];
+            }
+            if(color[0] >= 230 && color[1] >= 230 && color[2] >= 230)
+                color = [255,255,255];
         }
         finestLayer(xi, yi, new Circle(vis, xi, yi, size, color));
         t += 4;
@@ -495,7 +505,7 @@ function run_persona() {
     function write_report_blurb(x, y, text){
         var titlekey,blurb,split_blurb;
         titlekey = text.replace(/\s+/g, '-').toLowerCase();
-        blurb = scores.information_categories[titlekey];
+        blurb = scores.information_categories[titlekey].blurb;
         split_blurb = blurb.split(" ");
         var result = "";
         var char_count = 0;
@@ -598,10 +608,10 @@ function run_persona() {
     generate_titles(maxSize - 150,15,"WHAT YOU DO","black", "normal-text");
     generate_titles(15,maxSize - 15,"WHERE YOU GO","black", "normal-text");
     generate_titles(maxSize - 150,maxSize - 15,"WHAT YOU SAY","black", "normal-text");  
-    generate_titles(15,15,"WHO YOU KNOW","#ff8080", "normal-text");
-    generate_titles(maxSize - 150,15,"WHAT YOU DO","#ffff80", "normal-text");
-    generate_titles(15,maxSize - 15,"WHERE YOU GO","#80ff80", "normal-text");
-    generate_titles(maxSize - 150,maxSize - 15,"WHAT YOU SAY","#8080ff", "normal-text");
+    generate_titles(15,15,"WHO YOU KNOW","#ffbe68", "normal-text");
+    generate_titles(maxSize - 150,15,"WHAT YOU DO","#44bea5", "normal-text");
+    generate_titles(15,maxSize - 15,"WHERE YOU GO","#6977bc", "normal-text");
+    generate_titles(maxSize - 150,maxSize - 15,"WHAT YOU SAY","#d16fa5", "normal-text");
 
   
     d3.select("#dots")
