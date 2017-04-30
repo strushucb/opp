@@ -610,7 +610,7 @@ function run_persona() {
     generate_titles(maxSize - 150,maxSize - 15,"WHAT YOU SAY","black", "normal-text");  
     generate_titles(15,15,"WHO YOU KNOW","#ffbe68", "normal-text");
     generate_titles(maxSize - 150,15,"WHAT YOU DO","#44bea5", "normal-text");
-    generate_titles(15,maxSize - 15,"WHERE YOU GO","#6977bc", "normal-text");
+    generate_titles(15,maxSize - 15,"WHERE YOU GO","#7789e5", "normal-text");
     generate_titles(maxSize - 150,maxSize - 15,"WHAT YOU SAY","#d16fa5", "normal-text");
 
   
