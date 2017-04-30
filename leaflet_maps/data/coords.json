@@ -3,7 +3,6 @@ var coords = {
   "alameda": [37.6017, -121.7195],
   "ncric": [37.7820212, -122.4206751],
   "UASI": [37.7821445,-122.4235457],
-  "acda": [37.7997746, -122.2762910],
   "Marin": [37.938571,	-122.529914],
   "DalyCity": [37.690508, -122.473503],
   "marin":	[37.938571,	-122.529914],
@@ -29,13 +28,24 @@ var coords = {
   "westSacramento":	[38.586308,	-121.527531]
 };
 
+var groups = {
+  "acdaStingray": ["oakland", "fremont", "acda"]
+  };
+
 var cityData = {
-  "Oakland Police Department": {
+  "oakland": {
+    "name": "Oakland Police Department",
     "coordinates": [37.799362,-122.275087],
     "text": "Oakland Police Department participates in x"
   },
-  "Fremont Police Department": {
+  "fremont": {
+    "name": "Fremont Police Department",
     "coordinates": [37.552717,-121.969067],
     "text" : "Fremont Police Department participates in x"
+  },
+  "acda": {
+    "name": "Alameda County District Attorney",
+    "coordinates": [37.7997746, -122.2762910],
+    "text": "Alameda County District Attorney"
   }
 };
