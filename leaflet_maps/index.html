@@ -12,6 +12,8 @@
     integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg=="
     crossorigin=""></script>
 
+  <script type="text/javascript" src="jquery.js"></script>
+
   <!-- Ant Path animations -->
   <script src="/libs/leaflet-ant-path.js"></script>
 
@@ -24,7 +26,7 @@
   <!-- src: http://catalog.civicdashboards.com/dataset/541573bc-3e3f-4ab0-be55-80e002c4e7bf/resource/4d58b8e8-a067-4285-ae4b-136faf8d7f06/download/919bbd6cf880459dabcc4d781dbde59btemp.geojson -->
   <script type="text/javascript" src="data/CA_cities.json"></script>
   <script type="text/javascript" src="data/coords.json"></script>
-  <script type="text/javascript" src="jquery.js"></script>
+
 
 </head>
 
@@ -43,32 +45,53 @@
     color: #777;
 }
 
+#mapid {
+  width: 600px;
+  height: 800px;
+  float: left;
+}
+
+.sideDiv {
+  float: left;
+  width: 300px;
+  height: 400px;
+}
+
 </style>
 
   <body>
 
-    <div id="mapid" style="width: 600px; height: 800px;"></div>
+    <div id="mapid"></div>
 
+    <!--  -->
+    <div id="controlsDiv" class="sideDiv">
+      <ul>
+        <li><a onclick="set_view()">License Plate Readers Data Sharing</a></li>
+        <li><a onclick="set_view()">Cell Site Simulators</a></li>
+        <li><a onclick="set_view()">UASI</a></li>
+    </div>
+    <div id="descriptionDiv" class="sideDiv"></div>
 
 <script>
 
-//TODO: Add department markers and labels
-//TODO: Create line layer groups (panes) by program / styling
 //TODO: Interactions - buttons, highlighting
 
-  // copy data to generic variable
+
+//TODO: Add department markers and labels
+//TODO: Create line layer groups (panes) by program / styling
+
+
+  // copy data local variables
   var cities = citiesCA
   var counties = countiesCA
   // Create map
   var map = L.map('mapid', {
-    // Options to lock zoom
-    zoomControl:false,
+    zoomControl:false, // Options to lock zoom
     //minZoom:10,
     //maxZoom:10
   }).setView([37.7, -122.2], 10);
   var bounds = map.getBounds();
-  // Option to lock view boundary
-  //map.setMaxBounds(bounds);
+  map.setMaxBounds(bounds); // Option to lock view boundary
 
   // Create pane for lines and set high z-index
   map.createPane('lines');
@@ -79,7 +102,6 @@
     attribution: 'Map description',
     maxZoom: 10,
     id: 'mapbox.light',
-    //accessToken: 'pk.eyJ1IjoicGV0ZXJyb3dsYW5kIiwiYSI6ImNqMXJ5ZHoxeTAwOXMycW12cHVrMnh2MTAifQ.JzTXpmB_mNcuiWqUYyXH8Q'
     accessToken: 'pk.eyJ1IjoicGV0ZXJyb3dsYW5kIiwiYSI6ImNqMXJ5ZHoxeTAwOXMycW12cHVrMnh2MTAifQ.JzTXpmB_mNcuiWqUYyXH8Q'
   }).addTo(map);
 
@@ -101,18 +123,31 @@
       };
   }
 
+  function highlight_style(feature) {
+    return {
+      weight: 5,
+      color: '#666',
+      dashArray: '',
+      fillOpacity: 0.7
+    };
+  }
+
+  // Polyline styling
+  var polylineOptions = {
+    color: 'blue',
+    weight: 2,
+    opacity: 1,
+    zIndex: 1
+  };
+
   // highlighting on hover listener
   function highlightFeature(e) {
       var layer = e.target;
 
       // highlight style
-      layer.setStyle({
-          weight: 5,
-          color: '#666',
-          dashArray: '',
-          fillOpacity: 0.7
-      });
-
+      layer.setStyle(
+        highlight_style(layer)
+      );
       // send layer properties to info control
       info.update(layer.feature.properties);
 
@@ -128,10 +163,7 @@
       layer.setStyle(
         style(layer)
       );
-      //geojson.resetStyle(e.target);
-
-      // reset info control
-      info.update();
+      info.update(); // reset info control
   }
 
   // call listener functions on mouse move
@@ -142,8 +174,6 @@
           //click: zoomToFeature
       });
   }
-
-
 
   // highlight info control
   var info = L.control();
@@ -162,13 +192,6 @@
       'Hover over a city');
   };
 
-  // Polyline styling
-  var polylineOptions = {
-    color: 'blue',
-    weight: 2,
-    opacity: 1,
-    zIndex: 1
-  };
 
   // Polyline variable
   var ncric_lines = [];
