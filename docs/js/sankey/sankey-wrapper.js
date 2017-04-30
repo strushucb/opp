@@ -1,11 +1,12 @@
   var units = "USD",
       linkTooltipOffset = 62,
       nodeTooltipOffset = 130,
-      technologies, orgs;
+      technologies, orgs, cats;
 
   d3.json("survey.json", function(data) {
     technologies = data.scores.tech;
     orgs = data.scores.orgs;
+    cats = data.scores.information_categories;
   });
 
   var margin = {top: 10, right: 100, bottom: 10, left: 10},
@@ -58,6 +59,7 @@
         console.log(data.scores);
         technologies = data["scores"]["tech"];
         orgs = data.scores.orgs;
+        cats = data.scores.information_categories;
 
         var graph = {"nodes" : [], "links" : []};
         console.log(technologies);
@@ -69,32 +71,32 @@
             
             
             if(+d["what-you-say"] > 0){
-                graph.nodes.push({ "name": "What You Say",        
-                                   "shortname": "what-you-say" });
+                graph.nodes.push({ "shortname": "What You Say",        
+                                   "name": "what-you-say" });
                 graph.links.push({ "source": "What You Say",
                                     "target": d["short"],
                                     "endValue": d["in_score"],
                                     "value": +d["what-you-say"]});  
             }
             if(+d["what-you-do"] > 0){
-            graph.nodes.push({ "name": "What You Do",        
-                               "shortname": "what-you-do" });
+            graph.nodes.push({ "shortname": "What You Do",        
+                               "name": "what-you-do" });
             graph.links.push({ "source": "What You Do",
                                 "target": d["short"],
                                 "endValue": d["in_score"],
                                 "value": +d["what-you-do"]});  
             }
             if(+d["where-you-go"] > 0){
-                graph.nodes.push({ "name": "Where You Go",        
-                               "shortname": "where-you-go" });
+                graph.nodes.push({ "shortname": "Where You Go",        
+                               "name": "where-you-go" });
                 graph.links.push({ "source": "Where You Go",
                                 "target": d["short"],
                                 "endValue": d["in_score"],
                                 "value": +d["where-you-go"]});  
             }
             if(+d["who-you-know"] > 0){            
-                graph.nodes.push({ "name": "Who You Know",        
-                                   "shortname": "who-you-know" });
+                graph.nodes.push({ "shortname": "Who You Know",        
+                                   "name": "who-you-know" });
                 graph.links.push({ "source": "Who You Know",
                                     "target": d["short"],
                                     "endValue": d["in_score"],
@@ -463,6 +465,7 @@
             //console.log(d);
             if(d.name in technologies){return technologies[d.name].image;}
             if(d.name in orgs){return orgs[d.name].image;}
+            if(d.name in cats){return cats[d.name].image;}
             return "img/node.png";
           })
   
