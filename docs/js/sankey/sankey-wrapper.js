@@ -462,6 +462,7 @@
           .attr("xlink:href", function(d) {
             //console.log(d);
             if(d.name in technologies){return technologies[d.name].image;}
+            if(d.name in orgs){return orgs[d.name].image;}
             return "img/node.png";
           })
   
