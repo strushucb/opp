@@ -547,16 +547,19 @@
                          
     function getGradient(d) {
             var color = "#CCCCCC";
+            var color2 = "#AAAAAA";
             var speed = "3s";
             var name = "undefined";
             if(d.source.name in technologies){ 
                 color = technologies[d.source.name].color;
+                color2 = technologies[d.source.name]["color2"];
                 speed = technologies[d.source.name].speed;
                 name = d.source.name;
                 
             }
             if(d.target.name in technologies){ 
                 color = technologies[d.target.name].color;
+                color2 = technologies[d.target.name]["color2"];
                 speed = technologies[d.target.name].speed;
                 name = d.target.name;
             }
@@ -592,7 +595,7 @@
 
     linearGradient.append("stop")
         .attr("offset","5%")
-        .attr("stop-color","#FFFFFF");
+        .attr("stop-color",color2);
     linearGradient.append("stop")
         .attr("offset","35%")
         .attr("stop-color",color);
@@ -601,7 +604,7 @@
         .attr("stop-color",color);
     linearGradient.append("stop")
         .attr("offset","95%")
-        .attr("stop-color","#FFFFFF");
+        .attr("stop-color",color2);
      return "url(#animatedGradient"+name+")";
     }  
     
