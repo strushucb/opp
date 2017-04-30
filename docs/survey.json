@@ -311,7 +311,7 @@
             "short": "chp",
             "long": "California Highway Patrol",
             "label": "State",
-            "image": "img/tech/Labels%20for%20Sankey/CHP.png",
+            "image": "img/tech/Labels%20for%20Sankey/chp.png",
             "stingray-blurb": "The Fremont Police Department acquired a cell site simulator (commonly known as a Stingray) in 200X. Not until 2016 did Fremont Police Department have a policy for its use.",
             "alpr-blurb": "The Fremont Police Department operates XXX ALPR systems. ALPR is regulated by a policy with retention of data limited to 6 months.",
             "smm-blurb": "The Fremont Police Department has used social media monitoring tools in the past such as Geofeedia.",
