@@ -510,11 +510,33 @@
         
         svg.append("text")
         .attr("class","panel-text")
-        .attr("x", (width-300))
+        .attr("x", (width-290))
         .attr("y", 30)
         .attr("height", height)
         .attr("width", 300)
-        .style("fill", "white");
+        .style("fill", "white")
+        .style("font-size","smaller")
+        .text("Explore the information flows with your mouse.")
+        
+        svg.append("text")
+        .attr("class","panel-text")
+        .attr("x", (width-270))
+        .attr("y", height/2)
+        .attr("height", height)
+        .attr("width", 300)
+        .style("fill", "white")
+        .style("font-size","smaller")
+        .text("Details on each entity and relationship");
+              
+        svg.append("text")
+        .attr("class","panel-text")
+        .attr("x", (width-225))
+        .attr("y", (height/2) + 20)
+        .attr("height", height)
+        .attr("width", 300)
+        .style("fill", "white")
+        .style("font-size","smaller")
+        .text("will be displayed here.");
     }
 
     d3.select(window).on('resize.sankey', function(){
@@ -525,16 +547,19 @@
                          
     function getGradient(d) {
             var color = "#CCCCCC";
+            var color2 = "#AAAAAA";
             var speed = "3s";
             var name = "undefined";
             if(d.source.name in technologies){ 
                 color = technologies[d.source.name].color;
+                color2 = technologies[d.source.name]["color2"];
                 speed = technologies[d.source.name].speed;
                 name = d.source.name;
                 
             }
             if(d.target.name in technologies){ 
                 color = technologies[d.target.name].color;
+                color2 = technologies[d.target.name]["color2"];
                 speed = technologies[d.target.name].speed;
                 name = d.target.name;
             }
@@ -570,7 +595,7 @@
 
     linearGradient.append("stop")
         .attr("offset","5%")
-        .attr("stop-color","#FFFFFF");
+        .attr("stop-color",color2);
     linearGradient.append("stop")
         .attr("offset","35%")
         .attr("stop-color",color);
@@ -579,7 +604,7 @@
         .attr("stop-color",color);
     linearGradient.append("stop")
         .attr("offset","95%")
-        .attr("stop-color","#FFFFFF");
+        .attr("stop-color",color2);
      return "url(#animatedGradient"+name+")";
     }  
     

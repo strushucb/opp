@@ -115,7 +115,7 @@
     "income": 1,
     "social-media": "often",
     "social-connections": 3,
-    "quote": "Hello! I'm Matthew ispsum jipsum and jepsum, whatever you said I did I didn't do lorenlorem ispsum jipsum and jepsum, whatever you said I did I didn't do lorenlorem ispsum jipsum and jepsum, whatever you said I did I didn't do lorenlorem ispsum jipsum and jepsum, whatever you said I did I didn't do lorenlorem ispsum jipsum and jepsum, what..."
+    "quote": "I’m a sophomore at UC Berkeley. I live in a house south of campus with a bunch of other women, mostly international students like me. We cook together most nights except Thursdays, when I rehearse with my dance team on Sproul and then go out with them afterward. I’ve really loved my time in Berkeley, but it’s been scary lately with all the riots and protests going on. <br>I follow everything that’s going on through social media, and I’ve been to a few protests, but I’m a little nervous to get involved because I need to get my student visa renewed for next year so I can’t get myself in any trouble. I don’t really know anything about surveillance technologies. Should I be worried, or are they supposed to keep us safe?"
   },
   "sample2": {
     "cell": "yes",
@@ -125,7 +125,7 @@
     "income": 4,
     "social-media": "occasionally",
     "social-connections": 2,
-    "quote": "Hello! I'm Luke ispsum jipsum and jepsum, whatever you said I did I didn't do lorenlorem ispsum jipsum and jepsum, whatever you said I did I didn't do lorenlorem ispsum jipsum and jepsum, whatever you said I did I didn't do lorenlorem ispsum jipsum and jepsum, whatever you said I did I didn't do lorenlorem ispsum jipsum and jepsum, what..."
+    "quote": "I’m the head of Product at a tech company in the South Bay. I live in SF and commute to work every day by car. When I’m not at work I’m out running the trails or climbing. I’m a pretty open person… I don’t really see what the big deal is with privacy. I trust and want companies and the government to use my data and data about me to improve their services. <br><br>So I’m not all that worried about privacy, but I also don’t know that the government should be spending money on surveillance technology. How do we know this technology actually works to deter crime? I’d like to see the data on that."
   },
   "sample3": {
     "cell": "yes",
@@ -135,7 +135,7 @@
     "income": 3,
     "social-media": "often",
     "social-connections": 4,
-    "quote": "Hello! I'm Mark ispsum jipsum and jepsum, whatever you said I did I didn't do lorenlorem ispsum jipsum and jepsum, whatever you said I did I didn't do lorenlorem ispsum jipsum and jepsum, whatever you said I did I didn't do lorenlorem ispsum jipsum and jepsum, whatever you said I did I didn't do lorenlorem ispsum jipsum and jepsum, what..."
+    "quote": "I’m active with my local republican party. We’ve been doing a lot of work to bring conservative speakers to the Bay area. <br><br>I’m happy that police departments are embracing new technologies to fight crime and really don't see why some people are worried.  These tools were being used during the last President too - did they already forget about the DAC [Domain Awareness Center]? I mean, yeah, putting my tin foil hat on, I don't want the government knowing everything I do in the privacy of my home, but the police in the area are undermanned and need any edge they can get. Really, if I'm not doing anything wrong, what do I have to worry about?"
   },
   "sample4": {
     "cell": "yes",
@@ -145,13 +145,14 @@
     "income": 2,
     "social-media": "daily",
     "social-connections": 5,
-    "quote": "Hello! I'm John Lorem ispsum jipsum and jepsum, whatever you said I did I didn't do lorenlorem ispsum jipsum and jepsum, whatever you said I did I didn't do lorenlorem ispsum jipsum and jepsum, whatever you said I did I didn't do lorenlorem ispsum jipsum and jepsum, whatever you said I did I didn't do lorenlorem ispsum jipsum and jepsum, what..."
+    "quote": "I’m a teacher at an Oakland Public School. I love my job, but it’s tough. Many of my students have it rough. I’m very concerned about surveillance technologies because I see it as yet another policing method that will exacerbate the school to prison pipeline. We know already that license plate recognition is used disproportionately in low income communities of color. I’d bet money that’s true of CCTV and Shotspotter too, and that social media tracking is being used to primarily target people of color. Having these technologies in our neighborhoods will mean having more police officers, which will mean more arrests. My students don’t need to be arrested, they need to be in school, learning."
   },
   "tech": {
     "stingray": {
         "image" : "img/stingray.png",
         "bio" : "<p>Blah Blah Blah Stung.</p>",
         "color" : "#54AF52",
+        "color2" : "#9cbc9c",
         "speed" : "20s",
         "short" : "stingray",
         "long": "Cell Site Simulators (Stingrays)",
@@ -172,6 +173,7 @@
         "image" : "img/alpr1.jpg",
         "bio" : "<p>Blah Blah Blah Beep.</p>",
         "color" : "#DD6CA7",
+        "color2" : "#dea7c4",
         "speed" : "4s",
         "short" : "alpr",
         "long" : "Automatic License Plate Readers (ALPR)",
@@ -190,6 +192,7 @@
         "image" : "img/shotspotter.jpg",
         "bio" : "<p>Blah Blah Blah Bang.</p>",
         "color" : "#ff9f2f",
+        "color2" : "#ffc684",
         "speed" : "17s",
         "short" : "shotspotter",
         "long" : "Acoustic Detection Systems (ShotSpotter)",
@@ -208,6 +211,7 @@
         "image" : "img/socialmedia.jpg",
         "bio" : "<p>Blah Blah Blah Tweet.</p>",
         "color" : "#AB9C27",
+        "color2" : "#b1a96d",
         "speed" : "8s",
         "short" : "smm",
         "long" : "Social Media Monitoring",
@@ -226,6 +230,7 @@
         "image" : "img/cctv.jpg",
         "bio" : "<p>Blah Blah Blah Bus.</p>",
         "color" : "#9D5130",
+        "color2" : "#a57c6a",
         "speed" : "3s",
         "short" : "cctv",
         "long" : "Public Camera Systems",

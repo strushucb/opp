@@ -303,7 +303,7 @@ function run_persona() {
                 "transit": false,
                 "events": false,
                 "smuse": false};
-           document.getElementById("bio").innerHTML = "<p style='height: 400px; background-image: url(img/quote.png); background-repeat:no-repeat; background-size: 100%; padding-left: 10px; padding-right: 50px; padding-top: 20px; padding-bottom: 5px;'>"+answers["quote"]+"</p>";
+           document.getElementById("bio").innerHTML = "<p style='height: 400px;  background-image: url(img/quote.png); background-repeat:no-repeat; background-size: 100%; padding-left: 10px; padding-right: 40px; padding-top: 20px; padding-bottom: 5px; font-size:smaller'>"+answers["quote"]+"</p>";
            face.updateData();
        }else{
            variables_set = 0;
