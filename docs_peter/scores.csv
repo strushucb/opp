@@ -1,0 +1,34 @@
+source,target,startval,endval
+What You Say,Stingray,1,5
+What You Do,Stingray,5,5
+Who You Know,Stingray,2,5
+Where You Go,Stingray,5,5
+What You Say,ALPR,0,0
+What You Do,ALPR,4,7
+Who You Know,ALPR,2,6
+Where You Go,ALPR,6,7
+What You Say,ShotSpotter,3,5
+What You Do,ShotSpotter,3,5
+Who You Know,ShotSpotter,1,5
+Where You Go,ShotSpotter,1,5
+What You Say,Social Media Monitoring,6,5
+What You Do,Social Media Monitoring,8,5
+Who You Know,Social Media Monitoring,9,5
+Where You Go,Social Media Monitoring,5,5
+What You Say,CCTV and Public Transit,2,5
+What You Do,CCTV and Public Transit,7,5
+Who You Know,CCTV and Public Transit,7,5
+Where You Go,CCTV and Public Transit,5,5
+Stingray,Oakland Police Department,5,5
+Stingray,Alameda County,5,5
+Stingray,Fremont,5,5
+ALPR,Oakland Police Department,5,5
+ALPR,Alameda County,5,5
+ALPR,Fremont,5,5
+ShotSpotter,Oakland Police Department,5,5
+Social Media Monitoring,Oakland Police Department,5,5
+Social Media Monitoring,Alameda County,5,5
+Social Media Monitoring,Fremont,5,5
+CCTV and Public Transit,Oakland Police Department,5,5
+CCTV and Public Transit,Alameda County,5,5
+CCTV and Public Transit,Fremont,5,5

@@ -482,7 +482,7 @@
             .attr("dy", ".35em")
             .attr("text-anchor", "start")
             .attr("transform", null)
-            .text(function(d) { return d.name; })
+            .text(function(d) { if(!(d.name in technologies)){return d.name; }})
           .filter(function(d) { return d.x < width / 2; })
             .attr("x", function(d) { return 6;}) // + d.dy; })
             .attr("text-anchor", "start");
