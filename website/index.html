@@ -439,7 +439,7 @@
 				<!-- CCTV item -->
 				<div class="portfolio-item grid transit public income car">
 					<div class="portfolio">
-						<a href="img/tech/realphoto/cctv_alanwang_kgotv7.jpg" data-pretty="prettyPhoto[gallery1]" class="portfolio-image" caption="This is text">
+						<a href="img/tech/realphoto/cctv_alanwang_kgotv7.jpg" data-pretty="prettyPhoto[gallery1]" class="portfolio-image" title="<h2>This is a caption.</h2> This caption has no formatting for the title tag, used as a tooltip in the browser." alt="<h2>This is a caption.</h2> This caption has no formatting for the title tag, used as a tooltip in the browser.">
 						<img src="img/tech/CCTV.png" alt="CCTV" />
 						<div class="portfolio-overlay">
 							<div class="thumb-info">
@@ -635,4 +635,26 @@
 <a href="#" class="scrollup"><i class="icon-angle-up icon-square icon-bgdark icon-2x"></i></a>
 
 </body>
+
+
+<script>
+var thumbnails = document.getElementsByClassName("thumb-info");
+console.log(thumbnails);
+
+var addText = function() {
+	setTimeout(function() {document.getElementsByClassName("pp_details"))};, 3000);
+}
+
+for(var i =0; i< thumbnails.length; i++){
+	console.log('adding event listenr')
+	thumbnails[i].addEventListener('click', addText);
+}
+
+
+
+</script>
+
+
+
+
 </html>
