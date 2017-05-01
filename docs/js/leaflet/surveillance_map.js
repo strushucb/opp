@@ -8,7 +8,6 @@
   var cities = citiesCA
   var counties = countiesCA
 
-
   // Create map
   var map = L.map('mapid', {
     //zoomControl:false, // Options to lock zoom
@@ -112,7 +111,6 @@
     opacity: .5,
     zIndex: 1
   };
-
 
   var fusionCenterIcon = L.icon({
     iconUrl: './js/leaflet/icons/noun_11065.png',
@@ -229,10 +227,7 @@
 
   // geoJSON layer variable
   var gj_counties;
-  gj_counties = L.geoJson(counties, {
-      style: style,
-      onEachFeature: onEachFeature
-  });
+  gj_counties = L.geoJson(counties).addTo(map);
 
   // var gj_coplinkWB = L.geoJson(wb_coplink, {
   //     style: style,
@@ -248,26 +243,23 @@
   var stingrayLayer = L.featureGroup(stingrayMarkers,  {
       style: style,
       onEachFeature: onEachFeature,
-      pane: 'lines'
   });
 
   var ncricLayer = L.featureGroup(ncricLines, {
       style: style,
       onEachFeature: onEachFeature,
-      pane: 'lines'
   });
 
   var uasiLayer = L.featureGroup(gj_counties, {
     style: style,
     onEachFeature: onEachFeature,
-    pane: 'lines'
   });
 
 
 
   // Layer Groups
   // var overlayMaps = {
-  //   "lines": ncricLayer,
+  //   // "lines": ncricLayer,
   //   "cities": gj_cities,
   //   "counties": gj_counties
   // };
