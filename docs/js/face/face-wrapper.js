@@ -39,10 +39,10 @@
           function basicLoad(location) {
             var possible; 
             if(num == 0){
-                possible = "persona" +(Math.ceil(Math.random() * 4));
+                possible = "profileimage.jpg"; // +(Math.ceil(Math.random() * 4));
             }else
-                possible = "persona"+num;
-            var file = 'img/team/' + possible + '.jpg'
+                possible = "persona"+num+".jpg";
+            var file = 'img/team/' + possible;
             return {
               file: file,
               shownFile: location.protocol + '//' + location.host + location.pathname + file
