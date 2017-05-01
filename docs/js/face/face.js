@@ -559,26 +559,26 @@ function run_persona() {
         return;
       }else {
         if(mousePosition[0] < maxSize / 2 && mousePosition[1] < maxSize / 2){
-            console.log("Who You Know! "+mousePosition);
+            //console.log("Who You Know! "+mousePosition);
             d3.selectAll(".shitstain").remove();
             d3.selectAll(".shitstain-text").remove();
             generate_reports(0,0,"WHO YOU KNOW",14,14);
  
         }
         else if(mousePosition[0] >= maxSize / 2 && mousePosition[1] < maxSize / 2){
-            console.log("What You Do! "+mousePosition);
+            //console.log("What You Do! "+mousePosition);
             d3.selectAll(".shitstain").remove();
             d3.selectAll(".shitstain-text").remove();
             generate_reports((maxSize / 2),0,"WHAT YOU DO", maxSize - 151, 14);
         }
         else if(mousePosition[0] < maxSize / 2 && mousePosition[1] >= maxSize / 2){
-            console.log("Where You Go! "+mousePosition);
+            //console.log("Where You Go! "+mousePosition);
             d3.selectAll(".shitstain").remove();
             d3.selectAll(".shitstain-text").remove();
             generate_reports(0,(maxSize / 2),"WHERE YOU GO",14, maxSize - 16);
         }
         else if(mousePosition[0] >= maxSize / 2 && mousePosition[1] >= maxSize / 2){
-            console.log("What You Say! "+mousePosition);
+            //console.log("What You Say! "+mousePosition);
             d3.selectAll(".shitstain").remove();
             d3.selectAll(".shitstain-text").remove();
             generate_reports((maxSize / 2),(maxSize / 2),"WHAT YOU SAY",maxSize - 151,maxSize - 16);
