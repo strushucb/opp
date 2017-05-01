@@ -8,6 +8,11 @@
   var cities = citiesCA
   var counties = countiesCA
 
+  var coplink = wb_coplink;
+
+  console.log(coplink);
+
+
   // Create map
   var map = L.map('mapid', {
     //zoomControl:false, // Options to lock zoom
@@ -254,8 +259,6 @@
     style: style,
     onEachFeature: onEachFeature,
   });
-
-
 
   // Layer Groups
   // var overlayMaps = {
