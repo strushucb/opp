@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!--leaflet.css-->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"
+    integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ=="
+    crossorigin=""/>
+
+  <!--leaflet.js v.1.0.3-->
+  <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"
+    integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg=="
+    crossorigin=""></script>
+
+  <script type="text/javascript" src="jquery.js"></script>
+
+  <!-- Ant Path animations -->
+  <script src="./libs/leaflet-ant-path.js"></script>
+
+  <!-- Snake Path Animation -->
+  <script src="./libs/L.Polyline.SnakeAnim.js"></script>
+
+  <!-- data sources -->
+  <!-- src: http://catalog.opendata.city/dataset/california-counties-polygon/resource/6f805645-0836-478d-b168-c1f72d53b4f3 -->
+  <script type="text/javascript" src="data/CA_counties.json"></script>
+  <!-- src: http://catalog.civicdashboards.com/dataset/541573bc-3e3f-4ab0-be55-80e002c4e7bf/resource/4d58b8e8-a067-4285-ae4b-136faf8d7f06/download/919bbd6cf880459dabcc4d781dbde59btemp.geojson -->
+  <script type="text/javascript" src="data/CA_cities.json"></script>
+  <script type="text/javascript" src="data/coords.json"></script>
+
+
+</head>
+
+<style>
+
+.info {
+    padding: 6px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
+}
+
+#mapid {
+  width: 600px;
+  height: 800px;
+  float: left;
+}
+
+.sideDiv {
+  float: left;
+  width: 300px;
+  height: 400px;
+}
+
+</style>
+
+  <body>
+
+    <div id="mapid"></div>
+
+    <!--  -->
+    <div id="controlsDiv" class="sideDiv">
+      <ul>
+        <li><a onclick="set_view('ncric')">NCRIC</a></li>
+        <li><a onclick="set_view('stingray')">Cell Site Simulators</a></li>
+        <li><a onclick="set_view('uasi')">UASI</a></li>
+    </div>
+    <div id="descriptionDiv" class="sideDiv"></div>
+
+</body>
+
+<!-- Map Script -->
+<script type="text/javascript" src="surveillance_map.js"></script>
+
+</html>

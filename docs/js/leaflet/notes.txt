@@ -1,0 +1,24 @@
+Resources:
+
+Snake animation of poly lines:
+https://github.com/IvanSanchez/Leaflet.Polyline.SnakeAnim
+
+Transitions:
+https://github.com/naturalatlas/leaflet-transitionedicon
+
+Ant-path animation of poly lines:
+https://rubenspgcavalcante.github.io/leaflet-ant-path/
+
+
+County Center Coordinates:
+
+City Center Coordinates:
+Oakland: 37.8044° N, 122.2711° W
+Fremont: 37.5483° N, 121.9886° W
+San Francisco: 37.7749° N, 122.4194° W
+
+Alameda County Sheriff: 37.801261,-122.262975
+
+Fusion Centers:
+NICRIC: 37.7820212, -122.4206751
+Bay Area UASI: 37.7821445,-122.4235457
