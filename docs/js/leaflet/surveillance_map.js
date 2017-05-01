@@ -7,6 +7,8 @@
   // copy data local variables
   var cities = citiesCA
   var counties = countiesCA
+
+
   // Create map
   var map = L.map('mapid', {
     //zoomControl:false, // Options to lock zoom
@@ -55,13 +57,15 @@
 
   function stingray_view() {
     clear_layers();
-    console.log(stingrayLayer);
     stingrayLayer.addTo(map);
     map.fitBounds(stingrayLayer.getBounds());
   }
 
   function uasi_view() {
     clear_layers();
+    console.log(uasiLayer);
+    uasiLayer.addTo(map);
+    map.fitBounds(uasiLayer.getBounds());
   }
 
    // Styling for county / city outlines
@@ -223,6 +227,24 @@
     stingrayMarkers.push(line);
   });
 
+  // geoJSON layer variable
+  var gj_counties;
+  gj_counties = L.geoJson(counties, {
+      style: style,
+      onEachFeature: onEachFeature
+  });
+
+  // var gj_coplinkWB = L.geoJson(wb_coplink, {
+  //     style: style,
+  //     onEachFeature: onEachFeature
+  // });
+  //
+  // var gj_cities;
+  // gj_cities = L.geoJson(cities, {
+  //     style: style,
+  //     onEachFeature: onEachFeature
+  // });
+
   var stingrayLayer = L.featureGroup(stingrayMarkers,  {
       style: style,
       onEachFeature: onEachFeature,
@@ -235,25 +257,20 @@
       pane: 'lines'
   });
 
-  // geoJSON layer variable
-  var gj_counties;
-  gj_counties = L.geoJson(counties, {
-      style: style,
-      onEachFeature: onEachFeature
+  var uasiLayer = L.featureGroup(gj_counties, {
+    style: style,
+    onEachFeature: onEachFeature,
+    pane: 'lines'
   });
 
-  var gj_cities;
-  gj_cities = L.geoJson(cities, {
-      style: style,
-      onEachFeature: onEachFeature
-  });
+
 
   // Layer Groups
-  var overlayMaps = {
-    "lines": ncricLayer,
-    "cities": gj_cities,
-    "counties": gj_counties
-  };
+  // var overlayMaps = {
+  //   "lines": ncricLayer,
+  //   "cities": gj_cities,
+  //   "counties": gj_counties
+  // };
 
   // Add Layers to map
   //map.addLayer(marker_layer);
