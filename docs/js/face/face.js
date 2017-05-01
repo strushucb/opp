@@ -192,16 +192,16 @@ function run_persona() {
         } else {
             if(xi >= (dim / 2) && yi >= (dim / 2)){
                 //pink "color2" : "rgba(211, 84, 154, 0.75)"
-                color = [Math.min(colorData[t]+(211-colorData[t])*.60,255), Math.min(colorData[t+1]+(84-colorData[t])*.60,255), Math.min(colorData[t+2]+(154-colorData[t])*.60,255)];
+                color = [Math.min(colorData[t]+(211-colorData[t])*.40,255), Math.min(colorData[t+1]+(84-colorData[t])*.40,255), Math.min(colorData[t+2]+(154-colorData[t])*.40,255)];
             }else if(xi >= (dim / 2) && yi < (dim / 2)){
                 //green rgba(42, 173, 147, 0.75)
-                color = [Math.min(colorData[t]+(42-colorData[t])*.60,255), Math.min(colorData[t+1]+(173-colorData[t])*.60,255), Math.min(colorData[t+2]+(147-colorData[t])*.60,255)];
+                color = [Math.min(colorData[t]+(42-colorData[t])*.40,255), Math.min(colorData[t+1]+(173-colorData[t])*.40,255), Math.min(colorData[t+2]+(147-colorData[t])*.40,255)];
             }else if(xi < (dim / 2) && yi >= (dim / 2)){
                 //blue: blue rgba(42, 59, 142, 0.75)
-                color = [Math.min(colorData[t]+(42-colorData[t])*.60,255), Math.min(colorData[t+1]+(59-colorData[t])*.60,255), Math.min(colorData[t+2]+(142-colorData[t])*.40,255)];
+                color = [Math.min(colorData[t]+(42-colorData[t])*.40,255), Math.min(colorData[t+1]+(59-colorData[t])*.40,255), Math.min(colorData[t+2]+(142-colorData[t])*.40,255)];
             } else{
                 //yellow rgba(250, 175, 76, 0.75)
-                color = [Math.min(colorData[t]+(250-colorData[t])*.60,255), Math.min(colorData[t+1]+(175-colorData[t])*.60,255), Math.min(colorData[t+2]+(76-colorData[t])*.60,255)];
+                color = [Math.min(colorData[t]+(250-colorData[t])*.40,255), Math.min(colorData[t+1]+(175-colorData[t])*.40,255), Math.min(colorData[t+2]+(76-colorData[t])*.40,255)];
             }
             if(color[0] >= 230 && color[1] >= 230 && color[2] >= 230)
                 color = [255,255,255];
@@ -260,6 +260,8 @@ function run_persona() {
         if(!answered_tech["social-connections"]){
             answered_tech["social-connections"] = true;
             variables_set++;
+            d3.select("#smcerror")
+                .style("display","block");
         }
         $.queue.clear();
         $.queue.add(function(){face.updateData()},this,50);
@@ -268,6 +270,8 @@ function run_persona() {
         if(!answered_tech["income"]){
             answered_tech["income"] = true;
             variables_set++;
+            d3.select("#incomeerror")
+                .style("display","block");
         }
         $.queue.clear();
         $.queue.add(function(){face.updateData()},this,50);
@@ -277,6 +281,8 @@ function run_persona() {
         if(!answered_tech[key]){
             answered_tech[key] = true;
             variables_set++;
+            d3.select("#"+key+"error")
+                .style("display","block");
         }
         
         console.log("Updating " + key);
@@ -472,8 +478,8 @@ function run_persona() {
     
     
       
-    function generate_titles(x,y, text, fill, class_id){
-        if(fill != "black"){
+    function generate_titles(x,y, text, fill, class_id, isNormal){
+        if(isNormal){
             vis.append("text")
             .style("fill", fill)
             .style("font-weight",900)
@@ -549,7 +555,7 @@ function run_persona() {
         .attr("height", maxSize / 2)
         .attr("width", maxSize / 2);
 
-        generate_titles(tx,ty,text,"white", "shitstain-text");
+        generate_titles(tx,ty,text,"white", "shitstain-text", true);
         write_report_blurb(x+20,y+60,text);
     }  
       
@@ -602,16 +608,25 @@ function run_persona() {
         return;
       }  
     }
-    
+     
+
       
-    generate_titles(15,15,"WHO YOU KNOW","black", "normal-text");
-    generate_titles(maxSize - 150,15,"WHAT YOU DO","black", "normal-text");
-    generate_titles(15,maxSize - 15,"WHERE YOU GO","black", "normal-text");
-    generate_titles(maxSize - 150,maxSize - 15,"WHAT YOU SAY","black", "normal-text");  
-    generate_titles(15,15,"WHO YOU KNOW","#ffbe68", "normal-text");
-    generate_titles(maxSize - 150,15,"WHAT YOU DO","#44bea5", "normal-text");
-    generate_titles(15,maxSize - 15,"WHERE YOU GO","#7789e5", "normal-text");
-    generate_titles(maxSize - 150,maxSize - 15,"WHAT YOU SAY","#d16fa5", "normal-text");
+    /*generate_titles(15,15,"WHO YOU KNOW","white", "normal-text");
+    generate_titles(maxSize - 150,15,"WHAT YOU DO","white", "normal-text");
+    generate_titles(15,maxSize - 15,"WHERE YOU GO","white", "normal-text");
+    generate_titles(maxSize - 150,maxSize - 15,"WHAT YOU SAY","white", "normal-text"); 
+ */
+
+ 
+    generate_titles(15,15,"WHO YOU KNOW","black", "normal-text", false);
+    generate_titles(maxSize - 150,15,"WHAT YOU DO","black", "normal-text", false);
+    generate_titles(15,maxSize - 15,"WHERE YOU GO","black", "normal-text", false);
+    generate_titles(maxSize - 150,maxSize - 15,"WHAT YOU SAY","black", "normal-text", false); 
+      
+    generate_titles(15,15,"WHO YOU KNOW","rgba(255, 190, 104, 1)", "normal-text", true);
+    generate_titles(maxSize - 150,15,"WHAT YOU DO","#44bea5", "normal-text", true);
+    generate_titles(15,maxSize - 15,"WHERE YOU GO","#7789e5", "normal-text", true);
+    generate_titles(maxSize - 150,maxSize - 15,"WHAT YOU SAY","#d16fa5", "normal-text", true);
 
   
     d3.select("#dots")
