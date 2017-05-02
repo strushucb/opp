@@ -285,7 +285,7 @@ function run_persona() {
                 .style("display","block");
         }
         
-        console.log("Updating " + key);
+        //console.log("Updating " + key);
         $.queue.clear();
         $.queue.add(function(){face.updateData()},this,50);
     }
@@ -360,6 +360,7 @@ function run_persona() {
        }
        if(answered_tech["car"]){ 
            carResult = scores.survey["car"][d3.select("#CarUse").property("value")];
+           //console.log("Car Result: "+carResult);
            addToTotal(carResult);
        }
        if(answered_tech["cell"]){ 
@@ -387,7 +388,7 @@ function run_persona() {
         
         for(var item in base_scores){
             if(variables_set < 7){
-                console.log("GRRRR!!!!");
+                //console.log("GRRRR!!!!");
                 if(scores.tech[item]["what-you-say"] > 0 && scores.tech[item]["what-you-say"] != base_scores[item]["what-you-say"]){
                     what_scores["what-you-say"] = Math.min(1365, what_scores["what-you-say"] + Math.pow(base_scores[item]["what-you-say"],1));
                 }

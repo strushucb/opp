@@ -49,23 +49,23 @@
   var tech_more;
 
 
- console.log("About to load sankey data!!");
+ //console.log("About to load sankey data!!");
  d3.json("survey.json", function(data) {
     
     var currentData = data;
     function processData(data, init) {
         
 
-        console.log(data.scores);
+        //console.log(data.scores);
         technologies = data["scores"]["tech"];
         orgs = data.scores.orgs;
         cats = data.scores.information_categories;
 
         var graph = {"nodes" : [], "links" : []};
-        console.log(technologies);
+        //console.log(technologies);
         for(var item in technologies){
             d = technologies[item];
-            console.log(d["short"]);
+            //console.log(d["short"]);
             graph.nodes.push({ "shortname": d["long"],
                                "name": d["short"] });        
             
@@ -107,7 +107,7 @@
         for(var item in orgs){
             d = orgs[item];
             equipment = d["tech"];
-            console.log(d["short"]);
+            //console.log(d["short"]);
             graph.nodes.push({ "shortname": d["long"],
                                "name": d["short"] });
             for(tech in equipment){
@@ -390,7 +390,7 @@
       myLinks = graph.links;
       myNodes = graph.nodes;
 
-      console.log("Links: "+myLinks);
+      //console.log("Links: "+myLinks);
     
       svg = d3.select('.sankey')
           .attr("width", width)
