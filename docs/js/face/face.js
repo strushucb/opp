@@ -315,10 +315,10 @@ function run_persona() {
                {"social-connections": true,
                 "income": true,
                 "car": true,
-                "cell": false,
-                "transit": false,
-                "events": false,
-                "smuse": false};
+                "cell": true,
+                "transit": true,
+                "events": true,
+                "smuse": true};
            document.getElementById("bio").innerHTML = "<p style='height: 400px;  background-image: url(img/quote.png); background-repeat:no-repeat; background-size: 100%; padding-left: 10px; padding-right: 40px; padding-top: 20px; padding-bottom: 5px; font-size:smaller'>"+answers["quote"]+"</p>";
            face.updateData();
        }else{
