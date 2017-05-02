@@ -29,9 +29,9 @@
   var geojson = L.geoJSON(counties, {
       style: function(feature) {
         switch (feature.properties.uasi) {
-          case 'Aries' : return {color: "#ff0000"};
-          case 'NCRIC' : return {color: "#0000ff"};
-          case 'SCCS' : return {color: "#b2df8a"};
+          case 'ARIES' : return {color: "#ff0000"};
+          case 'West Bay COPLINK' : return {color: "#0000ff"};
+          case 'South Bay COPLINK' : return {color: "#b2df8a"};
           default : return {color: "transparent"};
         }
       },
@@ -50,7 +50,7 @@
 
   var ncricText = "https://www.cehrp.org/license-plate-reader-data-sharing-at-northern-california-regional-intelligence-center/"
   var stingrayText = "Stingray";
-  var uasiText = "uasi";
+  var uasiText = "http://www.bayareauasi.org/sites/default/files/resources/010815%20Agenda%20Item%208%20Appendix%20A%20Public%20Safety%20Information%20Sharing%20Update.pdf";
 
   function clear_layers() {
     map.eachLayer(function (layer) {

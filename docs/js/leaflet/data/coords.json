@@ -20,7 +20,7 @@ var cityData = {
   "fremont": {
     "name": "Fremont Police Department",
     "coordinates": [37.552717,-121.969067],
-    "text" : "Fremont Police Department",
+    "text" : "https://www.documentcloud.org/documents/3467689-NCRIC-Fremont-Police-Dept-MOU-29Jan2016.html",
     "icon": "policeIcon"
   },
   "acda": {
@@ -32,7 +32,7 @@ var cityData = {
   "eastPA": {
     "name": "East Palo Alto Police Department",
     "coordinates": [37.474375,	-122.134646],
-    "text": "",
+    "text": "https://www.documentcloud.org/documents/3467689-NCRIC-Fremont-Police-Dept-MOU-29Jan2016.html",
     "icon": "policeIcon"
   },
 
@@ -51,67 +51,67 @@ var cityData = {
   "dalyCity":	{
     "name": "Daly City Police Department",
     "coordinates": [37.690508,	-122.473503],
-    "text": "Daly City Police Department",
+    "text": "https://www.documentcloud.org/documents/2358160-ncric-daly-city-mou-13sep2011.html",
   },
   "hayward":	{
     "name": "Hayward Police Department",
     "coordinates": [37.657497,	-122.096912],
-    "text": "Hayward Police Department",
+    "text": "https://www.documentcloud.org/documents/3455465-NCRIC-Hayward-MOU-31Jan2014.html",
   },
   "livermore":	{
     "name": "Livermore Police Department",
     "coordinates": [37.674568,	-121.756786],
-    "text": "Livermore Police Department",
+    "text": "https://www.documentcloud.org/documents/3455456-NCRIC-Livermore-PD-MOU-29Oct2014.html",
   },
   "losGatos":	{
     "name": "Los Gatos Police Department",
     "coordinates": [37.220993,	-121.978534],
-    "text": "Los Gatos Police Department",
+    "text": "https://www.documentcloud.org/documents/2358166-ncric-los-gatos-mou-27mar2013.html",
   },
   "manteca":	{
     "name": "Manteca Police Department",
     "coordinates": [37.800317,	-121.232196],
-    "text": "",
+    "text": "https://www.documentcloud.org/documents/2358170-ncric-manteca-mou-11sep2013.html",
   },
   "millValley":	{
     "name": "Mill Valley Police Department",
     "coordinates": [37.896729,	-122.522108],
-    "text": "",
+    "text": "https://www.documentcloud.org/documents/2716576-NCRIC-Mill-Valley-Police-Dept-MOU-23Mar2015.html",
   },
   "milpitas":	{
     "name": "Milpitas Police Department",
     "coordinates": [37.449493,	-121.910222],
-    "text": "",
+    "text": "https://www.documentcloud.org/documents/2358172-ncric-milpitas-mou-15nov2012.html",
   },
   "modesto":	{
     "name": "Modesto Police Department",
     "coordinates": [37.637588,	-120.996432],
-    "text": "",
+    "text": "https://www.documentcloud.org/documents/2358175-ncric-modesto-mou-12dec2013.html",
   },
   "piedmont":	{
     "name": "Piedmont Police Department",
     "coordinates": [37.824462,	-122.232329],
-    "text": "",
+    "text": "https://www.documentcloud.org/documents/2358158-ncric-piedmont-mou-19feb2013.html",
   },
   "rocklin":	{
     "name": "Rocklin Police Department",
     "coordinates": [38.787807,	-121.233237],
-    "text": "",
+    "text": "https://www.documentcloud.org/documents/3455558-NCRIC-Rocklin-MOU-20Mar2014.html",
   },
   "sanFrancisco":	{
     "name": "San Francisco Police Department",
     "coordinates": [37.77238,	-122.389412],
-    "text": "",
+    "text": "https://www.documentcloud.org/documents/2358196-ncric-san-francisco-alpr-mou-17nov2009.html",
   },
   "sjEvergreen":	{
     "name": "San Jose / Evergreen Police Department",
     "coordinates": [37.334769,	-121.891554],
-    "text": "",
+    "text": "https://www.documentcloud.org/documents/3455471-NCRIC-Evergreen-CC-MOU-31Jan2013.html",
   },
   "sanLeandro":	{
     "name": "San Leandro Police Department",
     "coordinates": [37.727996,	-122.15907],
-    "text": "",
+    "text": "https://www.documentcloud.org/documents/2358199-ncric-san-leandro-alpr-mou-14dec2012.html",
   },
   "ncric":	{
     "name": "Northern California Regional Information Center (NCRIC)",
@@ -119,28 +119,28 @@ var cityData = {
     "text": "",
   },
   "sanMateo":	{
-    "name": "San Mateo Police Department",
+    "name": "San Mateo County Sheriff",
     "coordinates": [37.542332,	-122.292019],
-    "text": "",
+    "text": "https://www.documentcloud.org/documents/2716577-NCRIC-San-Mateo-Co-Sheriff-MOU-16Jan2015.html",
   },
   "solano":	{
-    "name": "Solano Police Department",
+    "name": "Solano County Sheriff's Office",
     "coordinates": [38.247567,	-122.039965],
-    "text": "",
+    "text": "https://www.documentcloud.org/documents/2358177-ncric-solano-co-sheriff-mou-10jun2013.html",
   },
   "stanislaus":	{
-    "name": "Stanislaus County Sherif" ,
+    "name": "Stanislaus County Sheriff" ,
     "coordinates": [37.586609,	-120.989321],
-    "text": "",
+    "text": "https://www.documentcloud.org/documents/2716575-NCRIC-Stanislaus-Co-Sheriff-MOU-3Feb2015.html",
   },
   "walnutCreek":	{
     "name": "Walnut Creek Police Department" ,
     "coordinates": [37.901521,	-122.061137],
-    "text": "",
+    "text": "https://www.documentcloud.org/documents/2358188-ncric-walnut-creek-mou-10sep2013.html",
   },
   "westSacramento":	{
     "name": "West Sacramento Police Department" ,
     "coordinates": [38.586308,	-121.527531],
-    "text": "",
+    "text": "https://www.documentcloud.org/documents/3455460-NCRIC-West-Sacramento-PD-MOU-29Aug2016.html",
   }
 };
