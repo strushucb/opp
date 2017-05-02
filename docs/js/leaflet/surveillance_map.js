@@ -1,7 +1,3 @@
-//TODO: Interactions - buttons, highlighting
-
-//TODO: Add department markers and labels
-//TODO: Create line layer groups (panes) by program / styling
 
   // copy data local variables
   var cities = citiesCA
@@ -63,6 +59,7 @@
   function ncric_view() {
     clear_layers();
     ncricLayer.addTo(map);
+    $('#mapDescription').html('');
     map.fitBounds(ncricLayer.getBounds());
   }
 
