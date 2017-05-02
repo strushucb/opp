@@ -11,10 +11,10 @@
     },
     "car": {
         "yes": { 
-            "alpr" : 5
+            "alpr" : 10
         },
         "maybe": { 
-            "alpr" : 3
+            "alpr" : 5
         },
         "no": { 
             "alpr" : 0
@@ -22,13 +22,13 @@
     },
     "transit": {
         "yes": { 
-            "cctv" : 5
+            "cctv" : 10
         },
         "maybe": { 
-            "cctv" : 3
+            "cctv" : 5
         },
         "no": { 
-            "cctv" : 1
+            "cctv" : 0
         }        
     },
     "events": {
@@ -77,13 +77,13 @@
     },
     "smuse": {
         "daily": { 
-            "smm" : 4
+            "smm" : 10
         },
         "often": { 
-            "smm" : 3
+            "smm" : 8
         },
         "occasionally": { 
-            "smm" : 2
+            "smm" : 4
         },
         "never": { 
             "smm" : 1
@@ -94,16 +94,16 @@
             "smm" : 1
         },
         "low-med": { 
-            "smm" : 2
-        },
-        "medium": {
-            "smm" : 3
-        },
-        "high-med": { 
             "smm" : 4
         },
+        "medium": {
+            "smm" : 6
+        },
+        "high-med": { 
+            "smm" : 8
+        },
         "high": { 
-            "smm" : 5
+            "smm" : 10
         }    
     }
   },
