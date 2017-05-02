@@ -519,7 +519,7 @@ function run_persona() {
         line = 0;
 
         for(var i = 0; i < split_blurb.length; i++){
-            if(char_count > 27){
+            if(char_count > 25){
                 vis.append("text")
                 .attr("class","shitstain-text")
                 .attr("x", x)
