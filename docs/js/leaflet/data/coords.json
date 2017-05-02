@@ -3,8 +3,6 @@ var coords = {
   "alameda": [37.6017, -121.7195],
   "ncric": [37.7820212, -122.4206751],
   "UASI": [37.7821445,-122.4235457],
-  "Marin": [37.938571,	-122.529914],
-  "DalyCity": [37.690508, -122.473503],
   "marin":	[37.938571,	-122.529914],
   "dalyCity":	[37.690508,	-122.473503],
   "eastPA":	[37.474375,	-122.134646],
@@ -40,16 +38,126 @@ var cityData = {
   "oakland": {
     "name": "Oakland Police Department",
     "coordinates": [37.799362,-122.275087],
-    "text": "Oakland Police Department participates in x"
+    "text": "Oakland Police Department",
+    "icon": "policeIcon"
   },
   "fremont": {
     "name": "Fremont Police Department",
     "coordinates": [37.552717,-121.969067],
-    "text" : "Fremont Police Department participates in x"
+    "text" : "Fremont Police Department",
+    "icon": "policeIcon"
   },
   "acda": {
     "name": "Alameda County District Attorney",
     "coordinates": [37.7997746, -122.2762910],
-    "text": "Alameda County District Attorney"
+    "text": "Alameda County District Attorney",
+    "icon": "policeIcon"
+  },
+  "alameda": {
+    "name": "Alameda Police Department",
+    "coordinates": [37.6017, -121.7195],
+    "text": "Alameda Police Department",
+    "icon": "policeIcon"
+  },
+  "marin": {
+    "name": "Marin Police Department",
+    "coordinates": [37.938571, -122.529914],
+    "text": "Marin Police Department",
+    "icon": "policeIcon"
+  },
+  "dalyCity":	{
+    "name": "Daly City Police Department",
+    "coordinates": [37.690508,	-122.473503],
+    "text": "Daly City Police Department",
+  },
+  "hayward":	{
+    "name": "Hayward Police Department",
+    "coordinates": [37.657497,	-122.096912],
+    "text": "Hayward Police Department",
+  },
+  "livermore":	{
+    "name": "Livermore Police Department",
+    "coordinates": [37.674568,	-121.756786],
+    "text": "Livermore Police Department",
+  },
+  "losGatos":	{
+    "name": "Los Gatos Police Department",
+    "coordinates": [37.220993,	-121.978534],
+    "text": "Los Gatos Police Department",
+  },
+  "manteca":	{
+    "name": "Manteca Police Department",
+    "coordinates": [37.800317,	-121.232196],
+    "text": "",
+  },
+  "millValley":	{
+    "name": "Mill Valley Police Department",
+    "coordinates": [37.896729,	-122.522108],
+    "text": "",
+  },
+  "millValley":	{
+    "name": "Mill Valley Police Department",
+    "coordinates": [37.896729,	-122.522108],
+    "text": "",
+  },
+  "milpitas":	{
+    "name": "Milpitas Police Department",
+    "coordinates": [37.449493,	-121.910222],
+    "text": "",
+  },
+  "modesto":	{
+    "name": "Modesto Police Department",
+    "coordinates": [37.637588,	-120.996432],
+    "text": "",
+  },
+  "piedmont":	{
+    "name": "Piedmont Police Department",
+    "coordinates": [37.824462,	-122.232329],
+    "text": "",
+  },
+  "rocklin":	{
+    "name": "Rocklin Police Department",
+    "coordinates": [38.787807,	-121.233237],
+    "text": "",
+  },
+  "sf":	{
+    "name": "San Francisco Police Department",
+    "coordinates": [37.77238,	-122.389412],
+    "text": "",
+  },
+  "sjEvergreen":	{
+    "name": "San Jose / Evergreen Police Department",
+    "coordinates": [37.334769,	-121.891554],
+    "text": "",
+  },
+  "sanLeandro":	{
+    "name": "San Leandro Police Department",
+    "coordinates": [37.727996,	-122.15907],
+    "text": "",
+  },
+  "sanMateo":	{
+    "name": "San Mateo Police Department",
+    "coordinates": [37.542332,	-122.292019],
+    "text": "",
+  },
+  "solano":	{
+    "name": "Solano Police Department",
+    "coordinates": [38.247567,	-122.039965],
+    "text": "",
+  },
+  "stanislaus":	{
+    "name": "Stanislaus County Sherif" ,
+    "coordinates": [37.586609,	-120.989321],
+    "text": "",
+  },
+  "walnutCreek":	{
+    "name": "Walnut Creek Police Department" ,
+    "coordinates": [37.901521,	-122.061137],
+    "text": "",
+  },
+  "westSacramento":	{
+    "name": "West Sacramento Police Department" ,
+    "coordinates": [38.586308,	-121.527531],
+    "text": "",
   }
 };

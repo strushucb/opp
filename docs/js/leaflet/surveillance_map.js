@@ -59,6 +59,7 @@
   function ncric_view() {
     clear_layers();
     ncricLayer.addTo(map);
+    marker_layer.addTo(map);
     $('#mapDescription').html('');
     map.fitBounds(ncricLayer.getBounds());
   }
@@ -126,17 +127,22 @@
 
 
   var fusionCenterIcon = L.icon({
-    iconUrl: './icons/noun_11065.png',
-    iconSize: [38, 95],
+    iconUrl: 'js/leaflet/icons/noun_11065.png',
+    iconSize: [40, 40],
     //shadowSize:   [50, 64], // size of the shadow
-    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+    iconAnchor:   [0, 0], // point of the icon which will correspond to marker's location
     //shadowAnchor: [4, 62],  // the same for the shadow
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 
   });
 
-  var fusionCenterIcon = L.icon({
-    iconUrl: './icons/noun_850014_cc.png'
+  var policeIcon = L.icon({
+    iconUrl: 'js/leaflet/icons/police_icon.png',
+    iconSize: [35, 30],
+    //shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [18, 30], // point of the icon which will correspond to marker's location
+    //shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
   });
 
 
@@ -196,12 +202,15 @@
     lat = cityData[key].coordinates[0];
     lon = cityData[key].coordinates[1];
     text = cityData[key].text;
+    icon = cityData[key].icon;
+
 
     var markerLocation = new L.LatLng(lat,lon);
-    var marker = new L.Marker(markerLocation);
+    marker = new L.Marker(markerLocation, {icon: policeIcon});
     marker.bindPopup(text);
     markers.push(marker);
   });
+
   var marker_layer = L.layerGroup(markers);
 
   // Load Polyline data
@@ -247,7 +256,7 @@
   gj_cities = L.geoJson(cities, {
       style: style,
       onEachFeature: onEachFeature
-  }).map();
+  });
 
   // Layer Groups
   var overlayMaps = {
@@ -256,13 +265,4 @@
     "counties": gj_counties
   };
 
-  // Add Layers to map
-  //map.addLayer(marker_layer);
-  //ncricLayer.addTo(map);
-  // put description box onto map
   info.addTo(map);
-  // Political boundary layer
-  //map.addLayer(gj_counties);
-
-  // Layer toggle control
-  // L.control.layers(null, overlayMaps).addTo(map);
