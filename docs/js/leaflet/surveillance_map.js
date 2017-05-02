@@ -48,7 +48,9 @@
       uasi_view();
   }
 
-  var ncric_text = "https://www.cehrp.org/license-plate-reader-data-sharing-at-northern-california-regional-intelligence-center/"
+  var ncricText = "https://www.cehrp.org/license-plate-reader-data-sharing-at-northern-california-regional-intelligence-center/"
+  var stingrayText = "Stingray";
+  var uasiText = "uasi";
 
   function clear_layers() {
     map.eachLayer(function (layer) {
@@ -60,22 +62,27 @@
 
   function ncric_view() {
     clear_layers();
+    $('#mapDescription').html("");
     ncricLayer.addTo(map);
     marker_layer.addTo(map);
-    $('#mapDescription').html(ncric_text);
+    $('#mapDescription').html(ncricText);
     map.fitBounds(ncricLayer.getBounds());
   }
 
   function stingray_view() {
+    $('#mapDescription').html("");
     clear_layers();
     console.log(stingrayLayer);
     stingrayLayer.addTo(map);
+    $('#mapDescription').html(stingrayText);
     map.fitBounds(stingrayLayer.getBounds());
   }
 
   function uasi_view() {
+    $('#mapDescription').html("");
     clear_layers();
     geojson.addTo(map);
+    $('#mapDescription').html(uasiText);
     map.fitBounds(geojson.getBounds());
   }
 
@@ -132,7 +139,7 @@
     iconUrl: 'js/leaflet/icons/noun_11065.png',
     iconSize: [40, 40],
     //shadowSize:   [50, 64], // size of the shadow
-    iconAnchor:   [0, 0], // point of the icon which will correspond to marker's location
+    iconAnchor:   [18, 30], // point of the icon which will correspond to marker's location
     //shadowAnchor: [4, 62],  // the same for the shadow
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 
@@ -199,34 +206,39 @@
   info.addTo(map);
   //Load location points to create markers
 
-  var markers = [];
+  var ncricMarkers = [];
   var ncricLines = [];
   hub = groups.ncric_alpr.hub;
   spokes = groups.ncric_alpr.spokes;
   hub_latLon = cityData[hub].coordinates;
+  hub_marker = new L.Marker(hub_latLon, {icon: fusionCenterIcon});
+  hub_marker.bindPopup(cityData[hub].name)
+  ncricMarkers.push(hub_marker);
+
   spokes.forEach(function(spoke) {
-    console.log(spoke);
     // get coordinates for each spoke
     spoke_latLon = cityData[spoke].coordinates;
-
+    spoke_marker = new L.Marker(spoke_latLon, {icon: policeIcon});
+    spoke_marker.bindPopup(cityData[spoke].name)
     //add lines to array
     line = new L.Polyline.AntPath([spoke_latLon, hub_latLon], antPathOptions);
     ncricLines.push(line);
+    ncricMarkers.push(spoke_marker);
   });
 
-  Object.keys(cityData).forEach(function(key) {
-    lat = cityData[key].coordinates[0];
-    lon = cityData[key].coordinates[1];
-    text = cityData[key].name;
-    icon = cityData[key].icon;
+  // Object.keys(cityData).forEach(function(key) {
+  //   lat = cityData[key].coordinates[0];
+  //   lon = cityData[key].coordinates[1];
+  //   text = cityData[key].name;
+  //   icon = cityData[key].icon;
+  //
+  //   var markerLocation = new L.LatLng(lat,lon);
+  //   marker = new L.Marker(markerLocation, {icon: policeIcon});
+  //   marker.bindPopup(text);
+  //   markers.push(marker);
+  // });
 
-    var markerLocation = new L.LatLng(lat,lon);
-    marker = new L.Marker(markerLocation, {icon: policeIcon});
-    marker.bindPopup(text);
-    markers.push(marker);
-  });
-
-  var marker_layer = L.layerGroup(markers);
+  var marker_layer = L.layerGroup(ncricMarkers);
 
   var stingrayLines = []
   hub = groups.acdaStingray.hub;
