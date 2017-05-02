@@ -163,7 +163,7 @@
             titlekey = title.replace(/\s+/g, '-').toLowerCase() + "-blurb";
             blurb = technologies[tech][titlekey];
             split_blurb = blurb.split(" ");
-            
+            title = cats[title].long;
         }
 
         var result = "";
@@ -222,16 +222,19 @@
     
         d3.selectAll(".panel-text").remove();
         //var titlekey = title.replace(/\s+/g, '-').toLowerCase() + "-blurb";
-        
+        var title, blurb;
         if(item in technologies){
-            blurb = technologies[item].long;
+            title = technologies[item].long;
+            blurb = technologies[item].blurb;
         }else if(item in orgs){
-            blurb = orgs[item].long;   
+            title = orgs[item].long;   
+            blurb = orgs[item].blurb;   
         }else{
-            blurb = item;
+            title = cats[item].long;
+            blurb = cats[item].blurb;
         }
 
-        //var split_blurb = blurb.split(" ");
+        var split_blurb = blurb.split(" ");
         var result = "";
         var char_count = 0;
         line = 0;
@@ -243,7 +246,7 @@
                 .style("fill", "white")
                 .style("font-size","smaller")
                 .style("font-weight",900)
-                .text(function(d){return blurb;});
+                .text(function(d){return title;});
         line++;
 
         svg.append("text")
@@ -256,7 +259,7 @@
                 .text(function(d){return " & You: ";});
         line++;
 
-        /*for(var i = 0; i < split_blurb.length; i++){
+        for(var i = 0; i < split_blurb.length; i++){
             if(char_count > 27){
                 svg.append("text")
                 .attr("class","panel-text")
@@ -281,7 +284,7 @@
                     .style("fill", "white")
                     .style("font-size","smaller")
                     .text(function(d){return result;});
-        }*/
+        }
     }
 
      
@@ -451,9 +454,9 @@
               this.parentNode.appendChild(this); })
           .on("drag", dragmove))
           .on("mousedown", function(d){
-                if(d.name in technologies){
+                /*if(d.name in technologies){
                     showTechInfo(d.name);
-                }
+                }*/
             });
 
       // add the rectangles for the nodes

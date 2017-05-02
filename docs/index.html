@@ -80,10 +80,10 @@
 				<ul id="menu-main" class="nav">
 					<li><a title="quiz" href="#quiz">Quiz</a></li>
 					<li><a title="tech" href="#tech">Technologies</a></li>
-					<li><a title="services" href="#services">Services</a></li>
-					<li><a title="works" href="#works">Works</a></li>
+					<li><a title="agencies" href="#agencies">Agencies</a></li>
+                    <li><a title="map" href="#map">Sharing</a></li>
+					<li><a title="implications" href="#implications">Implication</a></li>
 					<li><a title="involved" href="#involved">Get Involved</a></li>
-					<li><a href="page.html">Page</a></li>
 				</ul>
 				</nav>
 			</div>
@@ -147,7 +147,7 @@
                                 <!-- Cell Phone -->
                                 Do you use a cell phone?
                                 <div class="form-group">
-                                    <select class="combobox" id="CellUse" onChange="face.updateDataWrap('cell')">
+                                    <select class="combobox" id="CellUse" onChange="face.updateDataWrap('cell')" alt="HEY!">
                                       <option></option>
                                       <option value="yes">Yes</option>
                                       <option value="no">No</option>
@@ -175,6 +175,7 @@
                                       <option value="no">No</option>
                                     </select>
                                 </div>
+
                                 <!-- Public Events -->
                                 How often do you attend public events?
                                 <div class="form-group" >
@@ -210,10 +211,68 @@
                                 <div class="field form-group">
                                         0 <input type="range" min="1" max="5" id="SMULevel" value ="1" > &gt; 2000
                                 </div>
-    
+
+
                                 <b>Or select a Bay Area resident to view their profile:</b>
                             </div>
+                            
                             <div class="span3" style="height: 400px; vertical-align: middle;" id="bio">
+                                <div id="cellerror" class="alert alert-danger alert-dismissable" style = "display:none">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+<<<<<<< HEAD
+                                    <strong>Warning!</strong> Your cell phone's location and contents may be monitored.
+                                </div>
+                                <div id="carerror" class="alert alert-danger alert-dismissable" style = "display:none">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                                    <strong>Warning!</strong> Your car's location may be monitored.
+                                </div>
+                                <div id="transiterror" class="alert alert-danger alert-dismissable" style = "display:none">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                                    <strong>Warning!</strong> Your trips may be monitored.
+                                </div>
+                                <div id="eventserror" class="alert alert-danger alert-dismissable" style = "display:none">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                                    <strong>Warning!</strong> Public events like rallies, concerts, and other mass gatherings may be monitored.
+                                </div>
+                                <div id="incomeerror" class="alert alert-danger alert-dismissable" style = "display:none">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                                    <strong>Warning!</strong> Lower incomes neighborhoods are more likely to be monitored.
+                                </div>
+                                <div id="smuseerror" class="alert alert-danger alert-dismissable" style = "display:none">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                                    <strong>Warning!</strong> Your social media accounts may be monitored.
+                                </div>
+                                <div id="smcerror" class="alert alert-danger alert-dismissable" style = "display:none">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                                    <strong>Warning!</strong> Your friends may be sharing your information publically.
+=======
+                                    Your cell phone's location and contents may be monitored.
+                                </div>
+                                <div id="carerror" class="alert alert-danger alert-dismissable" style = "display:none">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                                    Your car travel may be monitored.
+                                </div>
+                                <div id="transiterror" class="alert alert-danger alert-dismissable" style = "display:none">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                                    Your trips may be monitored.
+                                </div>
+                                <div id="eventserror" class="alert alert-danger alert-dismissable" style = "display:none">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                                    Events like rallies, concerts, and other gatherings may be monitored.
+                                </div>
+                                <div id="incomeerror" class="alert alert-danger alert-dismissable" style = "display:none">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                                    Lower incomes neighborhoods are more likely to be monitored.
+                                </div>
+                                <div id="smuseerror" class="alert alert-danger alert-dismissable" style = "display:none">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                                    Your social media accounts may be monitored.
+                                </div>
+                                <div id="smcerror" class="alert alert-danger alert-dismissable" style = "display:none">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                                    Your friends may be sharing your information publically.
+>>>>>>> origin/master
+                                </div>
                             </div>
                         </div>
                 <div class="row" style="margin-bottom:0px">
@@ -341,12 +400,8 @@
 </section>
 <!-- end section: tools/tech -->
 
-
-
-
-
 <!-- section: tech usage -->
-<section id="about" class="section">
+<section id="agencies" class="section">
 <div class="container">
 	<h4>A Tangled Web of Surveillance</h4>
 
@@ -355,7 +410,7 @@
 			<div class ="span8">
                 <h2>How Your Information Flows to the Government</h2>
 				<p>
-					Information on <strong>who you know, where you go, what you do,</strong> and <strong>what you say</strong> is collected by these tools. Some technology such as cell site simulators (Stingrays) may be used infrequently while others such as ALPR and CCTV may be continually gathering information.
+					Information on <strong>who you know, where you go, what you do,</strong> and <strong>what you say</strong> is collected by these tools. Some technology such as cell site simulators (Stingrays) may be used infrequently while others such as ALPR and CCTV may be continually gathering information. The below chart shows how each system can be used by organizations from the city - for example, Oakland - to the federal level like DHS' agencies.
                 </p>
 			</div>
 		</div>
@@ -365,10 +420,10 @@
 	<!-- Four columns -->
             <div class="election-wrapper">
                 <div id="sankey"></div>
-                <p>Technology Information:</p>
+                <!-- <p>Technology Information:</p>
                 <div id="techinfo" class="text" style="display:none;">
                     <p>Blah Blah Blah.</p>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -425,8 +480,24 @@
 	</div>
 </section>
 <!-- end map section -->
+
+<section class="spacer blue">
+<div class="container">
+    <div class="row">
+        <div class="span6 alignright flyLeft">
+            <blockquote class="large">
+                 This is where a quote from the interview goes <cite>Ray Sting, Concerned Citizen</cite>
+            </blockquote>
+        </div>
+        <div class="span6 aligncenter flyRight">
+            <i class="icon-coffee icon-10x"></i>
+        </div>
+    </div>
+</div>
+</section>
+
 <!-- section: works -->
-<section id="works" class="section yellow">
+<section id="implications" class="section">
 <div class="container clearfix">
 	<h4>... but what are the implications?</h4>
 	<!-- portfolio filter -->
@@ -557,7 +628,7 @@
 </section>
 <!-- end spacer section -->
 <!-- section: get involved -->
-<section id="involved" class="section white">
+<section id="involved" class="section yellow">
 <div class="container">
 	<h4>Get Involved</h4>
 	<!-- Three columns -->
@@ -565,7 +636,7 @@
 		<div class="span3">
 			<div class="home-post">
 				<div class="post-image">
-					<img class="max-img" src="img/blog/img1.jpg" alt="" />
+					<img class="max-img" src="img/oaklandprivacyorg.png" alt="" />
 				</div>
 <!-- 				<div class="post-meta">
 					<i class="icon-file icon-2x"></i>
@@ -573,18 +644,18 @@
 					<span class="tags"><a href="#">Design</a>, <a href="#">Blog</a></span>
 				</div> -->
 				<div class="entry-content">
-					<h5><strong><a href="#">Oakland Privacy Working Group</a></strong></h5>
+					<h5><strong><a href="https://oaklandprivacy.org/">Oakland Privacy Working Group</a></strong></h5>
 					<p>
-						Join the working group to make decisions on what policies should be made &hellip;
+						Join the Oakland's local citizen coalition that works to defend the right to privacy and enhance public transparency and oversight regarding the use of surveillance tools &hellip;
 					</p>
-					<a href="#" class="more">More details</a>
+					<a href="https://oaklandprivacy.org/" class="more">More details</a>
 				</div>
 			</div>
 		</div>
 		<div class="span3">
 			<div class="home-post">
 				<div class="post-image">
-					<img class="max-img" src="img/blog/img2.jpg" alt="" />
+					<img class="max-img" src="img/cityofoaklandlogo.png" alt="" />
 				</div>
 <!-- 				<div class="post-meta">
 					<i class="icon-file icon-2x"></i>
@@ -592,18 +663,18 @@
 					<span class="tags"><a href="#">Design</a>, <a href="#">News</a></span>
 				</div> -->
 				<div class="entry-content">
-					<h5><strong><a href="#">Other meeting groups</a></strong></h5>
+					<h5><strong><a href="http://www2.oaklandnet.com/government/o/CityAdministration/d/PrivacyAdvisoryCommission/index.htm">Oakland Privacy Advisory Commission</a></strong></h5>
 					<p>
-						There are meet up groups for people like you! We like friends. join us &hellip;
+						Advise the city to protect Oaklanders' privacy rights and the City's use of surveillance equipment and collection of our data. &hellip;
 					</p>
-					<a href="#" class="more">More details</a>
+					<a href="http://www2.oaklandnet.com/government/o/CityAdministration/d/PrivacyAdvisoryCommission/index.htm" class="more">More details</a>
 				</div>
 			</div>
 		</div>
 		<div class="span3">
 			<div class="home-post">
 				<div class="post-image">
-					<img class="max-img" src="img/blog/img3.jpg" alt="" />
+					<img class="max-img" src="img/EFF.png" alt="" />
 				</div>
 <!-- 				<div class="post-meta">
 					<i class="icon-file icon-2x"></i>
@@ -611,11 +682,11 @@
 					<span class="tags"><a href="#">Design</a>, <a href="#">Tips</a></span>
 				</div> -->
 				<div class="entry-content">
-					<h5><strong><a href="#">Organize a team</a></strong></h5>
+					<h5><strong><a href="https://www.eff.org/sls">EFF's Street Level Surveillance</a></strong></h5>
 					<p>
-						You can find more resources online and organize your own team &hellip;
+						Electronic Frontier Foundation has a great resource on Street Level Surveillance, discussing what the technologies are and how they can be used. &hellip;
 					</p>
-					<a href="#" class="more">More details</a>
+					<a href="https://www.eff.org/sls" class="more">More details</a>
 				</div>
 			</div>
 		</div>

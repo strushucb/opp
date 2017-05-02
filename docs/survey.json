@@ -11,10 +11,10 @@
     },
     "car": {
         "yes": { 
-            "alpr" : 5
+            "alpr" : 10
         },
         "maybe": { 
-            "alpr" : 3
+            "alpr" : 5
         },
         "no": { 
             "alpr" : 0
@@ -22,13 +22,13 @@
     },
     "transit": {
         "yes": { 
-            "cctv" : 5
+            "cctv" : 10
         },
         "maybe": { 
-            "cctv" : 3
+            "cctv" : 5
         },
         "no": { 
-            "cctv" : 1
+            "cctv" : 0
         }        
     },
     "events": {
@@ -77,13 +77,13 @@
     },
     "smuse": {
         "daily": { 
-            "smm" : 4
+            "smm" : 10
         },
         "often": { 
-            "smm" : 3
+            "smm" : 8
         },
         "occasionally": { 
-            "smm" : 2
+            "smm" : 4
         },
         "never": { 
             "smm" : 1
@@ -94,16 +94,16 @@
             "smm" : 1
         },
         "low-med": { 
-            "smm" : 2
-        },
-        "medium": {
-            "smm" : 3
-        },
-        "high-med": { 
             "smm" : 4
         },
+        "medium": {
+            "smm" : 6
+        },
+        "high-med": { 
+            "smm" : 8
+        },
         "high": { 
-            "smm" : 5
+            "smm" : 10
         }    
     }
   },
@@ -150,7 +150,7 @@
   "tech": {
     "stingray": {
         "image" : "img/tech/with%20names/Stingrayname.png",
-        "bio" : "<p>Blah Blah Blah Stung.</p>",
+        "blurb" : "Cell site simulators (CSS) - better known as \"Stingrays\" - emit signals that mobile phones interpret as coming from a legitimate cellular network tower. In turn, the CSS receive signals from the mobile phones in their vicinity, which can then be used to identify specific devices and their owners. Law enforcement often use CSS in sting operations, but they have increasingly been using the simulators in more routine types of investigations.",
         "color" : "#D3549A",
         "color2" : "rgba(211, 84, 154, 0.75)",
         "speed" : "20s",
@@ -162,16 +162,16 @@
         "what-you-do": 5,
         "who-you-know": 2,
         "where-you-go": 5,
-        "what-you-say-blurb": "Depending on the specific model's capability and use policy, can capture phone call and message content.",
-        "what-you-do-blurb": "Operators can infer activities by knowing a phone's presence at a given time & place (for example, at a protest).",
-        "who-you-know-blurb": "In targeted mode, can collect numbers of phonecalls dialed/received, texts sent/received, although information can be accessed via pen registers/Trap and Trace devices or provided by phone companies.",
-        "where-you-go-blurb": "Captures a cell phone's location to within 2 meters, but only those within range (1km - 200m). 'Dragnet' mode may capture information for all phones in range, but watchlists can limit collateral collection."
+        "what-you-say-blurb": "Depending on the specific model's capability and use policy, a cell site simulator can capture phone call and message content.",
+        "what-you-do-blurb": "Stingray operators can infer activities by knowing a phone's presence at a given time & place (for example, at a protest).",
+        "who-you-know-blurb": "In targeted mode, cell site simulators can collect numbers of phonecalls dialed/received, texts sent/received, although this information can be accessed by law enforcement via pen registers/trap-and-trace devices or provided by phone companies.",
+        "where-you-go-blurb": "Stingrays capture a cell phone's location to within 2 meters, but only those within range (1km - 200m). 'Dragnet' mode may capture information for all phones in range, but watchlists of specific phone identifiers can be set to limit collateral collection."
     },
     "alpr": {
         "in_score" : 6.66,
         "out_score" : 6.66,
         "image" : "img/tech/with%20names/ALPRname.png",
-        "bio" : "<p>Blah Blah Blah Beep.</p>",
+        "blurb" : "Automated License Plate Recognition (ALPR) systems capture the image of every license plate in view and store the date, time, location (in GPS coordinates), and license plate number as text in a database for a specified amount of time. They are placed on highway ramps, overpasses, streetlights, and utility poles, as well as mounted on police vehicles.",
         "color" : "#2A3B8E",
         "color2" : "rgba(42, 59, 142, 0.75)",
         "speed" : "4s",
@@ -184,13 +184,13 @@
         "what-you-say-blurb": "",
         "what-you-do-blurb": "Activities may be inferred based on locations, direction, and frequency of vehicle observations, depending on the amount of data.",
         "who-you-know-blurb": "Associates may be inferred based on common location of vehicles, depending on the amount of data. Associates may be captured by cameras that can accompany ALPR systems.",
-        "where-you-go-blurb": "Captures location and time data of license plates. These readings accrue over time, revealing patterns, and can be associated with a person through DMV records or other observation."
+        "where-you-go-blurb": "ALPR captures location and time data of license plates. These readings accrue over time, revealing patterns, and can be associated with a person through DMV records or other observation."
     },
     "shotspotter": {
         "in_score" : 6.66,
         "out_score" : 20,
         "image" : "img/tech/with%20names/Shotspottername.png",
-        "bio" : "<p>Blah Blah Blah Bang.</p>",
+        "blurb" : "ShotSpotter is a surveillance tool that captures audio from the surrounding environment in order to detect and locate gunshots. The system can be triggered by other loud noises and capture other sounds including human voice.",
         "color" : "#EF662F",
         "color2" : "rgba(239, 102, 47, 0.75)",
         "speed" : "17s",
@@ -200,16 +200,16 @@
         "what-you-do": 2,
         "who-you-know": 0,
         "where-you-go": 1,
-        "what-you-say-blurb": "Can records sounds including human voice, but it's purportedly only active after being triggered by high decibel noises such as gunshots.",
-        "what-you-do-blurb": "Monitors activities (gun shots, fireworks), but also can lead to increased police presence in neighborhoods the systems are deployed.",
+        "what-you-say-blurb": "ShotSpotter can record sounds including human voice, but it's purportedly only active after being triggered by high decibel noises such as gunshots.",
+        "what-you-do-blurb": "ShotSpotter monitors activities (gun shots, fireworks), but also can lead to increased police presence in neighborhoods the systems are deployed.",
         "who-you-know-blurb": "",
-        "where-you-go-blurb": "Can locate sounds over certain decibel levels, generally with more accuracy if more systems detect the same sound. The data is not linked to any identity."
+        "where-you-go-blurb": "ShotSpotter can locate sounds over certain decibel levels, generally with more accuracy if more systems detect the same sound. The data is not linked to any identity."
     },
     "smm": {
         "in_score" : 5,
         "out_score" : 4,
         "image" : "img/tech/with%20names/SMMname.png",
-        "bio" : "<p>Blah Blah Blah Tweet.</p>",
+        "blurb" : "Social media analysis tools aggregate data from user profiles on platforms such as Facebook and Twitter, monitoring posts, photos, events, and other activity along with information about users’ locations. Police forces have used these systems to respond in real time to protests as they unfold, as well as to conduct longer-term tracking of individuals.",
         "color" : "#FAAF4C",
         "color2" : "rgba(250, 175, 76, 0.75)",
         "speed" : "8s",
@@ -219,16 +219,16 @@
         "what-you-do": 8,
         "who-you-know": 9,
         "where-you-go": 5,
-        "what-you-say-blurb": "Captures public posts, photographs, and comments in open groups. Can be directly tied to an individual.",
-        "what-you-do-blurb": "Activities can be determined from event attendance or the content of posts.",
-        "who-you-know-blurb": "Captures public friend & follower lists and members of common groups. Associates can be determined from public photos, tagged or not.",
-        "where-you-go-blurb": "Captures public check-ins, geotagged photos, and locations of venues & organizations of interest."
+        "what-you-say-blurb": "Social media monitoring tools capture public posts, photographs, and comments in open groups. On certain sites such as Facebook, these posts can be directly tied to an individual.",
+        "what-you-do-blurb": "Social media monitoring tools can assist in identifying participation in events. Activities can be determined from event attendance or the content of posts.",
+        "who-you-know-blurb": "Social media monitoring tools captures public friend & follower lists and members of common groups. Associates can be determined from public photos, tagged or not.",
+        "where-you-go-blurb": "Social media monitoring tools capture public check-ins, geotagged photos, and locations of venues & organizations of interest."
     },
     "cctv": {
         "in_score" : 5,
         "out_score" : 6.66,
         "image" : "img/tech/with%20names/CCTVname.png",
-        "bio" : "<p>Blah Blah Blah Bus.</p>",
+        "blurb" : "Camera systems used to record public spaces are stationary, mounted on vehicles, and worn by police. Government agencies may have agreements with private entities to access their recorded data as well. As technology increases in capability, more recorded video and audio can now be stored for longer periods of time.",
         "color" : "#2AAD93",
         "color2" : "rgba(42, 173, 147, 0.75)",
         "speed" : "3s",
@@ -238,10 +238,10 @@
         "what-you-do": 7,
         "who-you-know": 7,
         "where-you-go": 5,
-        "what-you-say-blurb": "Public recording equipment are frequently capable of capturing audio, although this information may not be associated with specific individuals.",
-        "what-you-do-blurb": "Captures acitivities on video cameras, but may not target a specifc individual. Can be enhanced by facial recognition technologies.",
-        "who-you-know-blurb": "Associates may be determined from appearance in captured video. Can be enhanced by facial recognition technologies.",
-        "where-you-go-blurb": "Cameras can capture persons as they enter and leave monitored locations. May be enhanced by facial recognition technologies."
+        "what-you-say-blurb": "Public recording equipment is frequently capable of capturing audio, although this information may not be associated with specific individuals.",
+        "what-you-do-blurb": "Camera systems capture acitivities on video, but may not target a specifc individual. These tools can be enhanced by facial recognition technologies.",
+        "who-you-know-blurb": "Associates may be determined from their appearance in captured video. These tools can be enhanced by facial recognition technologies.",
+        "where-you-go-blurb": "Cameras can capture persons as they enter and leave monitored locations. These tools may be enhanced by facial recognition technologies."
     }
   },
   "orgs": {
@@ -255,13 +255,14 @@
             },
             "short": "opd",
             "long": "Oakland Police Department",
+            "blurb": "\"The Oakland Police Department (OPD) is a civilian law enforcement agency responsible for policing the city of Oakland, California. Since a 2003 incident involving alleged police misconduct, the Oakland Police Department has been under federal oversight. Ever since, the department has struggled with a potential federal takeover.\" (Wikipedia)",
             "label": "City",
             "image": "img/tech/Labels%20for%20Sankey/opd.png",
-            "stingray-blurb": "The Oakland Police Department acquired a cell site simulator (commonly known as a Stingray) in 200X. Not until 2016 did Oakland Police Department have a policy for its use.",
-            "alpr-blurb": "The Oakland Police Department operates XXX ALPR systems. ALPR is regulated by a policy with retention of data limited to 6 months.",
-            "smm-blurb": "The Oakland Police Department has used social media monitoring tools in the past such as Geofeedia.",
-            "cctv-blurb": "The Oakland Police Department has established a network of CCTV cameras and have dispatched at least XXX body cameras to its patrol officers. Currently, no plans to acquire facial recognition systems are in place.",
-            "shotspotter-blurb": "The Oakland Police Department has plans to increase its ShotSpotter system to include placing systems in schools."
+            "stingray-blurb": "\"'With the right software these tools can also intercept content, they can listen to my phone, they can take text messages and see the pictures that I have,' Oakland Privacy Commission spokesperson Brian Hofer said. Hofer is a member of Oakland's Privacy Advisory Commission and helped draft a restricted use policy for the Oakland Police Department. He says since 2006, the department has had a stingray that city government wasn't even aware of. In 2013, after an undercover officer was shot and wounded, the suspect's attorneys filed suit arguing their clients were illegally tracked down with a stingray.\" (KGO News, 2017)",
+            "alpr-blurb": "\"LPR collection began in Oakland back in 2006, and an early OPD analysis showed that the overwhelming majority of the data collected was not a 'hit.' In April 2008, the OPD reported to the city council that after using just four LPR units for 16 months, it had read 793,273 plates and had 2,012 hits—a 'hit rate' of 0.2 percent. In other words, nearly all of the data collected by an LPR system concerns people not currently under suspicion.\" (Ars Technica, 2015)",
+            "smm-blurb": "\"Without public hearings or civilian oversight, the Oakland Police Department acquired a powerful social media monitoring tool called Geofeedia in 2014 and has used it to conduct surveillance on large public gatherings, possibly including political protests.\" (East Bay Express, 2016)",
+            "cctv-blurb": "\"Business owners are encouraged to install an additional camera outside and in front of their business or to install a new system, including an exterior camera. OPD will help business to determine camera angle and log all the exterior cameras. So that when a crime occurs police can retrieve video footage as evidence to identify and apprehend criminals.\" (excerpt from OPD Sample Outreach Letter to local business owners, 2012) ",
+            "shotspotter-blurb": "\"Oakland police are considering scrapping the city's gunshot detection system that some residents in high-crime neighborhoods say makes them feel more secure. ShotSpotter is an 8-year-old network of microphones that detect gunfire in most parts of East and West Oakland, record the audio, map the location and send an alert to patrol officers within 20 seconds. But the system, which costs the department $264,000 a year, is expensive and redundant, police contend. They say residents already call to alert police when they hear gunfire, and the money could be better used to fund other technology, such as the police helicopter.\" (SFGate, 2014)"
           
         },
       "bart": {
@@ -274,13 +275,14 @@
             },
             "short": "bart",
             "long": "Bay Area Rapid Transit",
+            "blurb": "\"Bay Area Rapid Transit (BART) is a public transportation metro system serving the San Francisco Bay Area in California. The rapid transit elevated and subway system connects San Francisco with cities in Alameda, Contra Costa, and San Mateo counties. With an average of 433,000 weekday passengers and 128.5 million annual passengers in fiscal year 2016, BART is the fifth-busiest heavy rail rapid transit system in the United States.\" (Wikipedia)",
             "label": "Transit",
             "image": "img/tech/Labels%20for%20Sankey/bart.png",
-            "stingray-blurb": "The Fremont Police Department acquired a cell site simulator (commonly known as a Stingray) in 200X. Not until 2016 did Fremont Police Department have a policy for its use.",
-            "alpr-blurb": "The Fremont Police Department operates XXX ALPR systems. ALPR is regulated by a policy with retention of data limited to 6 months.",
-            "smm-blurb": "The Fremont Police Department has used social media monitoring tools in the past such as Geofeedia.",
-            "cctv-blurb": "The Fremont Police Department has established a network of CCTV cameras and have dispatched at least XXX body cameras to its patrol officers. Currently, no plans to acquire facial recognition systems are in place.",
-            "shotspotter-blurb": "The Fremont Police Department has plans to increase its ShotSpotter system to include placing systems in schools."
+            "stingray-blurb": "",
+            "alpr-blurb": "\"BART obtained state transportation funds in 2013 to install license plate reader cameras, or ALPRs, in the new parking garage at MacArthur Station as part of a pilot program. Alicia Trost, a spokeswoman for BART, said BART spent $62,500 in state funds for the cameras and other equipment. The installation was completed last November apparently without public notice. The pilot program is so that BART can test the cameras in advance of installing similar surveillance systems at other stations across the Bay Area, according to BART records.\" (East Bay Express, 2016)",
+            "smm-blurb": "\"The Bay Area Rapid Transit system (BART), which services California cities including San Francisco and Oakland, is considering a surveillance technology ordinance, which would require public debate before implementing those sorts of tools.\" (CNN, 2017)",
+            "cctv-blurb": "\"The use of such dummy cameras is not common knowledge. Even one member of BART’s Board of Directors said he was unaware of the decoys, and conceded that they amounted to a security gap in the Bay Area’s backbone train system. A spokeswoman for the agency said working cameras will be on every car in BART’s new fleet, the bulk of which will arrive between 2017 and 2021. At present, what appear to many riders to be sets of four cameras on the ceilings of each BART car are primarily fakes, an effort by agency officials to deter criminals — particularly vandals — without spending money on a more extensive surveillance system for soon-to-be junked cars. Although BART has many working cameras on platforms and in station lobbies, the fact that cameras inside trains are decoys comes with a cost, as some crimes and key incidents aren’t preserved on film.\" (SFGate, 2016)",
+            "shotspotter-blurb": ""
         },
       "dhs": {
             "tech":{
@@ -292,13 +294,14 @@
             },
             "short": "dhs",
             "long": "Department of Homeland Security",
+            "blurb": "\"The United States Department of Homeland Security (DHS) is a cabinet department of the United States federal government with responsibilities in public security, roughly comparable to the interior or home ministries of other countries. Its stated missions involve anti-terrorism, border security, immigration and customs, cyber security, and disaster prevention and management. It was created in response to the September 11 attacks.\" (Wikipedia)",
             "label": "Federal",
             "image": "img/tech/Labels%20for%20Sankey/DHS.png",
-            "stingray-blurb": "The Fremont Police Department acquired a cell site simulator (commonly known as a Stingray) in 200X. Not until 2016 did Fremont Police Department have a policy for its use.",
-            "alpr-blurb": "The Fremont Police Department operates XXX ALPR systems. ALPR is regulated by a policy with retention of data limited to 6 months.",
-            "smm-blurb": "The Fremont Police Department has used social media monitoring tools in the past such as Geofeedia.",
-            "cctv-blurb": "The Fremont Police Department has established a network of CCTV cameras and have dispatched at least XXX body cameras to its patrol officers. Currently, no plans to acquire facial recognition systems are in place.",
-            "shotspotter-blurb": "The Fremont Police Department has plans to increase its ShotSpotter system to include placing systems in schools."
+            "stingray-blurb": "\"The Department of Homeland Security (DHS) has released its own stingray requirements. Agents must now obtain a warrant prior to deploying the secretive surveillance tool as part of criminal investigations. This new policy comes over a month after the Department of Justice released its own similarly policy. Like the Department of Justice’s September 2015 stingray requirements, there are also exceptions for both 'exigent' and 'exceptional circumstances.' While the concept of 'exigent circumstances' is well-understood in American law, 'exceptional circumstances' are not. Many legal experts are baffled as to what exactly the boundaries of the concept are.\" (Ars Technica, 2015)",
+            "alpr-blurb": "",
+            "smm-blurb": "\"DHS has established a task force for using social media to screen applicants for immigration benefits. In connection with that effort, U.S. Citizenship and Immigration Services (USCIS) began pilots to expand social media screening of immigration applicants. Additionally, Immigration and Customs Enforcement (ICE) independently began a pilot to use social media screening during the visa issuance process. However, these pilots, on which DHS plans to base future department-wide use of social media screening, lack criteria for measuring performance to ensure they meet their objectives.\" (DHS Office of Inspector General, 2017)",
+            "cctv-blurb": "",
+            "shotspotter-blurb": ""
         },
       "chp": {
             "tech":{
@@ -310,13 +313,14 @@
             },
             "short": "chp",
             "long": "California Highway Patrol",
+            "blurb": "\"The California Highway Patrol (CHP) is a law enforcement agency of the U.S. state of California. The CHP has patrol jurisdiction over all California highways and can also act as the state police.\" (Wikipedia)",
             "label": "State",
             "image": "img/tech/Labels%20for%20Sankey/chp.png",
             "stingray-blurb": "The California Highway Patrol may have a cell site simulator (commonly known as a Stingray) - it is currently unclear.",
-            "alpr-blurb": "The Fremont Police Department operates XXX ALPR systems. ALPR is regulated by a policy with retention of data limited to 6 months.",
-            "smm-blurb": "The Fremont Police Department has used social media monitoring tools in the past such as Geofeedia.",
+            "alpr-blurb": "\"On the state’s highways, the California Highway Patrol operates at least 200 cameras, but we don’t even know how much data they have collected.\" (ACLU, 2013)",
+            "smm-blurb": "\"In recent years, police agencies throughout the United States have scoured social media as part of criminal investigations. But the police are also watching social media to spy on political protesters, especially those they suspect will engage in acts of civil disobedience. During the recent Black Lives Matter protests, local and state police agents monitored protesters on social media and activist websites. Several hundred CHP emails obtained by the Express show that social media is now a key source of intel for the police when monitoring political protests.\" (East Bay Express, 2015)",
             "cctv-blurb": "The Fremont Police Department has established a network of CCTV cameras and have dispatched at least XXX body cameras to its patrol officers. Currently, no plans to acquire facial recognition systems are in place.",
-            "shotspotter-blurb": "The Fremont Police Department has plans to increase its ShotSpotter system to include placing systems in schools."
+            "shotspotter-blurb": ""
         },
       "alcosd": {
             "tech":{
@@ -327,31 +331,36 @@
                 "shotspotter": 0
             },
             "short": "alcosd",
-            "long": "Alameda County Sheriffs Department",
+            "long": "Alameda County",
+            "blurb": "\"The Alameda County Sheriff's Office (ACSO) is a law enforcement agency serving Alameda County, California. ACSO is accredited through the Commission on Accreditation for Law Enforcement Agencies (CALEA), the American Correctional Association (ACA), National Commission on Correctional Health Care (NCCHC) and the California Medical Association (CMA). As of 2008, ACSO has approximately 2500 positions, over 1500 of which are sworn peace officers.\" (Wikipedia)",
             "label": "County",
             "image": "img/tech/Labels%20for%20Sankey/alco_pd.png",
-            "stingray-blurb": "The ALCO Sheriff Department acquired a cell site simulator (commonly known as a Stingray) in 200X. Not until 2016 did ALCO Sheriff Department have a policy for its use.",
-            "alpr-blurb": "The ALCO Sheriff Department operates XXX ALPR systems. ALPR is regulated by a policy with retention of data limited to 6 months.",
-            "smm-blurb": "The ALCO Sheriff Department has used social media monitoring tools in the past such as Geofeedia.",
-            "cctv-blurb": "The ALCO Sheriff Department has established a network of CCTV cameras and have dispatched at least XXX body cameras to its patrol officers. Currently, no plans to acquire facial recognition systems are in place.",
-            "shotspotter-blurb": "The ALCO Sheriff Department has plans to increase its ShotSpotter system to include placing systems in schools."
+            "stingray-blurb": "\"The Alameda County District Attorney's Office is leading a multi-agency effort to acquire a controversial cellphone surveillance device and has signed a non-disclosure agreement with the FBI and Harris Corporation, the maker of the equipment, prohibiting the DA from discussing or releasing information about the technology, according to documents we obtained. Records also show that the Oakland and Fremont police departments are partnering with the Alameda County DA to acquire the device. The device, which costs approximately $535,000, is being purchased with federal homeland security grant funds and with funding from the DA and the cities of Oakland and Fremont. The Harris-made cell-site simulator being purchased by the Alameda County DA is called Hailstorm.\" (East Bay Express, 2015)",
+            "alpr-blurb": "",
+            "smm-blurb": "\"After doing research the Alameda County Sheriff's Office does not own a program designed to access information from social media or for network investigative software. We have been approached by companies who would like to present us their software and I have included copies of those emails as well as documents we were sent. Kind regards, Paula - Alameda County Sheriff's Office - Internal Affairs\" (Response to Public Records Request - MuckRock, 2016)",
+            "cctv-blurb": "\"Half of the Alameda County Sheriff’s Office’s 10 surveillance cameras have been installed on private property, including gas stations, a liquor store, and a pharmacy. The cameras are directed toward the street and intersections and do not appear to be intended to provide surveillance of the private property where they are installed. The first two surveillance cameras were purchased with asset forfeiture funds in 2006 or 2007. In a September 15, 2006, memo from Lt. Brian Ballard to Alameda County Sheriff Charles Plummer, Ballard wrote, \"Covert surveillance cameras can be deployed in the community to monitor high crime areas and aid in the apprehension and capture of criminals.\" (Center for Human Rights & Privacy, 2015)",
+            "shotspotter-blurb": " "
         }
   },
   "information_categories":{
       "what-you-say": {
+          "long": "What You Say",
           "blurb": "Technologies can be used to collect your social media posts, the contents of phone calls and text, or record you speaking in public.",
           "image": "img/tech/Labels%20for%20Sankey/whatyousay_bar.png"
       },
       "what-you-do": {
-          "blurb": "Technologies can be used to collect what you events you attend or your activities can be inferred from the location of your cell phone or vehicle.",
+          "long": "What You Do",
+          "blurb": "Technologies can be used to collect which events you attend and your activities can be inferred from the location of your cell phone or vehicle.",
           "image": "img/tech/Labels%20for%20Sankey/whatyoudo_bar.png"
       },
       "who-you-know": {
-          "blurb": "Technologies can be used to collect build a network of associates from social media, phone contacts, or show connections based on similiar patterns in time and location data.",
+          "long": "Who You Know",
+          "blurb": "Technologies can be used to collect your network of associates from social media, phone contacts, or show your connections to others based on similiar patterns in time and location data.",
           "image": "img/tech/Labels%20for%20Sankey/whoyouknow_bar.png"
       },
       "where-you-go": {
-          "blurb": "Technologies can be used to identify the location of your cell phone, vehicle, or capture your travel on public transit. The collection of social media data can reveal where you check-in or have taken photographs.",
+          "long": "Where You Go",
+          "blurb": "Technologies can be used to identify the location of your cell phone, vehicle, or record your travel on public transit. The collection of social media data can reveal where you check-in or have taken photographs.",
           "image": "img/tech/Labels%20for%20Sankey/whereyougo_bar.png"
       }
   }

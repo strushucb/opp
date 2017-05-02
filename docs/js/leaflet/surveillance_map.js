@@ -3,14 +3,9 @@
 //TODO: Add department markers and labels
 //TODO: Create line layer groups (panes) by program / styling
 
-
   // copy data local variables
   var cities = citiesCA
   var counties = countiesCA
-
-  var coplink = wb_coplink;
-
-  console.log(coplink);
 
 
   // Create map
@@ -20,8 +15,7 @@
     //maxZoom:10
   }).setView([37.7, -122.2], 10);
   var bounds = map.getBounds();
-  //map.setMaxBounds(bounds); // Option to lock view boundary
-
+  // map.setMaxBounds(bounds); // Option to lock view boundary
 
   // mapbox url
   // var url = "http://a.tiles.mapbox.com/v4/mapbox.mapbox-streets-v7/14/4823/6160.mvtaccess_token={accessToken}";
@@ -34,6 +28,19 @@
     id: 'mapbox.light',
     accessToken: 'pk.eyJ1IjoicGV0ZXJyb3dsYW5kIiwiYSI6ImNqMXJ5ZHoxeTAwOXMycW12cHVrMnh2MTAifQ.JzTXpmB_mNcuiWqUYyXH8Q'
   }).addTo(map);
+
+
+  var geojson = L.geoJSON(counties, {
+      style: function(feature) {
+        switch (feature.properties.uasi) {
+          case 'Aries' : return {color: "#ff0000"};
+          case 'NCRIC' : return {color: "#0000ff"};
+          case 'SCCS' : return {color: "#b2df8a"};
+          default : return {color: "transparent"};
+        }
+      },
+      onEachFeature: onEachFeature
+  });
 
   function set_view(view) {
     // Modify map view from links
@@ -61,15 +68,15 @@
 
   function stingray_view() {
     clear_layers();
+    console.log(stingrayLayer);
     stingrayLayer.addTo(map);
     map.fitBounds(stingrayLayer.getBounds());
   }
 
   function uasi_view() {
     clear_layers();
-    console.log(uasiLayer);
-    uasiLayer.addTo(map);
-    map.fitBounds(uasiLayer.getBounds());
+    geojson.addTo(map);
+    map.fitBounds(geojson.getBounds());
   }
 
    // Styling for county / city outlines
@@ -97,15 +104,18 @@
   // Colors
   var transparent = '#10000000';
   var dashColor = '#3182bd';
+  var lightBlue = '#a6cee3';
+  var darkBlue = '#1f78b4';
+  var green = '#b2df8a';
 
   // AntPath Polyline styling
   var antPathOptions = {
-    color: transparent,
-    pulseColor: dashColor,
+    color: "white",
+    pulseColor: darkBlue,
     weight: 2,
     opacity: .5,
     delay: 600,
-    dashArray: [1, 80],
+    dashArray: [10, 80],
     zIndex: 1
   };
 
@@ -117,24 +127,21 @@
     zIndex: 1
   };
 
+
   var fusionCenterIcon = L.icon({
-    iconUrl: './js/leaflet/icons/noun_11065.png',
-    iconSize: [38, 38],
+    iconUrl: './icons/noun_11065.png',
+    iconSize: [38, 95],
     //shadowSize:   [50, 64], // size of the shadow
-    iconAnchor:   [-100, -100], // point of the icon which will correspond to marker's location
+    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
     //shadowAnchor: [4, 62],  // the same for the shadow
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 
   });
 
-  var policeIcon = L.icon({
-    iconUrl: './js/leaflet/icons/noun_850014_cc.png',
-    iconSize: [38, 38],
-    //shadowSize:   [50, 64], // size of the shadow
-    iconAnchor:   [15, 25], // point of the icon which will correspond to marker's location
-    //shadowAnchor: [4, 62],  // the same for the shadow
-    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+  var fusionCenterIcon = L.icon({
+    iconUrl: './icons/noun_850014_cc.png'
   });
+
 
   // highlighting on hover listener
   function highlightFeature(e) {
@@ -155,11 +162,8 @@
 
   // reset highlight listener
   function resetHighlight(e) {
-      layer = e.target
-      layer.setStyle(
-        style(layer)
-      );
-      info.update(); // reset info control
+    geojson.resetStyle(e.target);
+    info.update(); // reset info control
   }
 
   // call listener functions on mouse move
@@ -174,20 +178,20 @@
   // highlight info control
   var info = L.control();
 
-  // returns info div
   info.onAdd = function (map) {
-    this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
-    this.update();
-    return this._div;
+      this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+      this.update();
+      return this._div;
   };
 
   // method that we will use to update the control based on feature properties passed
   info.update = function (props) {
-    this._div.innerHTML = (props ?
-      '<h4>' + props.name + '</h4>' :
-      'Hover over a city');
+      this._div.innerHTML =  (props ?
+          '<b>' + props.name + '</b><br />' + props.uasi + ''
+          : '');
   };
 
+  info.addTo(map);
   //Load location points to create markers
   var markers = [];
 
@@ -211,67 +215,55 @@
   });
 
   var stingrayLines = []
-  var stingrayMarkers = []
   hub = groups.acdaStingray.hub;
   spokes = groups.acdaStingray.spokes;
   hub_latLon = cityData[hub].coordinates;
-
   spokes.forEach(function(spoke) {
     // get coordinates for each spoke
     spoke_latLon = cityData[spoke].coordinates;
-    spoke_lat = cityData[spoke].coordinates[0];
-    spoke_lon = cityData[spoke].coordinates[1];
-    markerLocation = new L.LatLng(spoke_lat, spoke_lon);
-    var marker = new L.Marker(markerLocation, {icon: policeIcon });
+
     //add lines to array
     line = new L.Polyline([spoke_latLon, hub_latLon], polylineOptions);
     stingrayLines.push(line);
-    stingrayMarkers.push(marker);
-    stingrayMarkers.push(line);
   });
 
-  // geoJSON layer variable
-  var gj_counties;
-  gj_counties = L.geoJson(counties).addTo(map);
-
-  // var gj_coplinkWB = L.geoJson(wb_coplink, {
-  //     style: style,
-  //     onEachFeature: onEachFeature
-  // });
-  //
-  // var gj_cities;
-  // gj_cities = L.geoJson(cities, {
-  //     style: style,
-  //     onEachFeature: onEachFeature
-  // });
-
-  var stingrayLayer = L.featureGroup(stingrayMarkers,  {
+  var stingrayLayer = L.featureGroup(stingrayLines, {
       style: style,
       onEachFeature: onEachFeature,
+      pane: 'lines'
   });
 
   var ncricLayer = L.featureGroup(ncricLines, {
       style: style,
       onEachFeature: onEachFeature,
+      pane: 'lines'
   });
 
-  var uasiLayer = L.featureGroup(gj_counties, {
-    style: style,
-    onEachFeature: onEachFeature,
+  // geoJSON layer variable
+  var gj_counties;
+  gj_counties = L.geoJson(counties, {
+      style: style,
+      onEachFeature: onEachFeature
   });
+
+  var gj_cities;
+  gj_cities = L.geoJson(cities, {
+      style: style,
+      onEachFeature: onEachFeature
+  }).map();
 
   // Layer Groups
-  // var overlayMaps = {
-  //   // "lines": ncricLayer,
-  //   "cities": gj_cities,
-  //   "counties": gj_counties
-  // };
+  var overlayMaps = {
+    "lines": ncricLayer,
+    "cities": gj_cities,
+    "counties": gj_counties
+  };
 
   // Add Layers to map
   //map.addLayer(marker_layer);
   //ncricLayer.addTo(map);
   // put description box onto map
-  //info.addTo(map);
+  info.addTo(map);
   // Political boundary layer
   //map.addLayer(gj_counties);
 
