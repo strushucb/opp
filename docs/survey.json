@@ -33,24 +33,24 @@
     },
     "events": {
         "weekly": { 
-            "cctv" : 4,
-            "smm" : 4,
-            "stingray" : 4
-        },
-        "monthly": { 
             "cctv" : 3,
             "smm" : 3,
             "stingray" : 3
         },
-        "sometimes": { 
+        "monthly": { 
             "cctv" : 2,
             "smm" : 2,
             "stingray" : 2
         },
-        "never": { 
+        "sometimes": { 
             "cctv" : 1,
             "smm" : 1,
             "stingray" : 1
+        },
+        "never": { 
+            "cctv" : 0,
+            "smm" : 0,
+            "stingray" : 0
         }        
     },
     "income": {
