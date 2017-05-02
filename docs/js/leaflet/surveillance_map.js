@@ -48,6 +48,8 @@
       uasi_view();
   }
 
+  var ncric_text = "https://www.cehrp.org/license-plate-reader-data-sharing-at-northern-california-regional-intelligence-center/"
+
   function clear_layers() {
     map.eachLayer(function (layer) {
       map.removeLayer(layer);
@@ -60,7 +62,7 @@
     clear_layers();
     ncricLayer.addTo(map);
     marker_layer.addTo(map);
-    $('#mapDescription').html('');
+    $('#mapDescription').html(ncric_text);
     map.fitBounds(ncricLayer.getBounds());
   }
 
@@ -112,7 +114,7 @@
     pulseColor: darkBlue,
     weight: 2,
     opacity: .5,
-    delay: 600,
+    delay:600,
     dashArray: [10, 80],
     zIndex: 1
   };
@@ -196,14 +198,27 @@
 
   info.addTo(map);
   //Load location points to create markers
+
   var markers = [];
+  var ncricLines = [];
+  hub = groups.ncric_alpr.hub;
+  spokes = groups.ncric_alpr.spokes;
+  hub_latLon = cityData[hub].coordinates;
+  spokes.forEach(function(spoke) {
+    console.log(spoke);
+    // get coordinates for each spoke
+    spoke_latLon = cityData[spoke].coordinates;
+
+    //add lines to array
+    line = new L.Polyline.AntPath([spoke_latLon, hub_latLon], antPathOptions);
+    ncricLines.push(line);
+  });
 
   Object.keys(cityData).forEach(function(key) {
     lat = cityData[key].coordinates[0];
     lon = cityData[key].coordinates[1];
-    text = cityData[key].text;
+    text = cityData[key].name;
     icon = cityData[key].icon;
-
 
     var markerLocation = new L.LatLng(lat,lon);
     marker = new L.Marker(markerLocation, {icon: policeIcon});
@@ -212,13 +227,6 @@
   });
 
   var marker_layer = L.layerGroup(markers);
-
-  // Load Polyline data
-  var ncricLines = [];
-  // Load all coordinate values
-  Object.keys(coords).forEach(function(key) {
-    ncricLines.push(new L.Polyline.AntPath([coords[key], coords.ncric], antPathOptions));
-  });
 
   var stingrayLines = []
   hub = groups.acdaStingray.hub;
@@ -229,7 +237,7 @@
     spoke_latLon = cityData[spoke].coordinates;
 
     //add lines to array
-    line = new L.Polyline([spoke_latLon, hub_latLon], polylineOptions);
+    line = new L.Polyline.AntPath([hub_latLon, spoke_latLon], antPathOptions);
     stingrayLines.push(line);
   });
 

@@ -1,38 +1,14 @@
-var coords = {
-  "oakland": [37.799362,	-122.275087],
-  "alameda": [37.6017, -121.7195],
-  "ncric": [37.7820212, -122.4206751],
-  "UASI": [37.7821445,-122.4235457],
-  "marin":	[37.938571,	-122.529914],
-  "dalyCity":	[37.690508,	-122.473503],
-  "eastPA":	[37.474375,	-122.134646],
-  "fremont":	[37.552717,	-121.969067],
-  "hayward":	[37.657497,	-122.096912],
-  "livermore": [37.674568,	-121.756786],
-  "losGatos":	[37.220993,	-121.978534],
-  "manteca":	[37.800317,	-121.232196],
-  "millValley":	[37.896729,	-122.522108],
-  "milpitas":	[37.449493,	-121.910222],
-  "modesto":	[37.637588,	-120.996432],
-  "piedmont":	[37.824462,	-122.232329],
-  "rocklin":	[38.787807,	-121.233237],
-  "sf":	[37.77238,	-122.389412],
-  "sjEvergreen":	[37.334769,	-121.891554],
-  "sanLeandro":	[37.727996,	-122.15907],
-  "sanMateo":	[37.542332,	-122.292019],
-  "solano":	[38.247567,	-122.039965],
-  "stanislaus":	[37.586609,	-120.989321],
-  "walnutCreek": [37.901521,	-122.061137],
-  "westSacramento":	[38.586308,	-121.527531]
-};
 
 var groups = {
   "acdaStingray": {
     "hub": "acda",
     "spokes": ["oakland", "fremont"]
-    }
-  };
-
+  },
+  "ncric_alpr": {
+    "hub": "ncric",
+    "spokes": ["marin", "dalyCity", "eastPA", "fremont", "hayward", "livermore", "losGatos", "manteca", "millValley", "milpitas", "modesto", "piedmont", "rocklin", "sanFrancisco", "sjEvergreen", "sanLeandro", "sanMateo", "solano", "stanislaus", "walnutCreek", "westSacramento"]
+  }
+};
 
 var cityData = {
   "oakland": {
@@ -53,6 +29,13 @@ var cityData = {
     "text": "Alameda County District Attorney",
     "icon": "policeIcon"
   },
+  "eastPA": {
+    "name": "East Palo Alto Police Department",
+    "coordinates": [37.474375,	-122.134646],
+    "text": "",
+    "icon": "policeIcon"
+  },
+
   "alameda": {
     "name": "Alameda Police Department",
     "coordinates": [37.6017, -121.7195],
@@ -95,11 +78,6 @@ var cityData = {
     "coordinates": [37.896729,	-122.522108],
     "text": "",
   },
-  "millValley":	{
-    "name": "Mill Valley Police Department",
-    "coordinates": [37.896729,	-122.522108],
-    "text": "",
-  },
   "milpitas":	{
     "name": "Milpitas Police Department",
     "coordinates": [37.449493,	-121.910222],
@@ -120,7 +98,7 @@ var cityData = {
     "coordinates": [38.787807,	-121.233237],
     "text": "",
   },
-  "sf":	{
+  "sanFrancisco":	{
     "name": "San Francisco Police Department",
     "coordinates": [37.77238,	-122.389412],
     "text": "",
@@ -133,6 +111,11 @@ var cityData = {
   "sanLeandro":	{
     "name": "San Leandro Police Department",
     "coordinates": [37.727996,	-122.15907],
+    "text": "",
+  },
+  "ncric":	{
+    "name": "Northern California Regional Information Center (NCRIC)",
+    "coordinates": [37.782021,-122.418486],
     "text": "",
   },
   "sanMateo":	{
