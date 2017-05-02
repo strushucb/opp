@@ -219,7 +219,8 @@
     // get coordinates for each spoke
     spoke_latLon = cityData[spoke].coordinates;
     spoke_marker = new L.Marker(spoke_latLon, {icon: policeIcon});
-    spoke_marker.bindPopup(cityData[spoke].name)
+    spoke_marker.bindPopup(cityData[spoke].name + "<br><a href=" + cityData[spoke].text + ">MoU</a>")
+
     //add lines to array
     line = new L.Polyline.AntPath([spoke_latLon, hub_latLon], antPathOptions);
     ncricLines.push(line);

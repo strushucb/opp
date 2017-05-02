@@ -43,9 +43,9 @@ var cityData = {
     "icon": "policeIcon"
   },
   "marin": {
-    "name": "Marin Police Department",
+    "name": "Central Marin Police Department",
     "coordinates": [37.938571, -122.529914],
-    "text": "Marin Police Department",
+    "text": "https://www.documentcloud.org/documents/2358149-ncric-central-marin-mou-21jan2014.html",
     "icon": "policeIcon"
   },
   "dalyCity":	{
