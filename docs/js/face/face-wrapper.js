@@ -39,7 +39,8 @@
           function basicLoad(location) {
             var possible; 
             if(num == 0){
-                possible = "profileimage.jpg"; // +(Math.ceil(Math.random() * 4));
+                //possible = "profileimage.jpg";
+                possible = "persona"+(Math.ceil(Math.random() * 4))+".jpg";
             }else
                 possible = "persona"+num+".jpg";
             var file = 'img/team/' + possible;
