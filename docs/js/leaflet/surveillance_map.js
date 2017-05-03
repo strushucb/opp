@@ -29,9 +29,9 @@
   var geojson = L.geoJSON(counties, {
       style: function(feature) {
         switch (feature.properties.uasi) {
-          case 'ARIES' : return {color: "#ff0000"};
-          case 'West Bay COPLINK' : return {color: "#0000ff"};
-          case 'South Bay COPLINK' : return {color: "#b2df8a"};
+          case 'ARIES' : return {color: "#2AAD93"};
+          case 'West Bay COPLINK' : return {color: "#EF662F"};
+          case 'South Bay COPLINK' : return {color: "#FAAF4C"};
           default : return {color: "transparent"};
         }
       },
@@ -57,9 +57,9 @@
   var uasiText =  "Bay Area counties participate in three regional intelligence sharing programs ARIES, West Bay COPLINK, and South Bay COPLINK." +
                   "These data is shared between these programs and with Federal agencies.</n> " +
                   "<a href='http://www.bayareauasi.org/sites/default/files/resources/010815%20Agenda%20Item%208%20Appendix%20A%20Public%20Safety%20Information%20Sharing%20Update.pdf'>(source)</a><br>" +
-                  "<span style='background-color:#ff0000'>ARIES</span> <br>" +
-                  "<span style='background-color:#0000ff'>West Bay COPLINK,</span> <br>" +
-                  "<span style='background-color:#b2df8a'>South Bay COPLINK.</span> <br>";
+                  "<span style='background-color:#2AAD93'>ARIES</span> <br>" +
+                  "<span style='background-color:#EF662F'>West Bay COPLINK,</span> <br>" +
+                  "<span style='background-color:#FAAF4C'>South Bay COPLINK.</span> <br>";
 
 
   function clear_layers() {
