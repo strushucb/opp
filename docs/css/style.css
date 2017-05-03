@@ -530,6 +530,21 @@ section.spacer.bg4 {
 	margin:0;	
 }
 
+section.bg4 {
+	background: url(../img/bg/lights_night_city_blurring.jpg) 50% 0 no-repeat fixed;
+	width:100%;
+	height:auto;
+	margin:0;	
+}
+section.bg4 p{
+	margin-bottom: 15px;
+	margin-top: 10px;
+	text-align:center;
+	color: #fcfcfc;
+	font-size: 40px;
+}
+
+
 section.spacer blockquote.large:before {
 	color:#eee;
 	opacity:0.6;
