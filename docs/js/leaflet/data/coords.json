@@ -7,8 +7,13 @@ var groups = {
   "ncric_alpr": {
     "hub": "ncric",
     "spokes": ["marin", "dalyCity", "eastPA", "fremont", "hayward", "livermore", "losGatos", "manteca", "millValley", "milpitas", "modesto", "piedmont", "rocklin", "sanFrancisco", "sjEvergreen", "sanLeandro", "sanMateo", "solano", "stanislaus", "walnutCreek", "westSacramento"]
+  },
+  "shot_spotter": {
+    "hub": "shotspotter",
+    "spokes": ["eastPA", "richmond", "sanPablo", "redwoodCity", "sanFrancisco", "oakland"]
   }
 };
+
 
 var cityData = {
   "oakland": {
@@ -142,5 +147,21 @@ var cityData = {
     "name": "West Sacramento Police Department" ,
     "coordinates": [38.586308,	-121.527531],
     "text": "https://www.documentcloud.org/documents/3455460-NCRIC-West-Sacramento-PD-MOU-29Aug2016.html",
+  },
+  "richmond": {
+    "name": "Richmond Police Department" ,
+    "coordinates": [37.918277,-122.34996],
+  },
+  "sanPablo": {
+    "name": "San Pablo Police Department" ,
+    "coordinates": [37.959848,-122.341197],
+  },
+  "redwoodCity":{
+    "name": "Redwood City Police Department" ,
+    "coordinates": [37.493148,-122.2208],
+  },
+  "shotspotter": {
+    "name": "SST Technologies",
+    "coordinates": [37.53894, -122.064355],
   }
 };

@@ -48,9 +48,18 @@
       uasi_view();
   }
 
-  var ncricText = "https://www.cehrp.org/license-plate-reader-data-sharing-at-northern-california-regional-intelligence-center/"
-  var stingrayText = "Stingray";
-  var uasiText = "http://www.bayareauasi.org/sites/default/files/resources/010815%20Agenda%20Item%208%20Appendix%20A%20Public%20Safety%20Information%20Sharing%20Update.pdf";
+  var ncricText = "15 Bay Area law enforcement agencies have signed Memorandoms of Understanding with NCRIC to provide " +
+                  "ALPR into their central repository.</n> " +
+                  "<a href='https://www.cehrp.org/license-plate-reader-data-sharing-at-northern-california-regional-intelligence-center/'>(source)</a>";
+  var stingrayText = "Fremont and Oakland Police Departments have signed agreements to participate in a program that allows them to borrow cell-site simulator" +
+                     "Technology from the Alameda County District Attorney.";
+  var uasiText =  "Bay Area counties participate in three regional intelligence sharing programs ARIES, West Bay COPLINK, and South Bay COPLINK." +
+                  "These data is shared between these programs and with Federal agencies.</n> " +
+                  "<a href='http://www.bayareauasi.org/sites/default/files/resources/010815%20Agenda%20Item%208%20Appendix%20A%20Public%20Safety%20Information%20Sharing%20Update.pdf'>(source)</a><br>" +
+                  "<span style='background-color:#ff0000'>ARIES</span> <br>" +
+                  "<span style='background-color:#0000ff'>West Bay COPLINK,</span> <br>" +
+                  "<span style='background-color:#b2df8a'>South Bay COPLINK.</span> <br>";
+
 
   function clear_layers() {
     map.eachLayer(function (layer) {
@@ -64,7 +73,7 @@
     clear_layers();
     $('#mapDescription').html("");
     ncricLayer.addTo(map);
-    marker_layer.addTo(map);
+    ncricMarkerLayer.addTo(map);
     $('#mapDescription').html(ncricText);
     map.fitBounds(ncricLayer.getBounds());
   }
@@ -73,8 +82,9 @@
     $('#mapDescription').html("");
     clear_layers();
     console.log(stingrayLayer);
-    stingrayLayer.addTo(map);
-    $('#mapDescription').html(stingrayText);
+    shotspotterLayer.addTo(map);
+    shotspotterMarkerLayer.addTo(map);
+    $('#mapDescription').html("shotspotter");
     map.fitBounds(stingrayLayer.getBounds());
   }
 
@@ -154,7 +164,6 @@
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
   });
 
-
   // highlighting on hover listener
   function highlightFeature(e) {
       var layer = e.target;
@@ -227,31 +236,41 @@
     ncricMarkers.push(spoke_marker);
   });
 
-  // Object.keys(cityData).forEach(function(key) {
-  //   lat = cityData[key].coordinates[0];
-  //   lon = cityData[key].coordinates[1];
-  //   text = cityData[key].name;
-  //   icon = cityData[key].icon;
-  //
-  //   var markerLocation = new L.LatLng(lat,lon);
-  //   marker = new L.Marker(markerLocation, {icon: policeIcon});
-  //   marker.bindPopup(text);
-  //   markers.push(marker);
-  // });
-
-  var marker_layer = L.layerGroup(ncricMarkers);
-
+  var stingrayMarkers = []
   var stingrayLines = []
   hub = groups.acdaStingray.hub;
   spokes = groups.acdaStingray.spokes;
   hub_latLon = cityData[hub].coordinates;
+  hub_marker = new L.Marker(hub_latLon);
   spokes.forEach(function(spoke) {
     // get coordinates for each spoke
     spoke_latLon = cityData[spoke].coordinates;
+    spoke_marker = new L.Marker(spoke_latLon, {icon: policeIcon});
+    spoke_marker.bindPopup(cityData[spoke].name);
 
     //add lines to array
     line = new L.Polyline.AntPath([hub_latLon, spoke_latLon], antPathOptions);
     stingrayLines.push(line);
+    stingrayMarkers.push(spoke_marker);
+  });
+
+  var shotspotterMarkers = []
+  var shotspotterLines = []
+  hub = groups.shot_spotter.hub;
+  spokes = groups.shot_spotter.spokes;
+  hub_latLon = cityData[hub].coordinates;
+  hub_marker = new L.Marker(hub_latLon, {icon: fusionCenterIcon});
+  shotspotterMarkers.push(hub_marker);
+  spokes.forEach(function(spoke) {
+    // get coordinates for each spoke
+    spoke_latLon = cityData[spoke].coordinates;
+    spoke_marker = new L.Marker(spoke_latLon, {icon: policeIcon});
+    spoke_marker.bindPopup(cityData[spoke].name);
+
+    //add lines to array
+    line = new L.Polyline.AntPath([spoke_latLon, hub_latLon], antPathOptions);
+    shotspotterLines.push(line);
+    shotspotterMarkers.push(spoke_marker);
   });
 
   var stingrayLayer = L.featureGroup(stingrayLines, {
@@ -260,11 +279,24 @@
       pane: 'lines'
   });
 
+  var stingrayMarkerLayer = L.featureGroup(stingrayMarkers);
+
   var ncricLayer = L.featureGroup(ncricLines, {
       style: style,
       onEachFeature: onEachFeature,
       pane: 'lines'
   });
+
+  var ncricMarkerLayer = L.featureGroup(ncricMarkers);
+
+  var shotspotterLayer = L.featureGroup(shotspotterLines, {
+      style: style,
+      onEachFeature: onEachFeature,
+      pane: 'lines'
+  });
+
+  var shotspotterMarkerLayer = L.featureGroup(shotspotterMarkers);
+
 
   // geoJSON layer variable
   var gj_counties;
