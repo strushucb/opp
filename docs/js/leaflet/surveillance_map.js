@@ -42,8 +42,8 @@
     // Modify map view from links
     if(view=='ncric')
       ncric_view();
-    if(view=='stingray')
-      stingray_view();
+    if(view=='shotspotter')
+      shotspotter_view();
     if(view=='uasi')
       uasi_view();
   }
@@ -51,8 +51,9 @@
   var ncricText = "15 Bay Area law enforcement agencies have signed Memorandoms of Understanding with NCRIC to provide " +
                   "ALPR into their central repository.</n> " +
                   "<a href='https://www.cehrp.org/license-plate-reader-data-sharing-at-northern-california-regional-intelligence-center/'>(source)</a>";
-  var stingrayText = "Fremont and Oakland Police Departments have signed agreements to participate in a program that allows them to borrow cell-site simulator" +
-                     "Technology from the Alameda County District Attorney.";
+  var shotspotterText = "Several Bay Area cities contract with SST Technologies for gunshot detection using the ShotSpotter system. SST manages and owns all the data collected by their network of audio sensors.</n> " +
+                  "<a href='http://www.mercurynews.com/2013/11/11/shotspotter-has-long-history-with-bay-area-police/'>(source)</a><br>";
+
   var uasiText =  "Bay Area counties participate in three regional intelligence sharing programs ARIES, West Bay COPLINK, and South Bay COPLINK." +
                   "These data is shared between these programs and with Federal agencies.</n> " +
                   "<a href='http://www.bayareauasi.org/sites/default/files/resources/010815%20Agenda%20Item%208%20Appendix%20A%20Public%20Safety%20Information%20Sharing%20Update.pdf'>(source)</a><br>" +
@@ -78,13 +79,13 @@
     map.fitBounds(ncricLayer.getBounds());
   }
 
-  function stingray_view() {
+  function shotspotter_view() {
     $('#mapDescription').html("");
     clear_layers();
     console.log(stingrayLayer);
     shotspotterLayer.addTo(map);
     shotspotterMarkerLayer.addTo(map);
-    $('#mapDescription').html("shotspotter");
+    $('#mapDescription').html(shotspotterText);
     map.fitBounds(stingrayLayer.getBounds());
   }
 
