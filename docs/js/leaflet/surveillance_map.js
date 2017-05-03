@@ -11,7 +11,7 @@
     //maxZoom:10
   }).setView([37.7, -122.2], 10);
   var bounds = map.getBounds();
-  // map.setMaxBounds(bounds); // Option to lock view boundary
+  map.setMaxBounds(bounds); // Option to lock view boundary
 
   // mapbox url
   // var url = "http://a.tiles.mapbox.com/v4/mapbox.mapbox-streets-v7/14/4823/6160.mvtaccess_token={accessToken}";
