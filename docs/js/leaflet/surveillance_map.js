@@ -21,7 +21,7 @@
   var mapbox = L.tileLayer(url, {
     attribution: 'Map description',
     maxZoom: 10,
-    id: 'mapbox.light',
+    id: 'mapbox.streets',
     accessToken: 'pk.eyJ1IjoicGV0ZXJyb3dsYW5kIiwiYSI6ImNqMXJ5ZHoxeTAwOXMycW12cHVrMnh2MTAifQ.JzTXpmB_mNcuiWqUYyXH8Q'
   }).addTo(map);
 
@@ -49,14 +49,14 @@
   }
 
   var ncricText = "15 Bay Area law enforcement agencies have signed Memorandoms of Understanding with NCRIC to provide " +
-                  "ALPR into their central repository.</n> " +
-                  "<a href='https://www.cehrp.org/license-plate-reader-data-sharing-at-northern-california-regional-intelligence-center/'>(source)</a>";
+                  "ALPR data into their central repository.</n> " +
+                  "<a href='https://www.cehrp.org/license-plate-reader-data-sharing-at-northern-california-regional-intelligence-center/'>(source)</a><br><img src='img/tech/alpr_legend.png'>";
   var shotspotterText = "Several Bay Area cities contract with SST Technologies for gunshot detection using the ShotSpotter system. SST manages and owns all the data collected by their network of audio sensors.</n> " +
-                  "<a href='http://www.mercurynews.com/2013/11/11/shotspotter-has-long-history-with-bay-area-police/'>(source)</a><br>";
+                  "<a href='http://www.mercurynews.com/2013/11/11/shotspotter-has-long-history-with-bay-area-police/'>(source)</a><br><img src='img/tech/shotspotter_legend.png'>";
 
   var uasiText =  "Bay Area counties participate in three regional intelligence sharing programs ARIES, West Bay COPLINK, and South Bay COPLINK." +
-                  "These data is shared between these programs and with Federal agencies.</n> " +
-                  "<a href='http://www.bayareauasi.org/sites/default/files/resources/010815%20Agenda%20Item%208%20Appendix%20A%20Public%20Safety%20Information%20Sharing%20Update.pdf'>(source)</a><br>" +
+                  " The scope of the data shared between these programs and with Federal agencies is <b>currently unknown.</b></n> " +
+                  "<a href='http://www.bayareauasi.org/sites/default/files/resources/010815%20Agenda%20Item%208%20Appendix%20A%20Public%20Safety%20Information%20Sharing%20Update.pdf'>(source)</a><br><br>" +
                   "<span style='background-color:#2AAD93'>ARIES</span> <br>" +
                   "<span style='background-color:#EF662F'>West Bay COPLINK,</span> <br>" +
                   "<span style='background-color:#FAAF4C'>South Bay COPLINK.</span> <br>";
@@ -125,13 +125,15 @@
   var lightBlue = '#a6cee3';
   var darkBlue = '#1f78b4';
   var green = '#b2df8a';
+  var alprBlue = '#2A3B8E';
+  var shotOrange = '#EF662F'
 
   // AntPath Polyline styling
   var antPathOptions = {
     color: "white",
-    pulseColor: darkBlue,
+    pulseColor: alprBlue, //dashColor, //darkBlue,
     weight: 2,
-    opacity: .5,
+    opacity: .7,
     delay:600,
     dashArray: [10, 80],
     zIndex: 1
@@ -152,7 +154,7 @@
     //shadowSize:   [50, 64], // size of the shadow
     iconAnchor:   [18, 30], // point of the icon which will correspond to marker's location
     //shadowAnchor: [4, 62],  // the same for the shadow
-    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+    popupAnchor:  [-3, -30] // point from which the popup should open relative to the iconAnchor
 
   });
 
@@ -162,7 +164,7 @@
     //shadowSize:   [50, 64], // size of the shadow
     iconAnchor:   [18, 30], // point of the icon which will correspond to marker's location
     //shadowAnchor: [4, 62],  // the same for the shadow
-    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+    popupAnchor:  [-3, -30] // point from which the popup should open relative to the iconAnchor
   });
 
   // highlighting on hover listener
@@ -222,7 +224,7 @@
   spokes = groups.ncric_alpr.spokes;
   hub_latLon = cityData[hub].coordinates;
   hub_marker = new L.Marker(hub_latLon, {icon: fusionCenterIcon});
-  hub_marker.bindPopup(cityData[hub].name)
+  hub_marker.bindPopup(cityData[hub].name);
   ncricMarkers.push(hub_marker);
 
   spokes.forEach(function(spoke) {
@@ -261,7 +263,10 @@
   spokes = groups.shot_spotter.spokes;
   hub_latLon = cityData[hub].coordinates;
   hub_marker = new L.Marker(hub_latLon, {icon: fusionCenterIcon});
+  hub_marker.bindPopup(cityData[hub].name);
   shotspotterMarkers.push(hub_marker);
+
+  antPathOptions.pulseColor = shotOrange;
   spokes.forEach(function(spoke) {
     // get coordinates for each spoke
     spoke_latLon = cityData[spoke].coordinates;
