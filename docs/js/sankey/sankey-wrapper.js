@@ -9,7 +9,7 @@
     cats = data.scores.information_categories;
   });
 
-  var margin = {top: 10, right: 100, bottom: 10, left: 10},
+  var margin = {top: 10, right: 10, bottom: 10, left: 300},
       width = Math.round($(window).width() * .95) - margin.left - margin.right,
       height = Math.round($(window).height() * .75) - margin.top - margin.bottom;
 
@@ -42,7 +42,7 @@
   var sankey = d3.alluvialGrowth()
       .nodeWidth(36)
       .nodePadding(14)
-      .size([width-200, height]);
+      .size([width, height]);
 
   var path = sankey.link();
   var alpr_link = 1;
@@ -172,7 +172,7 @@
         
         svg.append("text")
                 .attr("class","panel-text")
-                .attr("x", width-290)
+                .attr("x", 10)
                 .attr("y", 20*(line+1))
                 .style("fill", "white")
                 .style("font-size","smaller")
@@ -182,7 +182,7 @@
 
         svg.append("text")
                 .attr("class","panel-text")
-                .attr("x", width-290)
+                .attr("x", 10)
                 .attr("y", 20*(line+1))
                 .style("fill", "white")
                 .style("font-size","smaller")
@@ -194,7 +194,7 @@
             if(char_count > 27){
                 svg.append("text")
                 .attr("class","panel-text")
-                .attr("x", width-290)
+                .attr("x", 10)
                 .attr("y", 20*(line+1))
                 .style("fill", "white")
                 .style("font-size","smaller")
@@ -210,7 +210,7 @@
         if(char_count > 0){
              svg.append("text")
                     .attr("class","panel-text")
-                    .attr("x", width-290)
+                    .attr("x", 10)
                     .attr("y", 20*(line+1))
                     .style("fill", "white")
                     .style("font-size","smaller")
@@ -241,7 +241,7 @@
         
         svg.append("text")
                 .attr("class","panel-text")
-                .attr("x", width-290)
+                .attr("x", 10)
                 .attr("y", 20*(line+1))
                 .style("fill", "white")
                 .style("font-size","smaller")
@@ -251,7 +251,7 @@
 
         svg.append("text")
                 .attr("class","panel-text")
-                .attr("x", width-290)
+                .attr("x", 10)
                 .attr("y", 20*(line+1))
                 .style("fill", "white")
                 .style("font-size","smaller")
@@ -263,7 +263,7 @@
             if(char_count > 27){
                 svg.append("text")
                 .attr("class","panel-text")
-                .attr("x", width-290)
+                .attr("x", 10)
                 .attr("y", 20*(line+1))
                 .style("fill", "white")
                 .style("font-size","smaller")
@@ -279,7 +279,7 @@
         if(char_count > 0){
              svg.append("text")
                     .attr("class","panel-text")
-                    .attr("x", width-290)
+                    .attr("x", 10)
                     .attr("y", 20*(line+1))
                     .style("fill", "white")
                     .style("font-size","smaller")
@@ -360,11 +360,11 @@
     });
       
     renderSankey(true);
-
+//          .attr("transform", function(d) { 
     //the function for moving the nodes
     function dragmove(d) {
       d3.select(this).attr("transform", 
-          "translate(" + d.x + "," + (
+          "translate(" + (margin.left + d.x) + "," + (
                   d.y = Math.max(0, Math.min(height - d.dy, d3.event.y))
               ) + ")");
       sankey.relayout();
@@ -393,12 +393,13 @@
       //console.log("Links: "+myLinks);
     
       svg = d3.select('.sankey')
-          .attr("width", width)
+          .attr("width", width+100)
           .attr("height", height)
+
         .append("g");
 
       sankey = d3.alluvialGrowth()
-        .size([width-400, height])
+        .size([width-300, height])
         .nodes(myNodes)
         .links(myLinks)
         .layout(120);
@@ -411,12 +412,14 @@
         .enter().append("path")
           .attr("class", "link")
           .attr("d", path)
+          .attr("transform", 
+            "translate(" + margin.left + "," + 0 + ")")
           //.attr('class', 'flowline')
           .style("stroke-width", function(d) { 
                 return 0; //Math.max(1, d.dy);
            })
           .style("fill", function(d) {
-            return getGradient(d);
+            return getGradient(d, false);
            })
           .sort(function(a, b) { return b.dy - a.dy; })
           .on('mousemove', function(event) {
@@ -429,25 +432,67 @@
             } else {
                     tech = event.target.name;
                     title = event.source.name;
-            }   
+            }
+            highlight_links(tech, false);
             write_link_blurb(tech, title);
           })
-          .on('mouseout', tipLinks.hide);
+          .on('mouseout', function(event){
+                highlight_links("", true);
+            });
 
+        
+    function highlight_links(name, showAll){
+        var links = svg.selectAll(".link");
+        svg.selectAll("defs").remove();
+        var items = [];
+        if(name in technologies){
+            items.push(name);
+        }else if(name in orgs){
+            var tech;
+            d = orgs[name];
+            tech = d["tech"];
+            for(var x in tech){
+                //console.log(x);
+                if(tech[x] > 0){
+                    items.push(x);
+                }
+            }
+        }else if(name in cats){
+            for(var x in technologies){
+                d = technologies[x];
+                if(d[name] > 0)
+                    items.push(d.short);
+            }
+        }
+        console.log(items);
+        links.style("fill", function(d){
+            if(showAll || items.indexOf(d.source.name) >= 0 || items.indexOf(d.target.name) >= 0){
+                console.log("color - "+d.source.name+" to - "+d.target.name);
+                return getGradient(d, false);
+            } else{
+                //console.log("grey - "+d.source.name+" to - "+d.target.name);
+                return getGradient(d, true);
+            }
+        });
+            
+    }
+        
      // add in the nodes
       node = svg.append("g").selectAll(".node")
           .data(myNodes)
         .enter().append("g")
           .attr("class", "node")
           .attr("transform", function(d) { 
-              return "translate(" + d.x + "," + d.y + ")"; })
+              return "translate(" + (margin.left + d.x) + "," + (d.y) + ")"; })
           .on('mousemove', function(event) {
           })
           .on('mouseover', function(event){
                 write_node_blurb(event.name);
+                highlight_links(event.name, false);
           })
-          .on('mouseout', tipNodes.hide)
-        
+          .on('mouseout', function(event){
+                highlight_links(event.name, true);
+            })
           .call(d3.behavior.drag()
           .origin(function(d) { return d; })
           .on("dragstart", function() { 
@@ -481,43 +526,19 @@
           })
           .style("stroke", function(d) { 
 		    return d3.rgb(d.color).darker(2); });
-      
-      /*if (true) {
-        node.append("text")
-            .attr("x", function(d) { return 6; })
-            .attr("y", function(d) { return d.dy / 2; })
-            .attr("dy", ".35em")
-            .attr("text-anchor", "start")
-            .attr("transform", null)
-            .text(function(d) { if(!(d.name in technologies)){return d.name; }})
-          .filter(function(d) { return d.x < width / 2; })
-            .attr("x", function(d) { return 6;}) // + d.dy; })
-            .attr("text-anchor", "start");
-      } else {
-        node.append("text")
-            .attr("x", 6 + sankey.nodeWidth())
-            .attr("y", function(d) { return d.dy / 2; })
-            .attr("dy", ".35em")
-            .attr("text-anchor", "start")
-            .attr("transform", null)
-            .text(function(d) { return d.name; })
-          .filter(function(d) { return d.x < width / 2; })
-            .attr("x", -6)
-            .attr("text-anchor", "end");
-      }*/
         
       svg.append("svg:rect")
         .style("fill", "black")
         .attr("opacity", 0.7)
         .attr("class", "sankey-panel")
         .attr("transform", function(d) { 
-          return "translate(" + (width-300) + "," + (0) + ")"; })
+          return "translate(" + (0) + "," + (0) + ")"; })
         .attr("height", height)
         .attr("width", 300);
         
         svg.append("text")
         .attr("class","panel-text")
-        .attr("x", (width-290))
+        .attr("x", (10))
         .attr("y", 30)
         .attr("height", height)
         .attr("width", 300)
@@ -527,7 +548,7 @@
         
         svg.append("text")
         .attr("class","panel-text")
-        .attr("x", (width-270))
+        .attr("x", (30))
         .attr("y", height/2)
         .attr("height", height)
         .attr("width", 300)
@@ -537,7 +558,7 @@
               
         svg.append("text")
         .attr("class","panel-text")
-        .attr("x", (width-225))
+        .attr("x", (75))
         .attr("y", (height/2) + 20)
         .attr("height", height)
         .attr("width", 300)
@@ -552,7 +573,7 @@
         renderSankey(false);
     });
                          
-    function getGradient(d) {
+    function getGradient(d, isGray) {
             var color = "#CCCCCC";
             var color2 = "#AAAAAA";
             var speed = "3s";
@@ -571,6 +592,11 @@
                 name = d.target.name;
             }
             name = name.replace(/\s/g,'');
+        
+            if(isGray){
+                color = "rgba(204, 204, 204, 0.5)";
+                color2 = "rgba(170, 170, 170, 0.25)";
+            }
             ////////////////////////////////////////////////////////////
             /////////////////// Animated gradient //////////////////////
             ////////////////////////////////////////////////////////////
