@@ -57,9 +57,9 @@
   var uasiText =  "Bay Area counties participate in three regional intelligence sharing programs ARIES, West Bay COPLINK, and South Bay COPLINK." +
                   " The scope of the data shared between these programs and with Federal agencies is <b>currently unknown.</b></n> " +
                   "<a href='http://www.bayareauasi.org/sites/default/files/resources/010815%20Agenda%20Item%208%20Appendix%20A%20Public%20Safety%20Information%20Sharing%20Update.pdf'>(source)</a><br><br>" +
-                  "<span style='background-color:#2AAD93'>ARIES</span> <br>" +
-                  "<span style='background-color:#EF662F'>West Bay COPLINK,</span> <br>" +
-                  "<span style='background-color:#FAAF4C'>South Bay COPLINK.</span> <br>";
+                  "<span style='background-color:#2AAD93'><b>ARIES</b></span> <br>" +
+                  "<span style='background-color:#EF662F'><b>West Bay COPLINK</b></span> <br>" +
+                  "<span style='background-color:#FAAF4C'><b>South Bay COPLINK</b></span> <br>";
 
 
   function clear_layers() {

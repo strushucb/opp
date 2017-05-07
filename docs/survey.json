@@ -247,17 +247,17 @@
   "orgs": {
       "opd": {
             "tech":{
-                "stingray": 4.4,
-                "smm": 4.4,
-                "alpr": 4.4,
-                "cctv": 4.4,
-                "shotspotter": 4.4
+                "stingray": 4,
+                "smm": 4,
+                "alpr": 4,
+                "cctv": 4,
+                "shotspotter": 4
             },
             "short": "opd",
             "long": "Oakland Police Department",
             "blurb": "\"The Oakland Police Department (OPD) is a civilian law enforcement agency responsible for policing the city of Oakland, California. Since a 2003 incident involving alleged police misconduct, the Oakland Police Department has been under federal oversight. Ever since, the department has struggled with a potential federal takeover.\" (Wikipedia)",
             "label": "City",
-            "image": "img/tech/Labels%20for%20Sankey/opd.png",
+            "image": "img/tech/Labels%20for%20Sankey/reverse%20order/opd.png",
             "stingray-blurb": "\"'With the right software these tools can also intercept content, they can listen to my phone, they can take text messages and see the pictures that I have,' Oakland Privacy Commission spokesperson Brian Hofer said. Hofer is a member of Oakland's Privacy Advisory Commission and helped draft a restricted use policy for the Oakland Police Department. He says since 2006, the department has had a stingray that city government wasn't even aware of. In 2013, after an undercover officer was shot and wounded, the suspect's attorneys filed suit arguing their clients were illegally tracked down with a stingray.\" (KGO News, 2017)",
             "alpr-blurb": "\"LPR collection began in Oakland back in 2006, and an early OPD analysis showed that the overwhelming majority of the data collected was not a 'hit.' In April 2008, the OPD reported to the city council that after using just four LPR units for 16 months, it had read 793,273 plates and had 2,012 hits—a 'hit rate' of 0.2 percent. In other words, nearly all of the data collected by an LPR system concerns people not currently under suspicion.\" (Ars Technica, 2015)",
             "smm-blurb": "\"Without public hearings or civilian oversight, the Oakland Police Department acquired a powerful social media monitoring tool called Geofeedia in 2014 and has used it to conduct surveillance on large public gatherings, possibly including political protests.\" (East Bay Express, 2016)",
@@ -277,7 +277,7 @@
             "long": "Bay Area Rapid Transit",
             "blurb": "\"Bay Area Rapid Transit (BART) is a public transportation metro system serving the San Francisco Bay Area in California. The rapid transit elevated and subway system connects San Francisco with cities in Alameda, Contra Costa, and San Mateo counties. With an average of 433,000 weekday passengers and 128.5 million annual passengers in fiscal year 2016, BART is the fifth-busiest heavy rail rapid transit system in the United States.\" (Wikipedia)",
             "label": "Transit",
-            "image": "img/tech/Labels%20for%20Sankey/bart.png",
+            "image": "img/tech/Labels%20for%20Sankey/reverse%20order/bart.png",
             "stingray-blurb": "",
             "alpr-blurb": "\"BART obtained state transportation funds in 2013 to install license plate reader cameras, or ALPRs, in the new parking garage at MacArthur Station as part of a pilot program. Alicia Trost, a spokeswoman for BART, said BART spent $62,500 in state funds for the cameras and other equipment. The installation was completed last November apparently without public notice. The pilot program is so that BART can test the cameras in advance of installing similar surveillance systems at other stations across the Bay Area, according to BART records.\" (East Bay Express, 2016)",
             "smm-blurb": "\"The Bay Area Rapid Transit system (BART), which services California cities including San Francisco and Oakland, is considering a surveillance technology ordinance, which would require public debate before implementing those sorts of tools.\" (CNN, 2017)",
@@ -286,8 +286,8 @@
         },
       "dhs": {
             "tech":{
-                "stingray": 8,
-                "smm": 8,
+                "stingray": 10,
+                "smm": 10,
                 "alpr": 0,
                 "cctv": 0,
                 "shotspotter": 0
@@ -296,7 +296,7 @@
             "long": "Department of Homeland Security",
             "blurb": "\"The United States Department of Homeland Security (DHS) is a cabinet department of the United States federal government with responsibilities in public security, roughly comparable to the interior or home ministries of other countries. Its stated missions involve anti-terrorism, border security, immigration and customs, cyber security, and disaster prevention and management. It was created in response to the September 11 attacks.\" (Wikipedia)",
             "label": "Federal",
-            "image": "img/tech/Labels%20for%20Sankey/DHS.png",
+            "image": "img/tech/Labels%20for%20Sankey/reverse%20order/DHS.png",
             "stingray-blurb": "\"The Department of Homeland Security (DHS) has released its own stingray requirements. Agents must now obtain a warrant prior to deploying the secretive surveillance tool as part of criminal investigations. This new policy comes over a month after the Department of Justice released its own similarly policy. Like the Department of Justice’s September 2015 stingray requirements, there are also exceptions for both 'exigent' and 'exceptional circumstances.' While the concept of 'exigent circumstances' is well-understood in American law, 'exceptional circumstances' are not. Many legal experts are baffled as to what exactly the boundaries of the concept are.\" (Ars Technica, 2015)",
             "alpr-blurb": "",
             "smm-blurb": "\"DHS has established a task force for using social media to screen applicants for immigration benefits. In connection with that effort, U.S. Citizenship and Immigration Services (USCIS) began pilots to expand social media screening of immigration applicants. Additionally, Immigration and Customs Enforcement (ICE) independently began a pilot to use social media screening during the visa issuance process. However, these pilots, on which DHS plans to base future department-wide use of social media screening, lack criteria for measuring performance to ensure they meet their objectives.\" (DHS Office of Inspector General, 2017)",
@@ -315,7 +315,7 @@
             "long": "California Highway Patrol",
             "blurb": "\"The California Highway Patrol (CHP) is a law enforcement agency of the U.S. state of California. The CHP has patrol jurisdiction over all California highways and can also act as the state police.\" (Wikipedia)",
             "label": "State",
-            "image": "img/tech/Labels%20for%20Sankey/chp.png",
+            "image": "img/tech/Labels%20for%20Sankey/reverse%20order/chp.png",
             "stingray-blurb": "The California Highway Patrol may have a cell site simulator (commonly known as a Stingray) - it is currently unclear.",
             "alpr-blurb": "\"On the state’s highways, the California Highway Patrol operates at least 200 cameras, but we don’t even know how much data they have collected.\" (ACLU, 2013)",
             "smm-blurb": "\"In recent years, police agencies throughout the United States have scoured social media as part of criminal investigations. But the police are also watching social media to spy on political protesters, especially those they suspect will engage in acts of civil disobedience. During the recent Black Lives Matter protests, local and state police agents monitored protesters on social media and activist websites. Several hundred CHP emails obtained by the Express show that social media is now a key source of intel for the police when monitoring political protests.\" (East Bay Express, 2015)",
@@ -334,7 +334,7 @@
             "long": "Alameda County",
             "blurb": "\"The Alameda County Sheriff's Office (ACSO) is a law enforcement agency serving Alameda County, California. ACSO is accredited through the Commission on Accreditation for Law Enforcement Agencies (CALEA), the American Correctional Association (ACA), National Commission on Correctional Health Care (NCCHC) and the California Medical Association (CMA). As of 2008, ACSO has approximately 2500 positions, over 1500 of which are sworn peace officers.\" (Wikipedia)",
             "label": "County",
-            "image": "img/tech/Labels%20for%20Sankey/alco_pd.png",
+            "image": "img/tech/Labels%20for%20Sankey/reverse%20order/alco_pd.png",
             "stingray-blurb": "\"The Alameda County District Attorney's Office is leading a multi-agency effort to acquire a controversial cellphone surveillance device and has signed a non-disclosure agreement with the FBI and Harris Corporation, the maker of the equipment, prohibiting the DA from discussing or releasing information about the technology, according to documents we obtained. Records also show that the Oakland and Fremont police departments are partnering with the Alameda County DA to acquire the device. The device, which costs approximately $535,000, is being purchased with federal homeland security grant funds and with funding from the DA and the cities of Oakland and Fremont. The Harris-made cell-site simulator being purchased by the Alameda County DA is called Hailstorm.\" (East Bay Express, 2015)",
             "alpr-blurb": "",
             "smm-blurb": "\"After doing research the Alameda County Sheriff's Office does not own a program designed to access information from social media or for network investigative software. We have been approached by companies who would like to present us their software and I have included copies of those emails as well as documents we were sent. Kind regards, Paula - Alameda County Sheriff's Office - Internal Affairs\" (Response to Public Records Request - MuckRock, 2016)",
@@ -346,22 +346,22 @@
       "what-you-say": {
           "long": "What You Say",
           "blurb": "Technologies can be used to collect your social media posts, the contents of phone calls and text, or record you speaking in public.",
-          "image": "img/tech/Labels%20for%20Sankey/whatyousay_bar.png"
+          "image": "img/tech/Labels%20for%20Sankey/reverse%20order/whatyousay_bar.png"
       },
       "what-you-do": {
           "long": "What You Do",
           "blurb": "Technologies can be used to collect which events you attend and your activities can be inferred from the location of your cell phone or vehicle.",
-          "image": "img/tech/Labels%20for%20Sankey/whatyoudo_bar.png"
+          "image": "img/tech/Labels%20for%20Sankey/reverse%20order/whatyoudo_bar.png"
       },
       "who-you-know": {
           "long": "Who You Know",
           "blurb": "Technologies can be used to collect your network of associates from social media, phone contacts, or show your connections to others based on similiar patterns in time and location data.",
-          "image": "img/tech/Labels%20for%20Sankey/whoyouknow_bar.png"
+          "image": "img/tech/Labels%20for%20Sankey/reverse%20order/whoyouknow_bar.png"
       },
       "where-you-go": {
           "long": "Where You Go",
           "blurb": "Technologies can be used to identify the location of your cell phone, vehicle, or record your travel on public transit. The collection of social media data can reveal where you check-in or have taken photographs.",
-          "image": "img/tech/Labels%20for%20Sankey/whereyougo_bar.png"
+          "image": "img/tech/Labels%20for%20Sankey/reverse%20order/whereyougo_bar.png"
       }
   }
 }

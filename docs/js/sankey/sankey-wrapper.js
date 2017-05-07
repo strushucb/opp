@@ -73,34 +73,34 @@
             if(+d["what-you-say"] > 0){
                 graph.nodes.push({ "shortname": "What You Say",        
                                    "name": "what-you-say" });
-                graph.links.push({ "source": "what-you-say",
-                                    "target": d["short"],
-                                    "endValue": d["in_score"],
-                                    "value": +d["what-you-say"]});  
+                graph.links.push({ "target": "what-you-say",
+                                    "source": d["short"],
+                                    "value": d["in_score"],
+                                    "endValue": +d["what-you-say"]});  
             }
             if(+d["what-you-do"] > 0){
             graph.nodes.push({ "shortname": "What You Do",        
                                "name": "what-you-do" });
-            graph.links.push({ "source": "what-you-do",
-                                "target": d["short"],
-                                "endValue": d["in_score"],
-                                "value": +d["what-you-do"]});  
+            graph.links.push({ "target": "what-you-do",
+                                "source": d["short"],
+                                "value": d["in_score"],
+                                "endValue": +d["what-you-do"]});  
             }
             if(+d["where-you-go"] > 0){
                 graph.nodes.push({ "shortname": "Where You Go",        
                                "name": "where-you-go" });
-                graph.links.push({ "source": "where-you-go",
-                                "target": d["short"],
-                                "endValue": d["in_score"],
-                                "value": +d["where-you-go"]});  
+                graph.links.push({ "target": "where-you-go",
+                                "source": d["short"],
+                                "value": d["in_score"],
+                                "endValue": +d["where-you-go"]});  
             }
             if(+d["who-you-know"] > 0){            
                 graph.nodes.push({ "shortname": "Who You Know",        
                                    "name": "who-you-know" });
-                graph.links.push({ "source": "who-you-know",
-                                    "target": d["short"],
-                                    "endValue": d["in_score"],
-                                    "value": +d["who-you-know"]});  
+                graph.links.push({ "target": "who-you-know",
+                                    "source": d["short"],
+                                    "value": d["in_score"],
+                                    "endValue": +d["who-you-know"]});  
             }
          }
         
@@ -112,10 +112,10 @@
                                "name": d["short"] });
             for(tech in equipment){
                 if(equipment[tech] > 0){
-                    graph.links.push({ "source": tech,
-                                    "target": d["short"],
-                                    "endValue": equipment[tech],
-                                    "value": technologies[tech]["out_score"]});  
+                    graph.links.push({ "target": tech,
+                                    "source": d["short"],
+                                    "value": equipment[tech],
+                                    "endValue": technologies[tech]["out_score"]});  
                 }
             }
         }
@@ -534,17 +534,17 @@
         .attr("transform", function(d) { 
           return "translate(" + (0) + "," + (0) + ")"; })
         .attr("height", height)
-        .attr("width", 300);
+        .attr("width", 290);
         
         svg.append("text")
         .attr("class","panel-text")
-        .attr("x", (10))
+        .attr("x", (45))
         .attr("y", 30)
         .attr("height", height)
         .attr("width", 300)
         .style("fill", "white")
         .style("font-size","smaller")
-        .text("Explore the information flows with your mouse.")
+        .text("Explore the chart with your mouse.")
         
         svg.append("text")
         .attr("class","panel-text")
@@ -612,7 +612,7 @@
 
     linearGradient.append("animate")
         .attr("attributeName","x1")
-        .attr("values","0%;100%")
+        .attr("values","0%;-100%")
     //	.attr("from","0%")
     //	.attr("to","100%")
         .attr("dur",speed)
@@ -620,7 +620,7 @@
 
     linearGradient.append("animate")
         .attr("attributeName","x2")
-        .attr("values","100%;200%")
+        .attr("values","-100%;-200%")
     //	.attr("from","100%")
     //	.attr("to","200%")
         .attr("dur",speed)
