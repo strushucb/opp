@@ -1,3 +1,7 @@
+/* code is derived from: http://bl.ocks.org/ChrisManess/ebaacb5fd976657edad2
+ * Chris Maness's alluvial growth sankey diagrams. (GNU Public license)
+ */
+
 d3.sankey = function() {
   var sankey = {},
       nodeWidth = 24,

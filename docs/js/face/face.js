@@ -6,10 +6,14 @@
 * License: MIT  [ http://koalastothemax.com/LICENSE ]
 *
 */
-  var face = {
+
+//create an initial object
+var face = {
     version: '2.1.3'
-  };  
-  
+};  
+
+//create an async queue for animations - necessary to maintain smooth UI
+//see: http://stackoverflow.com/questions/6921275/is-it-possible-to-chain-settimeout-functions-in-javascript
 $.queue = {
     _timer: null,
     _queue: [],
@@ -43,18 +47,25 @@ $.queue = {
         $.queue._queue = [];
     }
 };
-  var scores;
+
+//start loading json data
+var scores;
 d3.json("survey.json", function(data) {
     scores = data.scores;
 });
 
+
+//run persona creates a new face (for a specific persona)
 function run_persona() {
 
+  //from original koalas_to_the_max
   face = {
     version: '1.8.2'
   };  
   
-  function array2d(w, h) {
+  //from original koalas_to_the_max
+//creates a new 2d array of given size
+    function array2d(w, h) {
     var a = [];
     return function(x, y, v) {
       if (x < 0 || y < 0) return void 0;
@@ -70,6 +81,7 @@ function run_persona() {
     }
   }
 
+   //from original koalas_to_the_max
   // Find the color average of 4 colors in the RGB colorspace
   function avgColor(x, y, z, w) {
     return [
@@ -79,15 +91,18 @@ function run_persona() {
     ];
   }
 
+  //from original koalas_to_the_max
   face.supportsCanvas = function() {
     var elem = document.createElement('canvas');
     return !!(elem.getContext && elem.getContext('2d'));
   };
 
+  //from original koalas_to_the_max
   face.supportsSVG = function() {
     return !!document.createElementNS && !!document.createElementNS('http://www.w3.org/2000/svg', "svg").createSVGRect;
   };
 
+  //from original koalas_to_the_max
   function Circle(vis, xi, yi, size, color, children, layer) {
     this.vis = vis;
     this.x = size * (xi + 0.5);
@@ -100,6 +115,7 @@ function run_persona() {
     this.layer = layer;
   }
 
+  //from original koalas_to_the_max
   Circle.prototype.checkIntersection = function(startPoint, endPoint) {
     var edx = this.x - endPoint[0],
         edy = this.y - endPoint[1],
@@ -113,6 +129,8 @@ function run_persona() {
     return edx * edx + edy * edy <= r2 && sdx * sdx + sdy * sdy > r2;
   }
 
+  //from original koalas_to_the_max
+  //changed to create growing animation
   Circle.addToVis = function(vis, circles, cat, num) {
     var circle = vis.selectAll('.nope').data(circles)
       .enter().append('circle');
@@ -147,6 +165,8 @@ function run_persona() {
 
   var what_scores = {"what-you-say": 1,"what-you-do": 1, "who-you-know": 1, "where-you-go": 1};
 
+    //from original koalas_to_the_max
+    //loads the image
   face.loadImage = function(imageData) {
     // Create a canvas for image data resizing and extraction
     var canvas = document.createElement('canvas').getContext('2d');
@@ -159,7 +179,9 @@ function run_persona() {
   };
     
 
-
+  //base on original koalas_to_the_max
+  //changed so that levels are kept track off (level_list)
+  //also changed the colors by quadrants(there are four main colors)
   face.makeCircles = function(selector, colorData, onEvent) {
     onEvent = onEvent || function() {};
 
@@ -187,9 +209,11 @@ function run_persona() {
     var xi, yi, t = 0, color;
     for (yi = 0; yi < dim; yi++) {
       for (xi = 0; xi < dim; xi++) {
+          //if the color is close to white, just make it white
         if(colorData[t] >= 240 && colorData[t+1] >= 240 && colorData[t+2] >= 240){
             color = [255,255,255];
         } else {
+            //changes the color - provides a tinit
             if(xi >= (dim / 2) && yi >= (dim / 2)){
                 //pink "color2" : "rgba(211, 84, 154, 0.75)"
                 color = [Math.min(colorData[t]+(211-colorData[t])*.40,255), Math.min(colorData[t+1]+(84-colorData[t])*.40,255), Math.min(colorData[t+2]+(154-colorData[t])*.40,255)];
@@ -239,13 +263,14 @@ function run_persona() {
     }
     
     var delay = 5;
-    // Create the initial circle
+    // Create the initial circles (start with a group of 4)
     Circle.addToVis(vis, [level_list[1](0,0)], "wyk",delay);
     Circle.addToVis(vis, [level_list[1](1,0)], "wys",delay);
     Circle.addToVis(vis, [level_list[1](0,1)], "wyg",delay);
     Circle.addToVis(vis, [level_list[1](1,1)], "wyd",delay);
       
  
+    //keep track of what technologies have been answered
     var answered_tech = {
                     "social-connections": false,
                     "income": false,
@@ -256,6 +281,7 @@ function run_persona() {
                     "smuse": false};
     var variables_set = 0;
       
+    //listener for Social Media connection slider
     d3.select("#SMULevel").on("input", function() {
         if(!answered_tech["social-connections"]){
             answered_tech["social-connections"] = true;
@@ -266,6 +292,8 @@ function run_persona() {
         $.queue.clear();
         $.queue.add(function(){face.updateData()},this,50);
     });
+      
+    //listener for Income level slider
     d3.select("#IncLevel").on("input", function() {
         if(!answered_tech["income"]){
             answered_tech["income"] = true;
@@ -277,6 +305,7 @@ function run_persona() {
         $.queue.add(function(){face.updateData()},this,50);
     });
       
+    //will be called by all the other buttons
     face.updateDataWrap = function updateDataWrap(key){
         if(!answered_tech[key]){
             answered_tech[key] = true;
@@ -290,6 +319,7 @@ function run_persona() {
         $.queue.add(function(){face.updateData()},this,50);
     }
     
+    //load the base scores (before any privacy score tallying is done)
     var base_scores;
     if("undefined" === typeof scores){
         d3.json("survey.json", function(data) {
@@ -299,6 +329,8 @@ function run_persona() {
     } else {
             base_scores = (JSON.parse(JSON.stringify(scores.tech)));
     }
+      
+    //if you are loading a profile, answer the behavior scores according to the profile number
     face.loadProfileData = function loadProfileData(num){
        if(num > 0){
            variables_set = 7;
@@ -319,6 +351,8 @@ function run_persona() {
                 "transit": true,
                 "events": true,
                 "smuse": true};
+           
+          //loads the quote of the persona
            document.getElementById("bio").innerHTML = "<p style='height: 400px;  background-image: url(img/quote.png); background-repeat:no-repeat; background-size: 100%; padding-left: 10px; padding-right: 40px; padding-top: 20px; padding-bottom: 5px; font-size:smaller'>"+answers["quote"]+"</p>";
            face.updateData();
        }else{
@@ -326,7 +360,7 @@ function run_persona() {
        }
     }; 
     
-    
+    //calculates the new scoring based on the technology and the answer to the survey
     function addToTotal(result){
        //console.log(result);
        for(var item in result){
@@ -337,6 +371,7 @@ function run_persona() {
        }
     }
     
+    //updateData - checks the survey results for any changes, updates the scoring, and redraws the circles
     face.updateData = function updateData(){
        base_scores = (JSON.parse(JSON.stringify(scores.tech)));
        var smuResult, incResult, carResult, cellResult, transitResult, eventsResult, smuseResult;
@@ -385,7 +420,7 @@ function run_persona() {
        what_scores["who-you-know"] = 1;
        what_scores["where-you-go"] = 1;
    
-        
+        //recalculate the scoring
         for(var item in base_scores){
             if(variables_set < 7){
                 //console.log("GRRRR!!!!");
@@ -410,6 +445,8 @@ function run_persona() {
         }
         //console.log(base_scores);
         //console.log("GRRRR!!!!")
+        
+        //redraw the circles with async threading
         $.queue.add(function(){update(what_scores["who-you-know"],"wyk",0,0)},this);
         $.queue.add(function(){update(what_scores["what-you-say"],"wys",1,1)},this);
         $.queue.add(function(){update(what_scores["where-you-go"],"wyg",0,1)},this);
@@ -418,6 +455,7 @@ function run_persona() {
         //console.log("Jerkk!!!!")
     };
         
+    //updates the circles
     function update(nLevel,cat,x,y) {
   	 //console.log(cat+": "+nLevel);
          vis.selectAll('.'+cat).remove();
@@ -426,12 +464,14 @@ function run_persona() {
   	 //svg.selectAll("circle").attr("r", nLevel);
     }
       
+    //base log 4 to calculate number of children to draw
     function log4(n){
         //console.log("log4: "+(Math.log(n) / Math.log(4)));
         return Math.log(n) / Math.log(4);
     }
       
-      
+    //redraws each of the circles
+    //calculates the number of children that need to be drawn
     function stackCircles(nLevel, x, y,cat) {
         var level = Math.ceil(log4(3) + log4(nLevel) - 1);
         var num_parents = (Math.pow(4,level-1)-1)/3; //how many nodes above me
@@ -444,9 +484,10 @@ function run_persona() {
             re_label();
             return;
         }
+        
+        //if on the left side of face, draw starting on the right
         if (x <= 0) { 
             for (var i = x*Math.pow(2,level) ; i < (x+1)*(Math.pow(2,level)); i+=2) {
-                
                 for (var j = y*Math.pow(2,level); j < (y+1)*(Math.pow(2,level)); j+=2) {
                     if(children > 0){
                         Circle.addToVis(vis,[level_list[level+1](i,j)], cat, Math.round(Math.random()*delay_max) + 1);
@@ -459,6 +500,8 @@ function run_persona() {
                     }
                 }
             }
+                    
+        //if on the right side of face, draw starting on the left
         } else {
             for (var i = (x+1)*Math.pow(2,level)-1 ; i >= (x)*(Math.pow(2,level)); i-=2) {
                 for (var j = (y+1)*Math.pow(2,level)-1; j >= (y)*(Math.pow(2,level)); j-=2) {
@@ -478,7 +521,7 @@ function run_persona() {
       }
     
     
-      
+    //adds label panels to the score quadrants
     function generate_titles(x,y, text, fill, class_id, isNormal){
         if(isNormal){
             vis.append("text")
@@ -509,6 +552,7 @@ function run_persona() {
         });
     }
    
+    //writes the blurb in each panel over the face quadrants
     function write_report_blurb(x, y, text){
         var titlekey,blurb,split_blurb;
         titlekey = text.replace(/\s+/g, '-').toLowerCase();
@@ -521,7 +565,7 @@ function run_persona() {
         for(var i = 0; i < split_blurb.length; i++){
             if(char_count > 25){
                 vis.append("text")
-                .attr("class","shitstain-text")
+                .attr("class","stain-text")
                 .attr("x", x)
                 .attr("y", y+ (20*(line+1)))
                 .style("fill", "white")
@@ -537,7 +581,7 @@ function run_persona() {
         }
         if(char_count > 0){
              vis.append("text")
-                    .attr("class","shitstain-text")
+                    .attr("class","stain-text")
                     .attr("x", x)
                     .attr("y", y+ (20*(line+1)))
                     .style("fill", "white")
@@ -546,20 +590,23 @@ function run_persona() {
         }
     }
       
+    //creates back panels with reports over each quadrant of face
     function generate_reports(x,y,text,tx,ty){
         vis.append("svg:rect")
         .style("fill", "black")
         .attr("opacity", 0.7)
-        .attr("class", "shitstain")
+        .attr("class", "stain")
         .attr("transform", function(d) { 
           return "translate(" + x + "," + y + ")"; })
         .attr("height", maxSize / 2)
         .attr("width", maxSize / 2);
 
-        generate_titles(tx,ty,text,"white", "shitstain-text", true);
+        generate_titles(tx,ty,text,"white", "stain-text", true);
         write_report_blurb(x+20,y+60,text);
     }  
       
+    //when you move your mouse over a quadrant, draws a black panel
+      // based on koala_to_the_max code
     function onMouseMove() {
       var mousePosition = d3.mouse(vis.node());
       if (isNaN(mousePosition[0])) {
@@ -567,27 +614,27 @@ function run_persona() {
       }else {
         if(mousePosition[0] < maxSize / 2 && mousePosition[1] < maxSize / 2){
             //console.log("Who You Know! "+mousePosition);
-            d3.selectAll(".shitstain").remove();
-            d3.selectAll(".shitstain-text").remove();
+            d3.selectAll(".stain").remove();
+            d3.selectAll(".stain-text").remove();
             generate_reports(0,0,"WHO YOU KNOW",14,14);
  
         }
         else if(mousePosition[0] >= maxSize / 2 && mousePosition[1] < maxSize / 2){
             //console.log("What You Do! "+mousePosition);
-            d3.selectAll(".shitstain").remove();
-            d3.selectAll(".shitstain-text").remove();
+            d3.selectAll(".stain").remove();
+            d3.selectAll(".stain-text").remove();
             generate_reports((maxSize / 2),0,"WHAT YOU DO", maxSize - 151, 14);
         }
         else if(mousePosition[0] < maxSize / 2 && mousePosition[1] >= maxSize / 2){
             //console.log("Where You Go! "+mousePosition);
-            d3.selectAll(".shitstain").remove();
-            d3.selectAll(".shitstain-text").remove();
+            d3.selectAll(".stain").remove();
+            d3.selectAll(".stain-text").remove();
             generate_reports(0,(maxSize / 2),"WHERE YOU GO",14, maxSize - 16);
         }
         else if(mousePosition[0] >= maxSize / 2 && mousePosition[1] >= maxSize / 2){
             //console.log("What You Say! "+mousePosition);
-            d3.selectAll(".shitstain").remove();
-            d3.selectAll(".shitstain-text").remove();
+            d3.selectAll(".stain").remove();
+            d3.selectAll(".stain-text").remove();
             generate_reports((maxSize / 2),(maxSize / 2),"WHAT YOU SAY",maxSize - 151,maxSize - 16);
 
         }
@@ -595,6 +642,7 @@ function run_persona() {
       //d3.event.preventDefault();
     }
       
+    //removes panels if mouse is not over face
     function onMouseLeave() {
       var mousePosition = d3.mouse(vis.node());
       // Do nothing if the mouse point is not valid
@@ -603,8 +651,8 @@ function run_persona() {
       } 
       if(mousePosition[0] < 0 || mousePosition[1] < 0 || mousePosition[0] > maxSize || mousePosition[1] > maxSize){
         //console.log(mousePosition);
-        d3.selectAll(".shitstain").remove();
-        d3.selectAll(".shitstain-text").remove();
+        d3.selectAll(".stain").remove();
+        d3.selectAll(".stain-text").remove();
         re_label();
         return;
       }  

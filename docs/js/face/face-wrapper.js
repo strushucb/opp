@@ -1,6 +1,15 @@
 
  // Code left intentionally unminimized for your reading pleasure.
-
+/*
+* Heavily derived from Vadim Ogievetsky's KoalasToTheMax
+* Powered by Mike Bostock's D3
+*
+* For me on GitHub:  https://github.com/vogievetsky/KoalasToTheMax
+* License: MIT  [ http://koalastothemax.com/LICENSE ]
+*
+*/
+//I modified Vadim's code in order for new faces to be loaded
+//by clicking on the personas.
     function newImage(num) {
         var element = document.getElementById("dots");
         while (element != null && element.firstChild) {
@@ -36,6 +45,8 @@
           return;
         }
 
+        //the basicLoad if not given a specific number, meaning someone click on a face,
+        //will load one of the 4 personas at random.
           function basicLoad(location) {
             var possible; 
             if(num == 0){
@@ -70,7 +81,7 @@
           }
 
           var img = new Image();
-          
+          //loads a new face if someone clicks on a different persona button
           img.onload = function() {
             var colorData;
             try {
@@ -93,4 +104,4 @@
           };
           img.src = file;
       };
-    newImage(0);
+    newImage(0); //by default, on load, just specify 0 for no persona survey.

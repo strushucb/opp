@@ -1,6 +1,12 @@
-  var units = "USD",
-      linkTooltipOffset = 62,
-      nodeTooltipOffset = 130,
+/* code is derived from: http://bl.ocks.org/ChrisManess/ebaacb5fd976657edad2
+ * Chris Maness's alluvial growth sankey diagrams. (GNU Public license)
+ * Also: https://bl.ocks.org/nbremer/a6690ca67800a2abafcd71ef4725f33f
+ * by Nadia Bremer for the flowing gradient in the sankey diagrams. 
+ */
+//Key changes are the addition of icons, multiple different colors, loading of
+//data from json, a report panel, and adjusting sizes of links dynamically.
+
+var units = "USD",
       technologies, orgs, cats;
 
   d3.json("survey.json", function(data) {
@@ -13,26 +19,13 @@
       width = Math.round($(window).width() * .95) - margin.left - margin.right,
       height = Math.round($(window).height() * .75) - margin.top - margin.bottom;
 
-  /* Initialize tooltip */
-  var tipLinks = d3.tip()
-      .attr('class', 'd3-tip')
-      .offset([-10,0]);
 
-  var tipNodes = d3.tip()
-      .attr('class', 'd3-tip d3-tip-nodes')
-      .offset([-10, 0]);
-
-  function formatAmount(val) {
-      return val.toLocaleString("en-US", {style: 'currency', currency: "USD"}).replace(/\.[0-9]+/, "");
-  };
 
   // append the svg canvas to the page
   var svg = d3.select("#sankey").append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
       .attr("class", "sankey")
-      .call(tipLinks)
-      .call(tipNodes)
     .append("g")
       .attr("transform", 
             "translate(" + margin.left + "," + margin.top + ")");
@@ -48,14 +41,15 @@
   var alpr_link = 1;
   var tech_more;
 
-
+//loads the sankey data
  //console.log("About to load sankey data!!");
  d3.json("survey.json", function(data) {
     
     var currentData = data;
     function processData(data, init) {
         
-
+        //get the technology, organization, and category
+        //and load the nodes, links
         //console.log(data.scores);
         technologies = data["scores"]["tech"];
         orgs = data.scores.orgs;
@@ -148,8 +142,7 @@
     }
 
     
-      
-      
+    //for links, write a report in the black panel about the link
     function write_link_blurb(tech, title){
     
         d3.selectAll(".panel-text").remove();
@@ -190,6 +183,7 @@
                 .text(function(d){return " & "+title+": ";});
         line++;
 
+        //limit the length of the lines to only 27 characters
         for(var i = 0; i < split_blurb.length; i++){
             if(char_count > 27){
                 svg.append("text")
@@ -218,6 +212,9 @@
         }
     }
       
+     
+    //node reports are a little bit different that link reports
+    //since they don't describe more than one item.
     function write_node_blurb(item){
     
         d3.selectAll(".panel-text").remove();
@@ -288,80 +285,10 @@
     }
 
      
-     
-    tipLinks.html(function(d) {
-      var title, tech;
-      if (technologies.indexOf(d.source.name) > -1) {
-        tech = d.source.name;
-        title = d.target.name;
-        var html =  '<div class="table-wrapper">'+
-            '<h1>'+title+': '+tech+'</h1>'+
-            '<table>'+
-                '<tr>'+
-                    '<td class="col-left">'+'</td>'+
-                '</tr>'+
-                '<tr>'+
-                    '<td class="col-left" align="left">'+get_blurb(tech, title)+'</td>'+
-                '</tr>'+
-            '</table>'+
-            '</div>';
-      } else {
-        tech = d.target.name;
-        title = d.source.name;
-        var html =  '<div class="table-wrapper">'+
-            '<h1>'+title+': '+tech+'</h1>'+
-            '<table>'+
-                '<tr>'+
-                    '<td class="col-left">'+'</td>'+
-                '</tr>'+
-                '<tr>'+
-                    '<td class="col-left" align="left">'+get_blurb(tech, title)+'</td>'+
-                '</tr>'+
-            '</table>'+
-            '</div>';
-      }
-
-      d3.selectAll(".panel-text")
-            .style("fill", "white")
-            .text(function(d) { return html});
-      return "";
-    });
-
-    tipNodes.html(function(d) {
-      var object = d3.entries(d),
-          nodeName = object[0].value,
-          linksTo = object[2].value,
-          linksFrom = object[3].value,
-          html;
-
-      html =  '<div class="table-wrapper">'+
-              '<h1>'+nodeName+'</h1>'+
-              '<table>';
-      if (linksFrom.length > 0 & linksTo.length > 0) {
-        html+= '<tr><td><h2>Information Type:</h2></td><td></td></tr>'
-      }
-      for (i in linksFrom) {
-        html += '<tr>'+
-          '<td class="col-left">'+linksFrom[i].source.name+'</td>'+
-          '<td align="right">'+formatAmount(linksFrom[i].value)+'</td>'+
-        '</tr>';
-      }
-      if (linksFrom.length > 0 & linksTo.length > 0) {
-        html+= '<tr><td><h2>Jurisdictions:</h2></td><td></td></tr>'
-      }
-      for (i in linksTo) {
-        html += '<tr>'+
-                  '<td class="col-left">'+linksTo[i].target.name+'</td>'+
-                  '<td align="right">'+formatAmount(linksTo[i].value)+'</td>'+
-                '</tr>';
-      }
-      html += '</table></div>';
-      return html;
-    });
       
     renderSankey(true);
-//          .attr("transform", function(d) { 
-    //the function for moving the nodes
+
+     //relayout the sankey if nodes are dragged
     function dragmove(d) {
       d3.select(this).attr("transform", 
           "translate(" + (margin.left + d.x) + "," + (
@@ -371,6 +298,7 @@
       link.attr("d", path);
     }
 
+     //checks to see if any links reference a given node
     function hasLinks(node, links) {
       // checks if any links in links reference node
       l = false;
@@ -526,7 +454,9 @@
           })
           .style("stroke", function(d) { 
 		    return d3.rgb(d.color).darker(2); });
+     
         
+    //show the grey panel on the left
       svg.append("svg:rect")
         .style("fill", "black")
         .attr("opacity", 0.7)
@@ -572,7 +502,9 @@
         height = Math.round($(window).height() * .75) - margin.top - margin.bottom;
         renderSankey(false);
     });
-                         
+       
+     
+    //this is the gradient code for the flowing links 
     function getGradient(d, isGray) {
             var color = "#CCCCCC";
             var color2 = "#AAAAAA";

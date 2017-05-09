@@ -1,3 +1,7 @@
+/* code is derived from: http://bl.ocks.org/ChrisManess/ebaacb5fd976657edad2
+ * Chris Maness's alluvial growth sankey diagrams. (GNU Public license)
+ */ // only change was to compute the size of nodes.
+
 d3.alluvialGrowth = function() {
   var alluvialGrowth = {},
       nodeWidth = 24,
